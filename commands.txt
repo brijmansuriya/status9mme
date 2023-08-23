@@ -1,0 +1,33 @@
+php artisan make:model ModelName
+
+-------------------------------------------------
+Create a Model with a Migration:
+php artisan make:model ModelName -m
+-------------------------------------------------
+
+php artisan make:controller ControllerName
+
+php artisan make:migration create_table_name
+
+php artisan make:migration create_table_name --table=table_name
+
+php artisan migrate
+
+php artisan migrate:rollback
+
+php artisan migrate:refresh
+
+php artisan migrate:refresh --seed
+
+php artisan make:seeder SeederName
+
+php artisan db:seed
+
+
+
+------------------------------------------------
+php artisan datatables:make CategoryDataTable
+php artisan datatables:make PostDataTable
+php artisan datatables:make TagDataTable
+php artisan datatables:make UserDataTable
+

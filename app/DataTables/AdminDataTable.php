@@ -20,7 +20,7 @@ class AdminDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-        ->addColumn('image', function ($row) {
+            ->addColumn('image', function ($row) {
                 $image  = '';
                 $image .= '<img src="' . $row->profile_picture  . '" class="img-fluid" style="width:100px;height:100px; border-radius:10%;"> ';
                 return new HtmlString($image);
@@ -60,7 +60,7 @@ class AdminDataTable extends DataTable
             ->orderBy([1])
             ->selectStyleSingle()
             ->buttons([
-                Button::make(['excel','csv','pdf','print']),
+                Button::make(['excel', 'csv', 'pdf', 'print']),
                 // Button::make(['csv']),
                 // Button::make(['pdf']),
                 // // Button::make('reset'),
