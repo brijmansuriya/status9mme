@@ -27,23 +27,6 @@
     </div>
     <!-- end page title -->
 
-
-    {{-- <div class="row">
-    <div class="col-lg-12">
-      <div class="card-box" dir="ltr">
-        <h4 class="header-title mb-3">Customers Count This Year</h4>
-        <div class="text-center">
-          <p class="text-muted font-15 font-family-secondary mb-0">
-            <span class="mx-2"><i class="mdi mdi-checkbox-blank-circle text-info"></i> Customers</span>
-          </p>
-        </div>
-        <div id="morris-bar-stacked" style="height: 350px;" class="morris-chart"></div>
-      </div> <!-- end card-box-->
-    </div> <!-- end col-->
-  </div> --}}
-
-
-
     <div class="row">
         <div class="col-12">
             <div class="card">
@@ -61,34 +44,18 @@
                                     class="btn btn-info waves-effect mb-2">CSV Export</a>
                                 <a type="button" target="_blank" href="{{ route('tag.export',['type'=>'pdf'])}}"
                                     class="btn btn-info waves-effect mb-2">PDF Export</a> --}}
-
                             </div>
                         </div><!-- end col-->
                     </div>
                     <div class="table-responsive">
-                        <table class="table table-centered mb-0" id="tagDataTable">
-                            <thead class="thead-light">
-                                <tr>
-                                    <th>Id</th>
-                                    <th>Name</th>
-                                    <th>Status</th>
-                                    <th>Created on</th>
-                                    <th style="width: 125px;">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
 
-                            </tbody>
-                        </table>
+                        {{ $dataTable->table() }}
+
                     </div>
                 </div> <!-- end card-body-->
             </div>
         </div>
     </div>
-
-
-    {{-- <input type="hidden" value="{{  json_encode($chartData) }}" id="chartData"> --}}
-    <input type="hidden" value="{{ json_encode(route('tag.dataTable')) }}" id="dataTableUrl">
 
     </div> <!-- container -->
 @endsection
@@ -101,14 +68,12 @@
     <!-- third party js ends -->
 
     <!-- Datatables init -->
-    <script src="{{ asset('assets/libs/morris-js/morris-js.min.js') }}"></script>
     <script src="{{ asset('assets/libs/raphael/raphael.min.js') }}"></script>
     <script src="{{ asset('assets/libs/sweetalert2/sweetalert2.min.js') }}"></script>
-
     <script src="{{ asset('assets/js/pages/delete-record.js') }}"></script>
-    <script src="{{ asset('assets/js/pages/change-record-status.js') }}"></script>
+    
 
-    <script src="{{ asset('assets/js/pages/tag-data-table.js') }}"></script>
+  
     <script>
         $(document).ready(function() {
             $('input[aria-controls=contactUsDataTable]').keyup(function() {
@@ -120,5 +85,10 @@
             //    alert(searchval);
             });
         });
-    </script>
+
+        </script>
+        @push('scripts')
+        {{ $dataTable->scripts(attributes: ['type' => 'module']) }}
+        @endpush
+        
 @endsection

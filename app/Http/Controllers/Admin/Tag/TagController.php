@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\SubCategories;
 use Psy\Readline\Hoa\Console;
+use App\DataTables\TagDataTable;
 use App\Models\ProviderCategory;
 use App\Http\Controllers\Controller;
 use Yajra\DataTables\Facades\DataTables;
@@ -16,11 +17,12 @@ use App\Http\Requests\Admin\Tag\UpdateTagRequest;
 
 class TagController extends Controller
 {
-    //
-    public function index(Request $request)
-    { 
-        return view('admin.tag.index');
+
+    public function index(TagDataTable $dataTable)
+    {
+        return $dataTable->render('admin.tag.index');
     }
+
      /**
      * data table ajax
      */

@@ -14,25 +14,11 @@ class WebController extends Controller
 {
     public function index()
     {
-       return $categorys = Category::active()->available()->latest()->take(config('app.home-category'))->get(['id','slug','name']);
-        // $post = Post::active()->latest()->take(config('app.home-post'))->get();
+        $categorys = Category::active()->available()->latest()->take(config('app.home-category'))->get(['id','slug','name']);
 
-        $post = $featureds = $populars =$latests = $trandings = Post::query();
+        $post = $featureds = $populars =$latests = $trandings = Post::with('category')->latest()->take(config('app.home-post'))->get();
 
-        //Featured post
-        $featureds = $post->with('category')->latest()->take(config('app.home-post'))->get();
-
-        //Popular post
-        $populars = $post->with('category')->latest()->take(config('app.home-post'))->get();
-
-        //Latest post
-        $latests = $post->with('category')->take(config('app.home-post'))->get();
-
-        //Tranding post
-        $trandings = $post->with('category')->latest()->take(config('app.home-post'))->get();
-
-        
-
+     
         return view('web.home',[
             'SEOData' => new SEOData(
                 title: config('app.name').' home page',

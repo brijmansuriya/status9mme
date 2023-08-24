@@ -15,6 +15,7 @@
     <link href="{{ asset('assets/libs/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" type="text/css" />
 
     @include('layouts.head')
+    @vite('resources/css/app.css')
 
 </head>
 
@@ -85,6 +86,7 @@
         });
     </script>
      @stack('scripts')
+     @vite('resources/js/app.js')
 </body>
 
 </html>

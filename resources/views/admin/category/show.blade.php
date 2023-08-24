@@ -74,80 +74,8 @@
         </div> <!-- end col -->
 
 
-        <div class="col-12">
-            <div class="card">
-                <div class="card-body">
-
-                    <div class="row mb-2 ">
-                        <div class="col-lg-6">
-                            <h4 class="header-title mb-3">Sub Category List</h4>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="text-lg-right">
-                                 <a href="{{ route('sub-category.create', $category->id ) }}" class="btn btn-default waves-effect waves-light mb-2 mr-2" >Add Sub Category</a>
-                                {{-- <a type="button" target="_blank" href="{{ route('category.export',['type'=>'excel'])}}" class="btn btn-info waves-effect mb-2">XLSX Export</a>
-                                <a type="button" target="_blank" href="{{ route('category.export',['type'=>'csv']) }} "
-                                    class="btn btn-info waves-effect mb-2">CSV Export</a>
-                                <a type="button" target="_blank" href="{{ route('category.export',['type'=>'pdf'])}}"
-                                    class="btn btn-info waves-effect mb-2">PDF Export</a> --}}
-
-                            </div>
-                        </div><!-- end col-->
-                    </div>
-                    <div class="table-responsive">
-                        <table class="table table-centered mb-0" id="subcategoryDataTable">
-                            <thead class="thead-light">
-                                <tr>
-                                    <th>Id</th>
-                                    <th>category Image</th>
-                                    <th>Name</th>
-                                    <th>Status</th>
-                                    <th>KYC Status</th>
-                                    <th>Created on</th>
-                                    <th style="width: 125px;">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-
-                            </tbody>
-                        </table>
-                    </div>
-                </div> <!-- end card-body-->
-            </div>
-        </div>
     </div>
 
-    <input type="hidden" value="{{ json_encode(route('sub-category.dataTable',$category->id )) }}" id="dataTableUrl">
-
+  
     </div> <!-- container -->
-@endsection
-
-@section('script')
-    <!-- third party js -->
-    <script src="{{ asset('assets/libs/datatables/datatables.min.js') }}"></script>
-    <script src="{{ asset('assets/libs/custombox/custombox.min.js') }}"></script>
-
-    <!-- third party js ends -->
-
-    <!-- Datatables init -->
-    <script src="{{ asset('assets/libs/morris-js/morris-js.min.js') }}"></script>
-    <script src="{{ asset('assets/libs/raphael/raphael.min.js') }}"></script>
-    <script src="{{ asset('assets/libs/sweetalert2/sweetalert2.min.js') }}"></script>
-
-    <script src="{{ asset('assets/js/pages/delete-record.js') }}"></script>
-    <script src="{{ asset('assets/js/pages/change-record-status.js') }}"></script>
-
-    <script src="{{ asset('assets/js/pages/sub-category-data-table.js') }}"></script>
-    <script>
-        $(document).ready(function() {
-            $('input[aria-controls=contactUsDataTable]').keyup(function() {
-                var searchval = $("input[aria-controls=contactUsDataTable]").val();
-                $("#csv").attr("href", "{{ route('contactUs.export', ['type' => 'csv']) }}?search=" + searchval);
-                $("#excel").attr("href", "{{ route('contactUs.export', ['type' => 'excel']) }}?search=" +
-                searchval);
-                $("#pdf").attr("href", "{{ route('contactUs.export', ['type' => 'pdf']) }}?search=" + searchval);
-            //    alert(searchval);
-            });
-        });
-    </script>
 @endsection

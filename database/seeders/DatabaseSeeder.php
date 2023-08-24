@@ -16,11 +16,11 @@ class DatabaseSeeder extends Seeder
         $this->call([
             // AppSeeder::class,
             // AppMenuLinkSeeder::class,
-            UserSeeder::class,
+            // UserSeeder::class,
             // AdminSeeder::class,
             // CategorySeeder::class,
             // PostSeeder::class,
-            // TagSeeder::class,
+            TagSeeder::class,
         ]);
     }
 }

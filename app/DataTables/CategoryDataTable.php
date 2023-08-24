@@ -28,41 +28,31 @@ class CategoryDataTable extends DataTable
 
 
         return (new EloquentDataTable($query))
-        ->editColumn('status', function ($row) {
-                        $changeStatusUrl = route('category.status.toggle', $row['id']);
-                        $changeStatusUrl = "'" . $changeStatusUrl . "'";
-                        $tableName = "'categoryDataTable'";
-                        $status = $row['status'] ? 'Active' : 'InActive';
-                        $statusClass = $row['status'] ? 'bg-soft-success text-success' : 'bg-soft-danger text-danger';
-                        return '<span class="badge ' . $statusClass . '" onclick="changeStatus(' . $changeStatusUrl . ',' . $tableName . ')">' . $status . '</span>';
-                    })
-                    ->addColumn('image', function ($row) {
-                        $image  = '';
-                        $image .= '<img src="' . $row->category_image . '" class="img-fluid" style="width:100px;height:100px; border-radius:10%;"> ';
-                        return $image;
-                    })
-                    ->addColumn('action', function ($row) {
-                        $view_link = route('category.show', $row['id']);
-                        $option = '<a href="' . $view_link . '" class="action-icon"><i class="mdi mdi-eye"></i></a>';
-        
-                        $updateLink = route('category.edit', $row['id']);
-                        $option .= '<a href="' . $updateLink . '" class="action-icon"   data-overlaycolor="#38414a"><i class="mdi mdi-square-edit-outline"></i></a>';
-        
-                        $delete_link = route('category.delete', $row['id']);
-                        $delete_link = "'" . $delete_link . "'";
-                        $tableName = "'categoryDataTable'";
-        
-                        $option .= '<a href="javascript:void(0);" onclick="deleteRecord(' . $delete_link . ',' . $tableName . ');"  class="action-icon" "><i class="mdi mdi-delete"></i></a>';
-        
-                        return $option;
-                    })
-                    ->rawColumns(['status', 'image', 'action']);
+            ->editColumn('status', function ($row) {
+                $changeStatusUrl = route('category.status.toggle', $row['id']);
+                $changeStatusUrl = "'" . $changeStatusUrl . "'";
+                $tableName = "'categoryDataTable'";
+                $status = $row['status'] ? 'Active' : 'InActive';
+                $statusClass = $row['status'] ? 'bg-soft-success text-success' : 'bg-soft-danger text-danger';
+                return '<span class="badge ' . $statusClass . '" onclick="changeStatus(' . $changeStatusUrl . ',' . $tableName . ')">' . $status . '</span>';
+            })
 
+            ->addColumn('action', function ($row) {
+                $view_link = route('category.show', $row['id']);
+                $option = '<a href="' . $view_link . '" class="action-icon"><i class="mdi mdi-eye"></i></a>';
 
+                $updateLink = route('category.edit', $row['id']);
+                $option .= '<a href="' . $updateLink . '" class="action-icon"   data-overlaycolor="#38414a"><i class="mdi mdi-square-edit-outline"></i></a>';
 
+                $delete_link = route('category.delete', $row['id']);
+                $delete_link = "'" . $delete_link . "'";
+                $tableName = "'categoryDataTable'";
 
+                $option .= '<a href="javascript:void(0);" onclick="deleteRecord(' . $delete_link . ',' . $tableName . ');"  class="action-icon" "><i class="mdi mdi-delete"></i></a>';
 
-
+                return $option;
+            })
+            ->rawColumns(['status', 'image', 'action']);
     }
 
     /**
@@ -84,20 +74,20 @@ class CategoryDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('category-table')
-                    ->columns($this->getColumns())
-                    ->minifiedAjax()
-                    //->dom('Bfrtip')
-                    ->orderBy(1)
-                    ->selectStyleSingle()
-                    ->buttons([
-                        Button::make('excel'),
-                        Button::make('csv'),
-                        Button::make('pdf'),
-                        Button::make('print'),
-                        // Button::make('reset'),
-                        // Button::make('reload')
-                    ]);
+            ->setTableId('category-table')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+            //->dom('Bfrtip')
+            ->orderBy(1)
+            ->selectStyleSingle()
+            ->buttons([
+                Button::make(['excel']),
+                Button::make(['csv']),
+                Button::make(['pdf']),
+                Button::make(['print']),
+                // Button::make('reset'),
+                // Button::make('reload')
+            ]);
     }
 
     /**

@@ -14,17 +14,36 @@ use Yajra\DataTables\Html\Builder as HtmlBuilder;
 
 class TagDataTable extends DataTable
 {
-    /**
-     * Build DataTable class.
-     *
-     * @param QueryBuilder $query Results from query() method.
-     * @return \Yajra\DataTables\EloquentDataTable
-     */
+    
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', 'tag.action')
-            ->setRowId('id');
+        ->addIndexColumn()
+      
+        ->editColumn('status', function ($row) {
+            $changeStatusUrl = route('tag.status.toggle', $row['id']);
+            $changeStatusUrl = "'" . $changeStatusUrl . "'";
+            $tableName = "'tagDataTable'";
+            $status = $row['status'] ? 'Active' : 'InActive';
+            $statusClass = $row['status'] ? 'bg-soft-success text-success' : 'bg-soft-danger text-danger';
+            return '<span class="badge ' . $statusClass . '" onclick="changeStatus(' . $changeStatusUrl . ',' . $tableName . ')">' . $status . '</span>';
+        })
+        ->addColumn('action', function ($row) {
+            $view_link = route('tag.show', $row['id']);
+            $option = '<a href="' . $view_link . '" class="action-icon"><i class="mdi mdi-eye"></i></a>';
+
+            $updateLink = route('tag.edit', $row['id']);
+            $option .= '<a href="' . $updateLink . '" class="action-icon"   data-overlaycolor="#38414a"><i class="mdi mdi-square-edit-outline"></i></a>';
+
+            $delete_link = route('tag.delete', $row['id']);
+            $delete_link = "'" . $delete_link . "'";
+            $tableName = "'tagDataTable'";
+
+            $option .= '<a href="javascript:void(0);" onclick="deleteRecord(' . $delete_link . ',' . $tableName . ');"  class="action-icon" "><i class="mdi mdi-delete"></i></a>';
+
+            return $option;
+        })
+        ->rawColumns(['status',  'action']);
     }
 
     /**
@@ -57,8 +76,7 @@ class TagDataTable extends DataTable
                         Button::make('csv'),
                         Button::make('pdf'),
                         Button::make('print'),
-                        Button::make('reset'),
-                        Button::make('reload')
+                       
                     ]);
     }
 
@@ -70,15 +88,14 @@ class TagDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::computed('action')
-                  ->exportable(false)
-                  ->printable(false)
-                  ->width(60)
-                  ->addClass('text-center'),
+          
             Column::make('id'),
-            Column::make('add your columns'),
-            Column::make('created_at'),
-            Column::make('updated_at'),
+            Column::make('name'),
+            Column::make('status'),
+            Column::computed('action')
+                ->exportable(false)
+                ->printable(false)
+                ->addClass('text-center'),
         ];
     }
 
