@@ -18,7 +18,8 @@ class Category extends Model implements HasMedia
 
     protected $table = 'category';
     protected $fillable = ['name', 'status','slug'];
-
+    protected $orderBy = ['id' => 'desc'];
+    
     protected $casts = [
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
@@ -68,7 +69,6 @@ class Category extends Model implements HasMedia
         return Carbon::parse($value)->timezone(config('app.default_timezone'))->format(config('app.default_date_format'));
     }
 
-    //cetegory post reletion 
     /**
      * Get all of the comments for the post
      *
@@ -77,4 +77,16 @@ class Category extends Model implements HasMedia
     {
         return $this->hasMany(Post::class);
     }
+
+    /**
+     * chack post is available show this cetegory  
+     */
+    public function scopeAvailable($query)
+    {
+        return $query->whereHas('post',function($query){
+            $query->active();
+        });
+    }
+
+
 }

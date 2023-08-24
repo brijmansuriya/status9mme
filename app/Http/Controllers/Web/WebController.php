@@ -14,9 +14,7 @@ class WebController extends Controller
 {
     public function index()
     {
-        $categorys = Category::active()->has('post')->whereHas('post', function ($query) {
-                     $query->active();
-                })->take(config('app.home-category'))->latest()->get(['id','slug','name']);
+       return $categorys = Category::active()->available()->latest()->take(config('app.home-category'))->get(['id','slug','name']);
         // $post = Post::active()->latest()->take(config('app.home-post'))->get();
 
         $post = $featureds = $populars =$latests = $trandings = Post::query();

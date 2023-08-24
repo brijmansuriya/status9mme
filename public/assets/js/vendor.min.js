@@ -18193,7 +18193,7 @@ return jQuery;
   return MetisMenu;
 
 })));
-//# sourceMappingURL=metisMenu.js.map
+//# sourceMappingURL=metisMenu.js
 
 /*!
  * Waves v0.7.6
