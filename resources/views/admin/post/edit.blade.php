@@ -48,7 +48,7 @@
                                 </select>
                             </div>
                             
-                            @php $post_tags = $post->tags->pluck('tag_id')->toArray(); @endphp
+                            @php $post_tags = $post->tags->pluck('id')->toArray();  @endphp
 
                             <div class="form-group">
                                 <label for="product-summary">Tag</label>
@@ -109,7 +109,7 @@
 
 @section('script')
     <script>
-        var ids = @json($post->tags->pluck('tag_id')->toArray());
+        var ids = @json($post->tags->pluck('id')->toArray());
         $(document).ready(function() {
             console.log('::::::::::::',ids);
             $('#tag').select2();

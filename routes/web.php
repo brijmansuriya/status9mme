@@ -154,6 +154,7 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
         Route::get('{id}/edit', [CategoryController::class, 'edit'])->name('category.edit');
         Route::post('{id}/update', [CategoryController::class, 'update'])->name('category.update');
         Route::get('{id}/delete', [CategoryController::class, 'delete'])->name('category.delete');
+        Route::post('deleteAll', [CategoryController::class, 'deleteAll'])->name('category.deleteAll');
         Route::get('{id}/toggle', [CategoryController::class, 'toggleStatus'])->name('category.status.toggle');
     });
 

@@ -38,12 +38,7 @@
                         </div>
                         <div class="col-lg-6">
                             <div class="text-lg-right">
-                                <a type="button" class="btn btn-default waves-effect waves-light mb-2 mr-2" href="{{ route('tag.create') }}">Add tag</a>
-                                {{-- <a type="button" target="_blank" href="{{ route('tag.export',['type'=>'excel'])}}" class="btn btn-info waves-effect mb-2">XLSX Export</a>
-                                <a type="button" target="_blank" href="{{ route('tag.export',['type'=>'csv']) }} "
-                                    class="btn btn-info waves-effect mb-2">CSV Export</a>
-                                <a type="button" target="_blank" href="{{ route('tag.export',['type'=>'pdf'])}}"
-                                    class="btn btn-info waves-effect mb-2">PDF Export</a> --}}
+                                <a type="button" class="btn btn-primary waves-effect waves-light mb-2 mr-2" href="{{ route('tag.create') }}">Add tag</a>
                             </div>
                         </div><!-- end col-->
                     </div>
@@ -69,8 +64,8 @@
 
     <!-- Datatables init -->
     <script src="{{ asset('assets/libs/raphael/raphael.min.js') }}"></script>
-    <script src="{{ asset('assets/libs/sweetalert2/sweetalert2.min.js') }}"></script>
     <script src="{{ asset('assets/js/pages/delete-record.js') }}"></script>
+    <script src="{{ asset('assets/js/pages/change-record-status.js') }}"></script>
     
 
   

@@ -51,4 +51,14 @@ class Tag extends Model implements HasMedia
     {
         return $this->hasMany(Post::class);
     }
+
+    /**
+     * chack post is available show this cetegory  
+     */
+    public function scopeAvailable($query)
+    {
+        return $query->whereHas('post',function($query){
+            $query->active();
+        });
+    }
 }

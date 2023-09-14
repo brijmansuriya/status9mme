@@ -87,7 +87,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> --}}
 
     <script type="text/javascript" src="{{ URL::asset('assets/website/js/jquery.min.js') }}"></script>
-    <script src="{{ URL::asset('assets/libs/parsleyjs/parsleyjs.min.js') }}"></script>
     <script>
         $(document).ready(function(){
             $('.alert-danger').fadeIn().delay(5000).fadeOut();

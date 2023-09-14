@@ -3,7 +3,6 @@
 @section('css')
 <!-- third party css -->
 <link href="{{ asset('assets/libs/datatables/datatables.min.css') }}" rel="stylesheet" type="text/css" />
-<link href="{{ asset('assets/libs/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" type="text/css" />
 <!-- third party css end -->
 @endsection
 
@@ -26,24 +25,6 @@
     </div>
 </div>
 <!-- end page title -->
-
-
-{{-- <div class="row">
-    <div class="col-lg-12">
-        <div class="card-box" dir="ltr">
-            <h4 class="header-title mb-3">Customers Count This Year</h4>
-            <div class="text-center">
-                <p class="text-muted font-15 font-family-secondary mb-0">
-                    <span class="mx-2"><i class="mdi mdi-checkbox-blank-circle text-info"></i> Customers</span>
-                </p>
-            </div>
-            <div id="morris-bar-stacked" style="height: 350px;" class="morris-chart"></div>
-        </div> <!-- end card-box-->
-    </div> <!-- end col-->
-</div> --}}
-
-
-
 <div class="row">
     <div class="col-12">
         <div class="card">
@@ -55,46 +36,19 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="text-lg-right">
-                            <a type="button" class="btn btn-default waves-effect waves-light mb-2 mr-2"
+                            <a type="button" id="delete_record" class="btn btn-primary waves-effect waves-light mb-2" href="javascript:void(0)" >Delete All</a>
+                            <a type="button" class="btn btn-primary waves-effect waves-light mb-2 mr-2"
                                 href="{{ route('category.create') }}">Add Category</a>
-                            {{-- <a type="button" target="_blank" href="{{ route('category.export',['type'=>'excel'])}}"
-                                class="btn btn-info waves-effect mb-2">XLSX Export</a>
-                            <a type="button" target="_blank" href="{{ route('category.export',['type'=>'csv']) }} "
-                                class="btn btn-info waves-effect mb-2">CSV Export</a>
-                            <a type="button" target="_blank" href="{{ route('category.export',['type'=>'pdf'])}}"
-                                class="btn btn-info waves-effect mb-2">PDF Export</a> --}}
-
                         </div>
                     </div><!-- end col-->
                 </div>
                 <div class="table-responsive">
-                    {{-- <table class="table table-centered mb-0" id="categoryDataTable">
-                        <thead class="thead-light">
-                            <tr>
-                                <th>Id</th>
-                                <th>Image</th>
-                                <th>Name</th>
-                                <th>Slug</th>
-                                <th>Status</th>
-                                <th>Created on</th>
-                                <th style="width: 125px;">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-
-                        </tbody>
-                    </table> --}}
                     {{ $dataTable->table() }}
                 </div>
             </div> <!-- end card-body-->
         </div>
     </div>
 </div>
-
-
-{{-- <input type="hidden" value="{{  json_encode($chartData) }}" id="chartData"> --}}
-{{-- <input type="hidden" value="{{ json_encode(route('category.dataTable')) }}" id="dataTableUrl"> --}}
-
 </div> <!-- container -->
 @endsection
 
@@ -106,16 +60,78 @@
 <!-- third party js ends -->
 
 <!-- Datatables init -->
-<script src="{{ asset('assets/libs/morris-js/morris-js.min.js') }}"></script>
-<script src="{{ asset('assets/libs/raphael/raphael.min.js') }}"></script>
-<script src="{{ asset('assets/libs/sweetalert2/sweetalert2.min.js') }}"></script>
-
 <script src="{{ asset('assets/js/pages/delete-record.js') }}"></script>
 <script src="{{ asset('assets/js/pages/change-record-status.js') }}"></script>
+<script>
+
+     // Check all 
+   $('#checkall').click(function(){
+      if($(this).is(':checked')){
+         $('.delete_check').prop('checked', true);
+      }else{
+         $('.delete_check').prop('checked', false);
+      }
+   });
+
+   // Delete record
+   $('#delete_record').click(function(){
+
+      var deleteids_arr = [];
+      // Read all checked checkboxes
+      $(".delete_check:checked").each(function () {
+         deleteids_arr.push($(this).val());
+      });
+      console.log('deleteids_arr',deleteids_arr);
+      // Check checkbox checked or not
+      if(deleteids_arr.length > 0){
+
+         // Confirm alert
+         var confirmdelete = confirm("Do you really want to Delete records?");
+         if (confirmdelete == true) {
+            $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+            $.ajax({
+               url: '{{ route("category.deleteAll") }}',
+               type: 'post',
+               data: {ids: deleteids_arr},
+               success: function(response){
+                //   dataTable.ajax.reload();
+                  var dataTable = $('#category-table').DataTable();
+                    dataTable.ajax.reload();
+                  
+
+               }
+            });
+         } 
+      }
+   });
 
 
 
+// Checkbox checked
+function checkcheckbox(){
+   // Total checkboxes
+   var length = $('.delete_check').length;
+   // Total checked checkboxes
+   var totalchecked = 0;
+   $('.delete_check').each(function(){
+      if($(this).is(':checked')){
+         totalchecked+=1;
+      }
+   });
+   // Checked unchecked checkbox
+   if(totalchecked == length){
+      $("#checkall").prop('checked', true);
+   }else{
+      $('#checkall').prop('checked', false);
+   }
+}
+</script>
 @push('scripts')
 {{ $dataTable->scripts(attributes: ['type' => 'module']) }}
 @endpush
 @endsection
+

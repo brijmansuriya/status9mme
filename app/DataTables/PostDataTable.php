@@ -23,7 +23,44 @@ class PostDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', 'post.action')
+            ->addColumn('image', function ($row) {
+                $image  = '';
+                $image .= '<img src="' . $row->image . '" class="img-fluid" style="width:100px;height:100px; border-radius:10%;"> ';
+                return $image;
+            })
+
+            ->editColumn('status', function ($row) {
+                $changeStatusUrl = route('post.status.toggle', $row['id']);
+                $changeStatusUrl = "'" . $changeStatusUrl . "'";
+                $tableName = "'postsDataTable'";
+                $status = $row['status'] ? 'Active' : 'InActive';
+                $statusClass = $row['status'] ? 'bg-soft-success text-success' : 'bg-soft-danger text-danger';
+                return '<span class="badge ' . $statusClass . '" onclick="changeStatus(' . $changeStatusUrl . ',' . $tableName . ')">' . $status . '</span>';
+            })
+            ->addColumn('action', function ($row) {
+
+                $updateLink = route('post.edit', $row['id']);
+                $option = '';
+
+                $option .= '<a href="' . $updateLink . '" class="action-icon" data-overlaycolor="#38414a"><i class="mdi mdi-square-edit-outline"></i></a>';
+
+                $delete_link = route('post.delete', $row['id']);
+                $delete_link = "'" . $delete_link . "'";
+                $tableName = "'postsDataTable'";
+
+                $option .= '<a href="javascript:void(0);" onclick="deleteRecord(' . $delete_link . ',' . $tableName . ');"  class="action-icon" "><i class="mdi mdi-delete"></i></a>';
+
+                return $option;
+            })
+
+            ->addColumn('generated_link', function ($row) {
+                $link =  $row->generated_link;
+                return '<a href="' . $link . '" class="btn btn-primary" data-overlaycolor="#38414a">View Link</a>';
+            })
+            ->orderColumn("updated_at", function ($query, $row) {
+                return $query->orderBy("updated_at", $row);
+            })
+            ->rawColumns(['action', 'generated_link', 'status', 'image'])
             ->setRowId('id');
     }
 
@@ -46,20 +83,20 @@ class PostDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('post-table')
-                    ->columns($this->getColumns())
-                    ->minifiedAjax()
-                    //->dom('Bfrtip')
-                    ->orderBy(1)
-                    ->selectStyleSingle()
-                    ->buttons([
-                        Button::make('excel'),
-                        Button::make('csv'),
-                        Button::make('pdf'),
-                        Button::make('print'),
-                        Button::make('reset'),
-                        Button::make('reload')
-                    ]);
+            ->setTableId('post-table')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+            //->dom('Bfrtip')
+            ->orderBy(1)
+            ->selectStyleSingle()
+            ->buttons([
+                Button::make('excel'),
+                Button::make('csv'),
+                Button::make('pdf'),
+                Button::make('print'),
+                // Button::make('reset'),
+                // Button::make('reload')
+            ]);
     }
 
     /**
@@ -70,15 +107,16 @@ class PostDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::computed('action')
-                  ->exportable(false)
-                  ->printable(false)
-                  ->width(60)
-                  ->addClass('text-center'),
             Column::make('id'),
-            Column::make('add your columns'),
-            Column::make('created_at'),
-            Column::make('updated_at'),
+            // Column::computed('image'),
+            Column::make('image'),
+            Column::make('title'),
+            Column::make('slug'),
+            Column::make('status'),
+            Column::computed('action')
+                ->exportable(false)
+                ->printable(false)
+                ->addClass('text-center'),
         ];
     }
 

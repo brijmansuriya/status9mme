@@ -1,11 +1,29 @@
-window.changeStatus = function(changesStatusUrl, tableName = null, redirectUrl = null) {
+window.changeStatus = function(
+    changesStatusUrl,
+    tableName = null,
+    redirectUrl = null
+) {
     Swal.fire({
-        // ...
+        title: "Are you sure that you want to change status of this record?",
+
+        // text: "You will not be able to recover record!",
+
+        icon: "warning",
+
+        showCancelButton: true,
+
+        confirmButtonColor: "#28D094",
+
+        confirmButtonText: "Yes, change it!",
+
+        cancelButtonText: "No, cancel please!"
     }).then(result => {
         if (result.value) {
-            // ...
-            let xmlhttp; // Declare the xmlhttp variable here
-
+            Swal.fire(
+                "Status Changed!",
+                "Your record has been changed.",
+                "success"
+            );
             if (window.XMLHttpRequest) {
                 xmlhttp = new XMLHttpRequest();
             } else {
@@ -13,27 +31,25 @@ window.changeStatus = function(changesStatusUrl, tableName = null, redirectUrl =
             }
 
             xmlhttp.onreadystatechange = function() {
-                if (xmlhttp.readyState === 4) {
-                    if (xmlhttp.status === 200) {
-                        try {
-                            const response = JSON.parse(xmlhttp.responseText);
-                            if (response.status === 'success') {
-                                Swal.fire("Status Changed!", response.message, "success");
-                            } else {
-                                Swal.fire("Error", response.message, "error");
-                            }
-                        } catch (error) {
-                            Swal.fire("Error", "An error occurred while processing the response.", "error");
-                        }
-                    } else {
-                        Swal.fire("Error", "An error occurred during the request.", "error");
-                    }
-                    // ...
+                if (tableName) {
+                    $(`#${tableName}`)
+                        .DataTable()
+                        .ajax.reload();
+                } else {
+                    window.location.href = redirectUrl+ '?n=' + new Date().getTime();
+                    // Simulate an HTTP redirect:
                 }
             };
-            // ...
+
+            xmlhttp.open("GET", changesStatusUrl, true);
+
+            xmlhttp.send();
         } else {
-            Swal.fire("Cancelled", "Your record status change is cancelled :)", "error");
+            Swal.fire(
+                "Cancelled",
+                "Your record status change is cancelled :)",
+                "error"
+            );
         }
     });
 };

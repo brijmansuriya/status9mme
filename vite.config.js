@@ -5,9 +5,9 @@ export default defineConfig({
     plugins: [
         laravel({
             input: [
-                'resources/sass/app.scss',
-                'resources/js/app.js',
-                'resources/js/pages/change-record-status.js',
+                // 'resources/sass/app.scss',
+                // 'resources/js/app.js',
+                // 'resources/js/pages/change-record-status.js',
             ],
             refresh: true,
         }),

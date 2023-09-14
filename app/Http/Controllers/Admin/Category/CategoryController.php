@@ -41,7 +41,7 @@ class CategoryController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
-            $media = $category->addMediaFromRequest('image')->toMediaCollection('images');
+            $media = $category->addMediaFromRequest('image')->toMediaCollection('image');
         }
 
         session()->flash('success', __('messages.panel.admin.category.added'));
@@ -94,6 +94,15 @@ class CategoryController extends Controller
     {
         $category = Category::findOrFail($id);
         $category->delete();
+        return redirect()->back();
+    }
+
+     /**
+     *  delete All the post
+     */
+    public function deleteAll(Request $request)
+    {
+        $post = Category::whereIn('id',$request->ids)->delete();
         return redirect()->back();
     }
 }

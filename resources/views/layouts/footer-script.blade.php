@@ -1,10 +1,10 @@
 <!-- Vendor js -->
 <script src="{{ URL::asset('assets/js/vendor.min.js') }}"></script>
-
-@yield('script')
-
 <!-- App js -->
 <script src="{{ URL::asset('assets/js/app.min.js') }}"></script>
-<script src="{{ URL::asset('assets/libs/parsleyjs/parsleyjs.min.js') }}"></script>
-<script src="{{ URL::asset('assets/libs/select2/select2.min.js') }}"></script>
-@yield('script-bottom')
+<script src="{{ asset('assets/libs/sweetalert2/sweetalert2.min.js') }}"></script>
+<script src="{{ URL::asset('assets/js/pages/logout.js') }}"></script>
+@yield('script')
+<script>
+    $('.dropify').dropify();
+</script>

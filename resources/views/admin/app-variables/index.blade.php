@@ -42,7 +42,7 @@
                             <div class="col-lg-6">
                                 <div class="text-lg-right">
                                     <a href="#app-create-con-close-modal"
-                                        class="btn btn-default waves-effect waves-light mb-2 mr-2" data-animation="fadein"
+                                        class="btn btn-primary waves-effect waves-light mb-2 mr-2" data-animation="fadein"
                                         data-toggle="modal" data-overlaycolor="#38414a"> Add App Variable</a>
                                 </div>
                             </div><!-- end col-->

@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('css-bottom')
+@section('css')
     <!-- third party css -->
     <link href="{{ asset('assets/libs/datatables/datatables.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/libs/custombox/custombox.min.css') }}" rel="stylesheet">
@@ -99,7 +99,7 @@
     </div> <!-- container -->
 @endsection
 
-@section('script-bottom')
+@section('script')
     <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
     <script src="{{ URL::asset('assets/libs/selectize/js/standalone/selectize.min.js')}}"></script>
     <script>

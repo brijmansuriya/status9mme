@@ -41,25 +41,13 @@
                         </div>
                         <div class="col-lg-4">
                             <div class="text-lg-right">
-                                <a type="button" class="btn btn-default waves-effect waves-light mb-2 mr-2" href="{{ route('post.create') }}">Add Post</a>
+                                <a type="button" class="btn btn-primary waves-effect waves-light mb-2 mr-2" href="{{ route('post.create') }}">Add Post</a>
                             </div>
                         </div><!-- end col-->
                     </div>
 
                     <div class="table-responsive">
-                        <table id="postsDataTable" class="table table-centered table-nowrap mb-0">
-                            <thead class="table-light">
-                                <tr>
-                                    <th>Image</th>
-                                    <th>Name</th>
-                                    <th>Slug</th>
-                                    <th>Status</th>
-                                    <th>View Link</th>
-                                    <th>Last Modified</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                        </table>
+                        {{ $dataTable->table() }}
                     </div>
 
 
@@ -72,7 +60,6 @@
 
 </div> <!-- container -->
 
-<input type="hidden" id="dataTableUrl" value="{{ json_encode(route('post.dataTables')) }}">
 @endsection
 
 @section('script')
@@ -86,5 +73,8 @@
 {{-- <script src="{{ asset('assets/js/pages/app-link-settings-data-table.js')}}"></script> --}}
 <script src="{{ asset('assets/js/pages/post-data-table.js')}}"></script>
 <script src="{{ asset('assets/js/pages/delete-record.js') }}"></script>
-<script src="{{ asset('assets/js/pages/change-record-status.js') }}"></script>
+
+@push('scripts')
+{{ $dataTable->scripts(attributes: ['type' => 'module']) }}
+@endpush
 @endsection

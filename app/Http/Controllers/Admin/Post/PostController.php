@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin\Post;
 
+use Seo;
 use Carbon\Carbon;
 use App\Models\Tag;
 use App\Models\Post;
@@ -10,21 +11,27 @@ use App\Models\Category;
 use App\Models\AppMenuLink;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\DataTables\PostDataTable;
 use App\Http\Controllers\Controller;
+use App\DataTables\CategoryDataTable;
 use Yajra\DataTables\Facades\DataTables;
 use App\Http\Requests\Admin\Post\StorePostRequest;
 use App\Http\Requests\Admin\Post\UpdatePostRequest;
 use App\Http\Requests\Admin\Settings\UpdateAppMenuLinkRequest;
-use Seo;
 
 class PostController extends Controller
 {
     /**
      *  returns the app links
      */
-    public function index()
+    // public function index()
+    // {
+    //     return view('admin.post.index');
+    // }
+
+    public function index(PostDataTable $dataTable)
     {
-        return view('admin.post.index');
+        return $dataTable->render('admin.post.index');
     }
 
     /**
@@ -102,10 +109,7 @@ class PostController extends Controller
             'description' => 'This great post will enhance your live.',
         ]);
 
-        foreach ($request->tags as $tagId) {
-            $post->tags()->create(['tag_id' => $tagId]);
-        }
-
+        $post->tags()->sync($request->tags);
 
         if ($request->hasFile('image')) {
             $post->addMediaFromRequest('image')->toMediaCollection('post/image');
@@ -122,8 +126,8 @@ class PostController extends Controller
     public function edit($id)
     {
         $post = Post::with('tags')->findOrFail($id);
-        $categorys = Category::active()->get(['id', 'name']);
-        $tags = Tag::get(['id', 'name']);
+        $categorys = Category::active()->available()->get(['id', 'name']);
+        $tags = Tag::active()->get(['id', 'name']);
         return view('admin.post.edit', compact('post', 'categorys', 'tags'));
     }
 
@@ -134,19 +138,7 @@ class PostController extends Controller
     {
         $post = Post::findOrFail($id);
         $post->update($request->all());
-        $post_id = $post->id;
-        if ($request->has('tags')) {
-            $tags = $request->tags;
-            $tagRecords = [];
-            foreach ($tags as $tag) {
-                $tagRecords[] = [
-                    'post_id' => $post_id,
-                    'tag_id' => $tag,
-                ];
-            }
-            PostTag::where('post_id',$post_id)->delete();
-            PostTag::insert($tagRecords);
-        }
+        $post->tags()->sync($request->tags);
 
         if ($request->hasFile('image')) {
             $post->deleteFile();
@@ -163,6 +155,16 @@ class PostController extends Controller
     {
         $post = Post::findOrFail($id);
         $post->delete();
+        return redirect()->back();
+    }
+
+    /**
+     *  delete the post
+     */
+    public function deleteAll(Request $request)
+    {
+        $post = Post::whereIn('id',$request->ids)->delete();
+
         return redirect()->back();
     }
 

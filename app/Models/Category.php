@@ -45,7 +45,7 @@ class Category extends Model implements HasMedia
      /**
      * returns the user default profile picture if found
      */
-    public function getCategoryImageAttribute()
+    public function getImageAttribute()
     {
         // return $this->getFirstMedia('image') ? $this->getFirstMedia('image')->getFullUrl() : asset('default_images/admin.png');
         return $this->getFirstMedia('image') ? $this->getFirstMedia('image')->getUrl('conversion') : asset('default_images/admin.png');

@@ -2,11 +2,9 @@
 
 @section('css')
 <link href="{{ URL::asset('assets/libs/multiselect/multiselect.min.css')}}" rel="stylesheet" type="text/css" />
-<link href="{{ URL::asset('assets/libs/select2/select2.min.css')}}" rel="stylesheet" type="text/css" />
+<link href="{{ URL::asset('assets/libs/dropify/dropify.min.css')}}" rel="stylesheet" type="text/css" />
 @endsection
-
 @section('content')
-
 <!-- Start Content-->
 <div class="container-fluid">
 
@@ -46,26 +44,23 @@
                         @endif
                     </div>
 
-                    <div class="form-group" id="jsCategoryImageStoreSection">
+                    <div class="form-group" >
                         <label for="product-summary">Image</label>
-                        <input type="file" class="form-control" name="image" value="" id="js-category-image-input" accept="image/png, image/jpeg, image/jpg" required data-image-uri="" data-parsley-mime-type="image/png, image/jpeg, image/jpg" data-parsley-mime-type-message="The image must be a file of type: jpg, png, jpeg" data-parsley-max-file-size="5" data-parsley-required-message="The image field is required">
+                        <input type="file" class="form-control dropify" name="image" value="" id="image" accept="image/png, image/jpeg, image/jpg" required data-image-uri="" data-parsley-mime-type="image/png, image/jpeg, image/jpg" data-parsley-mime-type-message="The image must be a file of type: jpg, png, jpeg" data-parsley-max-file-size="5" data-parsley-required-message="The image field is required">
                         @if ($errors->has('image'))
-                                    <span class="text-danger">
-                                        {{ $errors->first('image') }}
-                                    </span>
+                            <span class="text-danger">
+                                {{ $errors->first('image') }}
+                            </span>
                         @endif
                         
-                        <span id="jsImageTypeErrorMsg" style="color: #f1556c;"></span>
-                    </div>
-                    <div class="form-group mb-3" style="display: none" id="js-image-div">
-                        <img src="#" alt="" id="categoryImgPreview" height="100" width="120" style="object-fit: cover;">
+                        <span id="jsImageTypeErrorMsg"></span>
                     </div>
 
                     <div class="form-row">
                         <div class="col-md-6">
                         </div>
                         <div class="form-group col-md-6">
-                            <button type="submit" class="btn btn-default waves-effect waves-light" id="jsAddCategoryButton">Submit</button>
+                            <button type="submit" class="btn btn-primary waves-effect waves-light" id="jsAddCategoryButton">Submit</button>
                         </div>
                     </div>
 
@@ -75,40 +70,8 @@
         </div> <!-- end card-->
     </div> <!-- end col -->
 </div>
-
-
-
-
 </div> <!-- container -->
 @endsection
-
 @section('script')
-<script src="{{ asset('assets/libs/parsleyjs/parsleyjs.min.js')}}"></script>
-
-<!-- third party js -->
-
-<script>
-    $("#js-category-image-input").change(function () {
-        $('#jsCategoryImageStoreSection .parsley-mimeType').hide();
-        var fileExtension = ['jpeg', 'jpg', 'png'];
-        if ($.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension) == -1) {
-            $('#jsImageTypeErrorMsg').fadeIn().text("The image must be a file of type: jpg, png, jpeg");
-            $('#js-image-div').hide();
-            $('#jsAddCategoryButton').prop('disabled', true);
-        } else {
-            $('#jsImageTypeErrorMsg').hide();
-            $('#jsAddCategoryButton').prop('disabled', false);
-            const file = this.files[0];
-            if (file){
-            let reader = new FileReader();
-            reader.onload = function(event){
-                $('#js-image-div').show();
-                $('#categoryImgPreview').attr('src', event.target.result);
-            }
-            reader.readAsDataURL(file);
-            }
-        }
-    });
-</script>
-
+<script type="text/javascript" src="{{ URL::asset('assets/libs/dropify/dropify.min.js') }}"></script>
 @endsection

@@ -83,7 +83,6 @@
     <!-- Datatables init -->
     <script src="{{ asset('assets/libs/morris-js/morris-js.min.js') }}"></script>
     <script src="{{ asset('assets/libs/raphael/raphael.min.js') }}"></script>
-    <script src="{{ asset('assets/libs/sweetalert2/sweetalert2.min.js') }}"></script>
 
     <script src="{{ asset('assets/js/pages/delete-record.js') }}"></script>
     <script src="{{ asset('assets/js/pages/change-record-status.js') }}"></script>

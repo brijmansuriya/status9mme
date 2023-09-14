@@ -28,6 +28,10 @@ class CategoryDataTable extends DataTable
 
 
         return (new EloquentDataTable($query))
+            ->editColumn('checkbox', function ($row) {
+             
+                return '<input type="checkbox" class="checkall delete_check" value="'.$row['id'].'" >';
+            })
             ->editColumn('status', function ($row) {
                 $changeStatusUrl = route('category.status.toggle', $row['id']);
                 $changeStatusUrl = "'" . $changeStatusUrl . "'";
@@ -52,7 +56,7 @@ class CategoryDataTable extends DataTable
 
                 return $option;
             })
-            ->rawColumns(['status', 'image', 'action']);
+            ->rawColumns(['checkbox','status', 'image', 'action']);
     }
 
     /**
@@ -103,6 +107,17 @@ class CategoryDataTable extends DataTable
             //       ->printable(false)
             //       ->width(60)
             //       ->addClass('text-center'),
+
+            Column::make('checkbox')
+            ->exportable(false)
+            ->printable(false)
+            ->title('<input type="checkbox" id="checkall">')
+            ->addClass('text-center')
+            ->width(30)
+            ->orderable(false)
+            ->searchable(false)
+            ->data('checkbox', 'checkbox'),
+
             Column::make('id'),
             // Column::computed('image'),
             Column::make('name'),
