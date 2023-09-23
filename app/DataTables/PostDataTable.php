@@ -28,11 +28,15 @@ class PostDataTable extends DataTable
                 $image .= '<img src="' . $row->image . '" class="img-fluid" style="width:100px;height:100px; border-radius:10%;"> ';
                 return $image;
             })
+            ->editColumn('checkbox', function ($row) {
+             
+                return '<input type="checkbox" class="checkall delete_check" value="'.$row['id'].'" >';
+            })
 
             ->editColumn('status', function ($row) {
                 $changeStatusUrl = route('post.status.toggle', $row['id']);
                 $changeStatusUrl = "'" . $changeStatusUrl . "'";
-                $tableName = "'postsDataTable'";
+                $tableName = "'post-table'";
                 $status = $row['status'] ? 'Active' : 'InActive';
                 $statusClass = $row['status'] ? 'bg-soft-success text-success' : 'bg-soft-danger text-danger';
                 return '<span class="badge ' . $statusClass . '" onclick="changeStatus(' . $changeStatusUrl . ',' . $tableName . ')">' . $status . '</span>';
@@ -46,7 +50,7 @@ class PostDataTable extends DataTable
 
                 $delete_link = route('post.delete', $row['id']);
                 $delete_link = "'" . $delete_link . "'";
-                $tableName = "'postsDataTable'";
+                $tableName = "'post-table'";
 
                 $option .= '<a href="javascript:void(0);" onclick="deleteRecord(' . $delete_link . ',' . $tableName . ');"  class="action-icon" "><i class="mdi mdi-delete"></i></a>';
 
@@ -60,7 +64,7 @@ class PostDataTable extends DataTable
             ->orderColumn("updated_at", function ($query, $row) {
                 return $query->orderBy("updated_at", $row);
             })
-            ->rawColumns(['action', 'generated_link', 'status', 'image'])
+            ->rawColumns(['checkbox','action', 'generated_link', 'status', 'image'])
             ->setRowId('id');
     }
 
@@ -68,7 +72,7 @@ class PostDataTable extends DataTable
      * Get query source of dataTable.
      *
      * @param \App\Models\Post $model
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @return \Illuminate\Datafvbase\Eloquent\Builder
      */
     public function query(Post $model): QueryBuilder
     {
@@ -107,6 +111,15 @@ class PostDataTable extends DataTable
     public function getColumns(): array
     {
         return [
+            Column::make('checkbox')
+            ->exportable(false)
+            ->printable(false)
+            ->title('<input type="checkbox" id="checkall">')
+            ->addClass('text-center')
+            ->width(30)
+            ->orderable(false)
+            ->searchable(false)
+            ->data('checkbox', 'checkbox'),
             Column::make('id'),
             // Column::computed('image'),
             Column::make('image'),

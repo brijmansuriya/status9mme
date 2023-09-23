@@ -111,24 +111,24 @@
 
 
 
-// Checkbox checked
-function checkcheckbox(){
-   // Total checkboxes
-   var length = $('.delete_check').length;
-   // Total checked checkboxes
-   var totalchecked = 0;
-   $('.delete_check').each(function(){
-      if($(this).is(':checked')){
-         totalchecked+=1;
-      }
-   });
-   // Checked unchecked checkbox
-   if(totalchecked == length){
-      $("#checkall").prop('checked', true);
-   }else{
-      $('#checkall').prop('checked', false);
-   }
-}
+    // Checkbox checked
+    function checkcheckbox(){
+        // Total checkboxes
+        var length = $('.delete_check').length;
+        // Total checked checkboxes
+        var totalchecked = 0;
+        $('.delete_check').each(function(){
+            if($(this).is(':checked')){
+                totalchecked+=1;
+            }
+        });
+        // Checked unchecked checkbox
+        if(totalchecked == length){
+            $("#checkall").prop('checked', true);
+        }else{
+            $('#checkall').prop('checked', false);
+        }
+    }
 </script>
 @push('scripts')
 {{ $dataTable->scripts(attributes: ['type' => 'module']) }}

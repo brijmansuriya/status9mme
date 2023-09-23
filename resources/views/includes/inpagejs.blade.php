@@ -1,0 +1,3 @@
+<script>
+    $('.dropify').dropify();
+</script>

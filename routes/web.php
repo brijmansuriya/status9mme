@@ -99,6 +99,7 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
         Route::post('{id}/update', [PostController::class, 'update'])->name('post.update');
         Route::get('dataTable', [PostController::class, 'dataTables'])->name('post.dataTables');
         Route::get('{id}/delete', [PostController::class, 'delete'])->name('post.delete');
+        Route::post('deleteAll', [PostController::class, 'deleteAll'])->name('post.deleteAll');
         Route::get('{id}/toggle', [PostController::class, 'toggleStatus'])->name('post.status.toggle');
     });
 
@@ -167,6 +168,7 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
         Route::get('{id}/edit', [TagController::class, 'edit'])->name('tag.edit');
         Route::post('{id}/update', [TagController::class, 'update'])->name('tag.update');
         Route::get('{id}/delete', [TagController::class, 'delete'])->name('tag.delete');
+        Route::post('deleteAll', [TagController::class, 'deleteAll'])->name('tag.deleteAll');
         Route::get('{id}/toggle', [TagController::class, 'toggleStatus'])->name('tag.status.toggle');
     });
 

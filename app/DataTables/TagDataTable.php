@@ -19,11 +19,15 @@ class TagDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
         ->addIndexColumn()
+        ->editColumn('checkbox', function ($row) {
+             
+            return '<input type="checkbox" class="checkall delete_check" value="'.$row['id'].'" >';
+        })
       
         ->editColumn('status', function ($row) {
             $changeStatusUrl = route('tag.status.toggle', $row['id']);
             $changeStatusUrl = "'" . $changeStatusUrl . "'";
-            $tableName = "'tagDataTable'";
+            $tableName = "'tag-table'";
             $status = $row['status'] ? 'Active' : 'InActive';
             $statusClass = $row['status'] ? 'bg-soft-success text-success' : 'bg-soft-danger text-danger';
             return '<span class="badge ' . $statusClass . '" onclick="changeStatus(' . $changeStatusUrl . ',' . $tableName . ')">' . $status . '</span>';
@@ -37,13 +41,13 @@ class TagDataTable extends DataTable
 
             $delete_link = route('tag.delete', $row['id']);
             $delete_link = "'" . $delete_link . "'";
-            $tableName = "'tagDataTable'";
+            $tableName = "'tag-table'";
 
             $option .= '<a href="javascript:void(0);" onclick="deleteRecord(' . $delete_link . ',' . $tableName . ');"  class="action-icon" "><i class="mdi mdi-delete"></i></a>';
 
             return $option;
         })
-        ->rawColumns(['status',  'action']);
+        ->rawColumns(['checkbox','status',  'action']);
     }
 
     /**
@@ -88,7 +92,15 @@ class TagDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-          
+            Column::make('checkbox')
+            ->exportable(false)
+            ->printable(false)
+            ->title('<input type="checkbox" id="checkall">')
+            ->addClass('text-center')
+            ->width(30)
+            ->orderable(false)
+            ->searchable(false)
+            ->data('checkbox', 'checkbox'),
             Column::make('id'),
             Column::make('name'),
             Column::make('status'),

@@ -78,7 +78,7 @@
                                 <div class="col-md-6">
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <button type="submit" class="btn btn-default waves-effect waves-light">Submit</button>
+                                    <button type="submit" class="btn btn-primary waves-effect waves-light">Submit</button>
                                 </div>
                             </div>
                         </form>

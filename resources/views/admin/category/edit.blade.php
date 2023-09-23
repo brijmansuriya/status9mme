@@ -80,12 +80,7 @@
 <!-- third party js -->
 
 <script type="text/javascript" src="{{ URL::asset('assets/libs/dropify/dropify.min.js') }}"></script>
+@include('includes.inpagejs')
 
-<script>
-        var imageFile = new File([/*image data here*/], '{{ $category->image }}', { type: "image/jpeg" });
-
-        // Set the value of the file input element using jQuery
-        $(".dropify").prop("files", [imageFile]);
-</script>
 
 @endsection

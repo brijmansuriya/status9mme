@@ -5,6 +5,3 @@
 <script src="{{ asset('assets/libs/sweetalert2/sweetalert2.min.js') }}"></script>
 <script src="{{ URL::asset('assets/js/pages/logout.js') }}"></script>
 @yield('script')
-<script>
-    $('.dropify').dropify();
-</script>

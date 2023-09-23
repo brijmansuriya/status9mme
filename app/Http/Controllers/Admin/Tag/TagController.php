@@ -131,5 +131,14 @@ class TagController extends Controller
         return redirect()->back();
     }
 
+    /**
+     *  delete All the post
+     */
+    public function deleteAll(Request $request)
+    {
+        $tag = Tag::whereIn('id',$request->ids)->delete();
+        return redirect()->back();
+    }
+
 }
 ?>

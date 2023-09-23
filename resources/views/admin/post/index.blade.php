@@ -41,7 +41,11 @@
                         </div>
                         <div class="col-lg-4">
                             <div class="text-lg-right">
-                                <a type="button" class="btn btn-primary waves-effect waves-light mb-2 mr-2" href="{{ route('post.create') }}">Add Post</a>
+                                <a type="button" id="delete_record"
+                                    class="btn btn-primary waves-effect waves-light mb-2"
+                                    href="javascript:void(0)">Delete All</a>
+                                <a type="button" class="btn btn-primary waves-effect waves-light mb-2 mr-2"
+                                    href="{{ route('post.create') }}">Add Post</a>
                             </div>
                         </div><!-- end col-->
                     </div>
@@ -70,10 +74,74 @@
 
 <!-- Datatables init -->
 <script src="{{ asset('assets/js/pages/datatables.init.js')}}"></script>
-{{-- <script src="{{ asset('assets/js/pages/app-link-settings-data-table.js')}}"></script> --}}
-<script src="{{ asset('assets/js/pages/post-data-table.js')}}"></script>
 <script src="{{ asset('assets/js/pages/delete-record.js') }}"></script>
+<script src="{{ asset('assets/js/pages/change-record-status.js') }}"></script>
 
+<script>
+    // Check all 
+   $('#checkall').click(function(){
+      if($(this).is(':checked')){
+         $('.delete_check').prop('checked', true);
+      }else{
+         $('.delete_check').prop('checked', false);
+      }
+   });
+
+   // Delete record
+   $('#delete_record').click(function(){
+
+      var deleteids_arr = [];
+      // Read all checked checkboxes
+      $(".delete_check:checked").each(function () {
+         deleteids_arr.push($(this).val());
+      });
+      console.log('deleteids_arr',deleteids_arr);
+      // Check checkbox checked or not
+      if(deleteids_arr.length > 0){
+
+         // Confirm alert
+         var confirmdelete = confirm("Do you really want to Delete records?");
+         if (confirmdelete == true) {
+            $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+            $.ajax({
+               url: '{{ route("post.deleteAll") }}',
+               type: 'post',
+               data: {ids: deleteids_arr},
+               success: function(response){
+                //   dataTable.ajax.reload();
+                  var dataTable = $('#post-table').DataTable();
+                    dataTable.ajax.reload();
+                  
+
+               }
+            });
+         } 
+      }
+   });
+
+   // Checkbox checked
+   function checkcheckbox(){
+        // Total checkboxes
+        var length = $('.delete_check').length;
+        // Total checked checkboxes
+        var totalchecked = 0;
+        $('.delete_check').each(function(){
+            if($(this).is(':checked')){
+                totalchecked+=1;
+            }
+        });
+        // Checked unchecked checkbox
+        if(totalchecked == length){
+            $("#checkall").prop('checked', true);
+        }else{
+            $('#checkall').prop('checked', false);
+        }
+    }
+</script>
 @push('scripts')
 {{ $dataTable->scripts(attributes: ['type' => 'module']) }}
 @endpush

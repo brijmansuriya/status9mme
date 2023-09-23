@@ -91,7 +91,7 @@
                                 <div class="col-md-6">
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <button type="submit" class="btn btn-default waves-effect waves-light">Submit</button>
+                                    <button type="submit" class="btn btn-primary waves-effect waves-light">Submit</button>
                                 </div>
                             </div>
                         </form>
@@ -108,6 +108,7 @@
 @endsection
 
 @section('script')
+<script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
     <script>
         var ids = @json($post->tags->pluck('id')->toArray());
         $(document).ready(function() {
