@@ -17,10 +17,10 @@ class DatabaseSeeder extends Seeder
             // AppSeeder::class,
             // AppMenuLinkSeeder::class,
             // UserSeeder::class,
-            // AdminSeeder::class,
+            AdminSeeder::class,
             // CategorySeeder::class,
             // PostSeeder::class,
-            TagSeeder::class,
+            // TagSeeder::class,
         ]);
     }
 }

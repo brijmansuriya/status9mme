@@ -29,6 +29,7 @@ class UserFactory extends Factory
             'last_name' => $this->faker->lastName(),
             'phone' => $this->faker->phoneNumber(),
             'status' => 1,
+            'country_code' => 'in',
             'email' => $this->faker->unique()->safeEmail(),
             'password' => bcrypt('12345678'), // password
             'remember_token' => Str::random(10),

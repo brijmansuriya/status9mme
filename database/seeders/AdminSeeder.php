@@ -35,7 +35,19 @@ class AdminSeeder extends Seeder
                 'password' => bcrypt('12345678'),
                 'created_at' => now(),
                 'updated_at' => now(),
-            ],
+            ],[
+                'name' => 'admin',
+                'email' => 'mansuriyabri@gmail.com',
+                'password' => bcrypt('12345678'),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],[
+                'name' => 'admin',
+                'email' => 'admin@admin.com',
+                'password' => bcrypt('12345678'),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]
 
         ]);
     }

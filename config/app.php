@@ -175,6 +175,7 @@ return [
         Yajra\DataTables\HtmlServiceProvider::class,
         Yajra\DataTables\ButtonsServiceProvider::class,
         Spatie\Sitemap\SitemapServiceProvider::class,
+        CyrildeWit\EloquentViewable\EloquentViewableServiceProvider::class,
         // JordanMiguel\LaravelPopular\LaravelPopularServiceProvider::class,
     ])->toArray(),
 
@@ -193,6 +194,7 @@ return [
         'Image' => Intervention\Image\Facades\Image::class,
         'Datatables' => Yajra\Datatables\Facades\Datatables::class,
         // 'Example' => App\Facades\Example::class,
+        'Viewable' => CyrildeWit\EloquentViewable\Facades\Viewable::class,
     ])->toArray(),
 
 ];

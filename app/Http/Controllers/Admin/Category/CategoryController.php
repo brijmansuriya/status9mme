@@ -39,11 +39,11 @@ class CategoryController extends Controller
             'name' => $request->name,
             'slug' => Str::slug($request->name),
         ]);
-
+        
         if ($request->hasFile('image')) {
             $media = $category->addMediaFromRequest('image')->toMediaCollection('image');
         }
-
+      
         session()->flash('success', __('messages.panel.admin.category.added'));
         return redirect()->route('category.index');
     }

@@ -21,7 +21,7 @@ class WebViewController extends Controller
 
     public function post($id)
     {
-        $post = Post::findOrFail($id);
+        $post = Post::active()->findOrFail($id);
         return view('webviewpost', compact('post'));
     }
 }

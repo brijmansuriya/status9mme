@@ -12,7 +12,7 @@ class WebCategories extends Controller
 {
     public function index()
     {
-        $categorys = Category::active()->withHas('post')->latest()->paginate(10);
+        $categorys = Category::active()->available()->latest()->paginate(10);
         return view('web.category_list', compact('categorys'));
     }
 

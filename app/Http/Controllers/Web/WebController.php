@@ -16,7 +16,7 @@ class WebController extends Controller
     {
         $categorys = Category::active()->available()->latest()->take(config('app.home-category'))->get(['id','slug','name']);
 
-        $post = $featureds = $populars =$latests = $trandings = Post::with('category')->latest()->take(config('app.home-post'))->get();
+        $post = $featureds = $populars = $latests = $trandings = Post::with('category')->latest()->active()->take(config('app.home-post'))->get();
 
      
         return view('web.home',[

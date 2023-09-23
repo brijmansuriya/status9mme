@@ -11,12 +11,14 @@ use RalphJSmit\Laravel\SEO\Support\HasSEO;
 use RalphJSmit\Laravel\SEO\Support\SEOData;
 use Spatie\MediaLibrary\InteractsWithMedia;
 // use \JordanMiguel\LaravelPopular\Traits\Visitable;
+use CyrildeWit\EloquentViewable\Contracts\Viewable;
+use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-class Post extends Model implements HasMedia
+class Post extends Model implements HasMedia,Viewable
 {
-    use HasFactory, HasAppDateTime,InteractsWithMedia,HasSEO;
+    use HasFactory, HasAppDateTime,InteractsWithMedia,HasSEO,InteractsWithViews;
     protected $fillable = [
         'id',
         'title',
