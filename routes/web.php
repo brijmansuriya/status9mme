@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\Post\PostController;
 use App\Http\Controllers\Admin\Admin\AdminController;
 use App\Http\Controllers\Api\Auth\RegisterController;
 use App\Http\Controllers\Auth\VerificationController;
+use App\Http\Controllers\Admin\Explorer\ExplorerController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
@@ -101,6 +102,19 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
         Route::get('{id}/delete', [PostController::class, 'delete'])->name('post.delete');
         Route::post('deleteAll', [PostController::class, 'deleteAll'])->name('post.deleteAll');
         Route::get('{id}/toggle', [PostController::class, 'toggleStatus'])->name('post.status.toggle');
+    });
+
+    Route::prefix('explorer')->group(function () {
+        Route::get('', [ExplorerController::class, 'index'])->name('explorer.index');
+        Route::get('create', [ExplorerController::class, 'create'])->name('explorer.create');
+        Route::post('store', [ExplorerController::class, 'store'])->name('explorer.store');
+        Route::get('{id}/edit', [ExplorerController::class, 'edit'])->name('explorer.edit');
+        Route::get('{id}/show', [ExplorerController::class, 'show'])->name('explorer.show');
+        Route::post('{id}/update', [ExplorerController::class, 'update'])->name('explorer.update');
+        Route::get('dataTable', [ExplorerController::class, 'dataTables'])->name('explorer.dataTables');
+        Route::get('{id}/delete', [ExplorerController::class, 'delete'])->name('explorer.delete');
+        Route::post('deleteAll', [ExplorerController::class, 'deleteAll'])->name('explorer.deleteAll');
+        Route::get('{id}/toggle', [ExplorerController::class, 'toggleStatus'])->name('explorer.status.toggle');
     });
 
     Route::prefix('app-links')->group(function () {

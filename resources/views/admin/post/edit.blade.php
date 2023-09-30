@@ -4,6 +4,7 @@
     <!-- third party css -->
     <link href="{{ asset('assets/libs/custombox/custombox.min.css') }}" rel="stylesheet">
     <!-- third party css end -->
+     <link href="{{ URL::asset('assets/libs/selectize/css/selectize.bootstrap3.css') }}" rel="stylesheet" type="text/css" />
 @endsection
 
 @section('content')
@@ -47,7 +48,10 @@
                                     @endforeach
                                 </select>
                             </div>
-                            
+                            <div class="form-group">
+                                <label for="selectize-tags">Keyword</label>
+                                <input type="text" name="keyword" class="form-control" id="selectize-tags" value="{{$post->keyword}}">
+                            </div>
                             @php $post_tags = $post->tags->pluck('id')->toArray();  @endphp
 
                             <div class="form-group">
@@ -109,12 +113,25 @@
 
 @section('script')
 <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
+<script src="{{ URL::asset('assets/libs/selectize/js/standalone/selectize.min.js')}}"></script>
     <script>
         var ids = @json($post->tags->pluck('id')->toArray());
         $(document).ready(function() {
             console.log('::::::::::::',ids);
             $('#tag').select2();
             $('.tagtest').val(ids).trigger('change');
+        });
+
+        $("#selectize-tags").selectize({
+            delimiter: ",",
+            persist: false,
+            maxItems: null,
+            create: function (input) {
+                return {
+                    value: input,
+                    text: input,
+                };
+            }
         });
     </script>
 @endsection

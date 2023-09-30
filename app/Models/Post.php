@@ -96,5 +96,18 @@ class Post extends Model implements HasMedia,Viewable
         return $this->belongsToMany(Tag::class,'post_tags','post_id','tag_id');
     }
 
+    //get all post explores and use exploer show direct post 
+    public function explorers()
+    {
+        return $this->belongsToMany(Explorer::class, 'explorers_posts');
+    }
+
+     // Scope for available posts
+     public function scopeAvailable($query)
+     {
+         return $query->active()->whereHas('category', function ($query) {
+                 $query->active();
+             });
+     }
 }
 

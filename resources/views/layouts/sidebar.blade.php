@@ -36,6 +36,13 @@
                     </a>
                 </li>
                 <li>
+                    <a href="{{ route('explorer.index') }}"
+                        class="{{ request()->is('admin/explorer/*') ? 'active' : '' }}">
+                        <i class="fa fa-list-alt" aria-hidden="true"></i>
+                        <span> Explorer </span>
+                    </a>
+                </li>
+                <li>
                     <a href="{{ route('admin.index') }}" class="{{ request()->is('admin/admin/*') ? 'active' : '' }}">
                         <i class="fa fa-user"></i>
                         <span> Admin </span>
