@@ -55,13 +55,13 @@ class ExplorerController extends Controller
         $explorer->posts()->sync($request->posts);
 
         session()->flash('success', __('messages.panel.admin.explorer.added'));
-        return redirect()->route('category.index');
+        return redirect()->route('explorer.index');
     }
 
     public function toggleStatus($id)
     {
-        $category = Explorer::findOrFail($id);
-        $category->toggleStatus();
+        $explorer = Explorer::findOrFail($id);
+        $explorer->toggleStatus();
         return redirect()->back();
     }
 
@@ -73,12 +73,12 @@ class ExplorerController extends Controller
 
     public function edit($id)
     {
-        $post = Post::available()->get();
+        $post = Post::available()->latest()->get();
         $explorer = Explorer::findOrFail($id);
         return view('admin.explorer.edit', compact('explorer','post'));
     }
 
-    public function update(CreateExplorerRequest $request, $id)
+    public function update(UpdateExplorerRequest $request, $id)
     {
         $explorer = Explorer::whereId($id)->first();
         $explorer->update([

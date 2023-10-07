@@ -12,8 +12,7 @@
     }
     
     .select2-selection__choice{
-        background: var(--default) 
-        !important;
+        background: #38414a !important;
     }
 </style>
 @yield('css')

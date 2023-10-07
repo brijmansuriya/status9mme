@@ -48,12 +48,15 @@
 
                     <div class="form-group" id="jsCategoryImageStoreSection">
 
-
-                    <label for="product-summary">Image {{ $category->image }}</label>
-                        <input type="file" class="form-control dropify" name="image" value="{{ $category->image }}" id="js-category-image-input" accept="image/png, image/jpeg, image/jpg"  data-image-uri="" data-parsley-mime-type="image/png, image/jpeg, image/jpg" data-parsley-mime-type-message="The image must be a file of type: jpg, png, jpeg" data-parsley-max-file-size="5" data-parsley-required-message="The image field is required">
-                        <span id="jsImageTypeErrorMsg" style="color: #f1556c;"></span>
+                      <label for="product-summary">Image </label>
+                      <input type="file" class="form-control dropify" name="image" value="{{ $category->image }}" id="js-category-image-input" accept="image/png, image/jpeg, image/jpg"  data-image-uri="" data-parsley-mime-type="image/png, image/jpeg, image/jpg" data-parsley-mime-type-message="The image must be a file of type: jpg, png, jpeg" data-parsley-max-file-size="5" data-parsley-required-message="The image field is required">
+                      <span id="jsImageTypeErrorMsg" style="color: #f1556c;"></span>
                     </div>
-          
+
+                    <a href="{{ $category->image }}" target="_blank">
+                      <img src="{{ $category->image }}" width="100" height="100" alt="">
+                    </a>
+                    
                     <div class="form-row">
                         <div class="col-md-6">
                         </div>

@@ -59,6 +59,7 @@ Route::get('/categories/{slug}', [WebCategories::class, 'show'])->name('web.cate
 Route::get('/about-us', [WebController::class, 'aboutus'])->name('web.aboutus');
 Route::get('/privacy-policy', [WebController::class, 'privacypolicy'])->name('web.privacypolicy');
 Route::get('/contact-us', [WebController::class, 'contactus'])->name('web.contactus');
+Route::post('/contact-us', [WebController::class, 'contactusSubmit'])->name('contact.submit');
 Route::get('/dmca', [WebController::class, 'dmca'])->name('web.dmca');
 
 /**

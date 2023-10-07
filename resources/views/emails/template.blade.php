@@ -1,6 +1,6 @@
 @include('emails.common.header')
 
-<span style="color:#555 ;">
+<span>
 @yield('emails.main')
 </span>
 

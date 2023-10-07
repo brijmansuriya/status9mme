@@ -29,13 +29,12 @@ class CategoryDataTable extends DataTable
 
         return (new EloquentDataTable($query))
             ->editColumn('checkbox', function ($row) {
-             
                 return '<input type="checkbox" class="checkall delete_check" value="'.$row['id'].'" >';
             })
             ->editColumn('status', function ($row) {
                 $changeStatusUrl = route('category.status.toggle', $row['id']);
                 $changeStatusUrl = "'" . $changeStatusUrl . "'";
-                $tableName = "'categoryDataTable'";
+                $tableName = "'category-table'";
                 $status = $row['status'] ? 'Active' : 'InActive';
                 $statusClass = $row['status'] ? 'bg-soft-success text-success' : 'bg-soft-danger text-danger';
                 return '<span class="badge ' . $statusClass . '" onclick="changeStatus(' . $changeStatusUrl . ',' . $tableName . ')">' . $status . '</span>';
@@ -50,7 +49,7 @@ class CategoryDataTable extends DataTable
 
                 $delete_link = route('category.delete', $row['id']);
                 $delete_link = "'" . $delete_link . "'";
-                $tableName = "'categoryDataTable'";
+                $tableName = "'category-table'";
 
                 $option .= '<a href="javascript:void(0);" onclick="deleteRecord(' . $delete_link . ',' . $tableName . ');"  class="action-icon" "><i class="mdi mdi-delete"></i></a>';
 
@@ -121,6 +120,7 @@ class CategoryDataTable extends DataTable
             Column::make('id'),
             // Column::computed('image'),
             Column::make('name'),
+            Column::make('status'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)

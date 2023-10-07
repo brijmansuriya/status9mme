@@ -1,5 +1,4 @@
 @extends('web.layouts.app')
-
 @section('css')
 {!! seo($SEOData) !!}
 @endsection
@@ -11,10 +10,10 @@
             <div class="col-lg-8">
                 <div class="owl-carousel owl-carousel-2 carousel-item-1 position-relative mb-3 mb-lg-0">
                     <div class="position-relative overflow-hidden" style="height: 435px;">
-                        <img class="img-fluid h-100" src="web/img/news-700x435-1.jpg" style="object-fit: cover;">
+                        <img class="img-fluid h-100" src="web/img/status9mme-banner-1.webp" style="object-fit: cover;">
                     </div>
                     <div class="position-relative overflow-hidden" style="height: 435px;">
-                        <img class="img-fluid h-100" src="web/img/news-700x435-2.jpg" style="object-fit: cover;">
+                        <img class="img-fluid h-100" src="web/img/status9mme-banner-2.webp" style="object-fit: cover;">
                     </div>
                 </div>
             </div>

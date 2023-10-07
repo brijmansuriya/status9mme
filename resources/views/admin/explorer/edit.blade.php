@@ -36,33 +36,36 @@
                         <div class="form-group">
                             <label for="selectize-tags">Keyword </label>
                             <input type="text" name="keywords" class="form-control" id="selectize-tags"
-                                value="@if(old('keyword')){{ old('keyword') }}@endif{{ $explorer->keywords }}">
+                                value="@if(old('keyword')){{ old('keyword') }}@else{{ $explorer->keywords }} @endif">
                         </div>
                         <div class="form-group">
                             <label for="product-summary">Title</label>
                             <input type="text" class="form-control" name="title"
-                                value="@if(old('title')){{ old('title') }}@endif{{ $explorer->title }}"
+                                value="@if(old('title')){{ old('title') }}@else{{ $explorer->title }}@endif"
                                 placeholder="Please enter Name">
                         </div>
                         <div class="form-group">
                             <label for="product-summary">Meta Description</label>
                             <textarea class="form-control" name="meta_description"
-                                placeholder="Meta Description">@if(old('meta_description')){{ old('meta_description') }}@endif{{ $explorer->meta_description }}</textarea>
+                                placeholder="Meta Description">@if(old('meta_description')){{ old('meta_description') }}@else{{ $explorer->meta_description }}@endif</textarea>
                         </div>
                         <div class="form-group" id="ckblock">
                             <label for="product-summary">Content</label>
                             <textarea class="ckeditor form-control" name="description" placeholder="Content">
-                                    @if(old('description')){{ old('description') }}@endif{{ $explorer->description }}</textarea>
+                                    @if(old('description')){{ old('description') }}@else{{ $explorer->description }}@endif</textarea>
                         </div>
                         <div class="form-group" id="fileblock">
                             <label for="product-summary">Upload File</label>
-                            <input type="file" class="form-control" name="image" id="image-tham">
+                            <input type="file" class="form-control" name="image" value="{{ $explorer->image }}" id="image-tham">
                         </div>
+                        <img src="{{ $explorer->image }}" alt="" width="100" height="100">
                         <div class="form-group">
                             <label for="product-summary">Posts</label>
                             <select name="posts[]" id="posts" class="form-control select2"  multiple="multiple">
                                 @foreach ($post as $postData)
-                                    <option value="{{ $postData->id }}">{{ $postData->title }} </option>
+                                    <option value="{{ $postData->id }}" {{ in_array($postData->id, $explorer->posts->pluck('id')->toArray()) ? 'selected' : '' }}>
+                                        {{ $postData->id }} | {{ $postData->title }} | {{ $postData->created_at }}
+                                    </option>
                                 @endforeach
                             </select>
                         </div>
@@ -111,6 +114,7 @@
                 }
             });
             $('.select2').select2();
+            
         });
         $("#selectize-tags").selectize({
             delimiter: ",",

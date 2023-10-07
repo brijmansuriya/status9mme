@@ -59,7 +59,7 @@
                                 <label for="product-summary">Posts</label>
                                 <select name="posts[]" id="posts" class="form-control select2"  multiple="multiple">
                                     @foreach ($post as $postData)
-                                        <option value="{{ $postData->id }}">{{ $postData->title }} </option>
+                                        <option value="{{ $postData->id }}">{{ $postData->id }} | {{ $postData->title }} | {{ $postData->created_at }}</option>
                                     @endforeach
                                 </select>
                             </div>

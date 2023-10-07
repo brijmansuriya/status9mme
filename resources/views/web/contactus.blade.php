@@ -13,7 +13,7 @@
                 <div class="col-md-5">
                     <div class="bg-light mb-3" style="padding: 30px;">
                         <h6 class="font-weight-bold">Get in touch</h6>
-                        <p>Labore ipsum ipsum rebum erat amet nonumy, nonumy erat justo sit dolor ipsum sed, kasd lorem sit et duo dolore justo lorem stet labore, diam dolor et diam dolor eos magna, at vero lorem elitr</p>
+                        <p>Feel free to ask for details, don't save any questions!</p>
                         <div class="d-flex align-items-center mb-3">
                             <i class="fa fa-2x fa-map-marker-alt text-primary mr-3"></i>
                             <div class="d-flex flex-column">
@@ -25,7 +25,7 @@
                             <i class="fa fa-2x fa-envelope-open text-primary mr-3"></i>
                             <div class="d-flex flex-column">
                                 <h6 class="font-weight-bold">Email Us</h6>
-                                <p class="m-0">info@example.com</p>
+                                <a class="m-0" href="mailto:mansuriyabri@gmail.com">news9mme@gmail.com</a>
                             </div>
                         </div>
                         <div class="d-flex align-items-center">
@@ -39,28 +39,34 @@
                 </div>
                 <div class="col-md-7">
                     <div class="contact-form bg-light mb-3" style="padding: 30px;">
-                        <div id="success"></div>
-                        <form name="sentMessage" id="contactForm" novalidate="novalidate">
+                        @if(session('success'))
+                            <div  id="success" class="alert alert-success">
+                                {{ session('success') }}
+                            </div>
+                        @endif
+                        <form method="POST" name="sentMessage" action="{{ route('contact.submit') }}" id="contactForm" novalidate="novalidate">
+                            @csrf
+                            
                             <div class="form-row">
                                 <div class="col-md-6">
                                     <div class="control-group">
-                                        <input type="text" class="form-control p-4" id="name" placeholder="Your Name" required="required" data-validation-required-message="Please enter your name" />
+                                        <input type="text" class="form-control p-4" id="name" placeholder="Your Name" required="required" data-validation-required-message="Please enter your name" name="name" />
                                         <p class="help-block text-danger"></p>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="control-group">
-                                        <input type="email" class="form-control p-4" id="email" placeholder="Your Email" required="required" data-validation-required-message="Please enter your email" />
+                                        <input type="email" class="form-control p-4" id="email" placeholder="Your Email" required="required" data-validation-required-message="Please enter your email" name="email"/>
                                         <p class="help-block text-danger"></p>
                                     </div>
                                 </div>
                             </div>
                             <div class="control-group">
-                                <input type="text" class="form-control p-4" id="subject" placeholder="Subject" required="required" data-validation-required-message="Please enter a subject" />
+                                <input type="text" class="form-control p-4" id="subject" placeholder="Subject" required="required" data-validation-required-message="Please enter a subject" name="subject"/>
                                 <p class="help-block text-danger"></p>
                             </div>
                             <div class="control-group">
-                                <textarea class="form-control" rows="4" id="message" placeholder="Message" required="required" data-validation-required-message="Please enter your message"></textarea>
+                                <textarea name="message" class="form-control" rows="4" id="message" placeholder="Message" required="required" data-validation-required-message="Please enter your message"></textarea>
                                 <p class="help-block text-danger"></p>
                             </div>
                             <div>

@@ -16,7 +16,14 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 class Explorer extends Model implements HasMedia, Viewable
 {
     use HasFactory, HasAppDateTime, InteractsWithMedia, HasSEO, InteractsWithViews;
-    protected $fillable = ['title', 'keywords', 'description', 'image', 'slug'];
+    protected $fillable = ['title', 'keywords', 'description','meta_description', 'image', 'slug'];
+
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+        'deleted_at',
+        // other hidden columns...
+    ];
 
     public function registerMediaConversions(Media $media = null): void
     {

@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Web;
 use Carbon\Carbon;
 use App\Models\Post;
 use App\Models\Category;
+use App\Mail\ContactUsMail;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Mail;
 use RalphJSmit\Laravel\SEO\Support\SEOData;
 use RalphJSmit\LaravelSeo\Facades\SeoFacade;
 
@@ -47,7 +49,7 @@ class WebController extends Controller
         // Seo::setDescription('Custom Home Page Description');
         return view('web.aboutus',[
             'SEOData' => new SEOData(
-                title: 'Awesome News - My Project',
+                title:  config('app.name').' About Us',
                 description: 'Lorem Ipsum',
                 author: 'Lorem Ipsum',
                 image : 'Lorem Ipsum',
@@ -64,7 +66,7 @@ class WebController extends Controller
     public function privacypolicy() {
         return view('web.privacypolicy',[
             'SEOData' => new SEOData(
-                title: 'Awesome News - My Project',
+                title:  config('app.name').' Privacy Policy',
                 description: 'Lorem Ipsum',
                 author: 'Lorem Ipsum',
                 image : 'Lorem Ipsum',
@@ -81,7 +83,7 @@ class WebController extends Controller
     public function dmca() {
         return view('web.dmca',[
             'SEOData' => new SEOData(
-                title: 'Awesome News - My Project',
+                title: config('app.name').' DMCA',
                 description: 'Lorem Ipsum',
                 author: 'Lorem Ipsum',
                 image : 'Lorem Ipsum',
@@ -98,7 +100,7 @@ class WebController extends Controller
     public function contactus() {
         return view('web.contactus',[
             'SEOData' => new SEOData(
-                title: 'Awesome News - My Project',
+                title: config('app.name').' Contact Us',
                 description: 'Lorem Ipsum',
                 author: 'Lorem Ipsum',
                 image : 'Lorem Ipsum',
@@ -110,5 +112,25 @@ class WebController extends Controller
                 url    : 'Lorem Ipsum',
             ),
         ]);
+    }
+
+    //contactus Submit
+    public function contactusSubmit(Request $request) {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'subject' => 'required',
+            'message' => 'required',
+        ]);
+
+        $data = array(
+            'name' => $request->name,
+            'email' => $request->email,
+            'subject' => $request->subject,
+            'message' => $request->message,
+        );
+
+        Mail::to('news9mme+@gmail.com')->send(new ContactUsMail($data));
+        return redirect()->back()->with('success', 'Thank you for contacting us!');
     }
 }
