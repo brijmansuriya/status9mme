@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\Category;
+use App\Models\Categorie;
 use App\Models\Explorer;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
@@ -24,7 +24,7 @@ class ExplorerDataTable extends DataTable
             // ->editColumn('status', function ($row) {
             //     $changeStatusUrl = route('category.status.toggle', $row['id']);
             //     $changeStatusUrl = "'" . $changeStatusUrl . "'";
-            //     $tableName = "'categoryDataTable'";
+            //     $tableName = "'CategorieDataTable'";
             //     $status = $row['status'] ? 'Active' : 'InActive';
             //     $statusClass = $row['status'] ? 'bg-soft-success text-success' : 'bg-soft-danger text-danger';
             //     return '<span class="badge ' . $statusClass . '" onclick="changeStatus(' . $changeStatusUrl . ',' . $tableName . ')">' . $status . '</span>';

@@ -18,7 +18,7 @@
                             <i class="fa fa-2x fa-map-marker-alt text-primary mr-3"></i>
                             <div class="d-flex flex-column">
                                 <h6 class="font-weight-bold">Our Office</h6>
-                                <p class="m-0">123 Street, New York, USA</p>
+                                <p class="m-0">Ahmedabad Gujarat</p>
                             </div>
                         </div>
                         <div class="d-flex align-items-center mb-3">
@@ -32,7 +32,7 @@
                             <i class="fas fa-2x fa-phone-alt text-primary mr-3"></i>
                             <div class="d-flex flex-column">
                                 <h6 class="font-weight-bold">Call Us</h6>
-                                <p class="m-0">+012 345 6789</p>
+                                <p class="m-0"><a href="tel:+917016546705">+91 7016546705</a></p>
                             </div>
                         </div>
                     </div>

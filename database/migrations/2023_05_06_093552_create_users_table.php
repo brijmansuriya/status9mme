@@ -25,7 +25,6 @@ return new class extends Migration
             $table->string('phone')->nullable();
             $table->integer('country_code');
             $table->text('address')->nullable();
-            $table->string('pincode');
             $table->enum('device_type', ['android', 'ios'])->nullable();
             $table->enum('locale', ['en'])->default('en');
             $table->string('device_token')->nullable();
@@ -38,20 +37,6 @@ return new class extends Migration
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
-            $table->string('stripe_id')->nullable()->index();
-            $table->string('pm_type')->nullable();
-            $table->string('pm_last_four', 4)->nullable();
-            $table->timestamp('trial_ends_at')->nullable();
-            $table->string('company_name')->nullable();
-            $table->string('company_country_code')->nullable();
-            $table->string('website')->nullable();
-            $table->string('company_phone')->nullable();
-            $table->string('company_email')->nullable();
-            $table->string('country_id')->nullable();
-            $table->string('city')->nullable();
-            $table->string('title')->nullable();
-            $table->string('other_title')->nullable();
-            $table->string('booth_number')->nullable();
         });
     }
 

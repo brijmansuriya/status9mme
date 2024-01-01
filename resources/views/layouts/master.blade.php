@@ -11,6 +11,8 @@
     <!-- App favicon -->
     <link rel="shortcut icon" href="{{ url('assets/images/logo/favicon.ico') }}" size=16*16>
     @include('layouts.head')
+    @vite(['resources/js/app.js','resources/css/app.css'])
+
 </head>
 <body>
     <!-- Begin page -->

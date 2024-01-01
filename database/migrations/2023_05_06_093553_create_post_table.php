@@ -16,17 +16,18 @@ return new class extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('slug')->nullable();
-            $table->string('image');
-            $table->text('description');
+            $table->string('slug')->unique();
+            $table->string('image')->nullable();
+            $table->text('description')->nullable();
             $table->text('keyword');
             $table->text('meta_description');
             $table->string('url');
             $table->boolean('status')->default(0);
+
             $table->unsignedBigInteger('created_by')->nullable();
-            $table->foreign('created_by')->references('id')->on('admins')->onDelete('set null');
+            $table->foreign('created_by')->references('id')->on('admins');
             $table->unsignedBigInteger('category_id')->nullable();
-            $table->foreign('category_id')->references('id')->on('category')->onDelete('set null');
+            $table->foreign('category_id')->references('id')->on('categories');
             $table->timestamps();
             $table->index('status');
         });

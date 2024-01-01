@@ -15,40 +15,12 @@ class AdminSeeder extends Seeder
      */
     public function run()
     {
-
-        DB::table('admins')->insert([
-            [
-                'name' => 'admin',
-                'email' => 'admin@yopmail.com',
-                'password' => bcrypt('12345678'),
-                'created_at' => now(),
-                'updated_at' => now(),
-            ], [
-                'name' => 'admin',
-                'email' => 'test@yopmail.com',
-                'password' => bcrypt('12345678'),
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],[
-                'name' => 'admin',
-                'email' => 'admin1@yopmail.com',
-                'password' => bcrypt('12345678'),
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],[
-                'name' => 'admin',
-                'email' => 'mansuriyabri@gmail.com',
-                'password' => bcrypt('12345678'),
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],[
-                'name' => 'admin',
-                'email' => 'admin@admin.com',
-                'password' => bcrypt('12345678'),
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]
-
+        Admin::created([
+            'name' => 'admin',
+            'email' => $this->faker->unique()->safeEmail,
+            'password' => bcrypt('12345678'),
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
     }
 }

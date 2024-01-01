@@ -14,5 +14,15 @@
     .select2-selection__choice{
         background: #38414a !important;
     }
+
+    .active{
+        color:  #6658dd !important; 
+    }
+
+    #sidebar-menu>ul>li>a:active, #sidebar-menu>ul>li>a:focus, #sidebar-menu>ul>li>a:hover {
+        color: #6658dd;
+        text-decoration: none;
+    }
+
 </style>
 @yield('css')

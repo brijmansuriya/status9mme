@@ -14,13 +14,16 @@ return new class extends Migration
         Schema::create('explorers', function (Blueprint $table) {
             $table->id();
             $table->text('keywords')->nullable();
-            $table->string('title')->nullable();
-            $table->string('slug')->nullable();
-            $table->text('meta_description')->nullable();
-            $table->text('description')->nullable();
+            $table->string('title');
+            $table->string('slug')->unique();
+            $table->text('meta_description');
+            $table->text('description');
             $table->string('image')->nullable();
             $table->enum('status', ['0', '1'])->default('1');
             $table->timestamps();
+
+            //set index status
+            $table->index('status');
         });
     }
 

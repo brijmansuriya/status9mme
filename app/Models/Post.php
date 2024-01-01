@@ -16,9 +16,9 @@ use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-class Post extends Model implements HasMedia,Viewable
+class Post extends Model implements HasMedia, Viewable
 {
-    use HasFactory, HasAppDateTime,InteractsWithMedia,HasSEO,InteractsWithViews;
+    use HasFactory, HasAppDateTime, InteractsWithMedia, HasSEO, InteractsWithViews;
     protected $fillable = [
         'id',
         'title',
@@ -46,8 +46,8 @@ class Post extends Model implements HasMedia,Viewable
     public function getDynamicSEOData(): SEOData
     {
         $pathToFeaturedImageRelativeToPublicPath = // ..;
-        // Override only the properties you want:
-        $data = new SEOData($this->title, $this->excerpt, $this->image);
+            // Override only the properties you want:
+            $data = new SEOData($this->title, $this->excerpt, $this->image);
         return $data;
     }
     /**
@@ -64,8 +64,8 @@ class Post extends Model implements HasMedia,Viewable
     public function getImageAttribute()
     {
         return $this->getFirstMedia('post/image') ?
-         $this->getFirstMedia('post/image')->getFullUrl('conversion') :
-          asset('default_images/admin.png');
+            $this->getFirstMedia('post/image')->getFullUrl('conversion') :
+            asset('default_images/admin.png');
     }
 
     /**
@@ -88,26 +88,25 @@ class Post extends Model implements HasMedia,Viewable
 
     public function category()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(Categorie::class);
     }
 
     public function tags()
     {
-        return $this->belongsToMany(Tag::class,'post_tags','post_id','tag_id');
+        return $this->belongsToMany(Tag::class, 'post_tags', 'post_id', 'tag_id');
     }
 
-    //get all post explores and use exploer show direct post 
+    //get all post explores and use exploer show direct post
     public function explorers()
     {
         return $this->belongsToMany(Explorer::class, 'explorers_posts');
     }
 
-     // Scope for available posts
-     public function scopeAvailable($query)
-     {
-         return $query->active()->whereHas('category', function ($query) {
-                 $query->active();
-             });
-     }
+    // Scope for available posts
+    public function scopeAvailable($query)
+    {
+        return $query->active()->whereHas('category', function ($query) {
+            $query->active();
+        });
+    }
 }
-

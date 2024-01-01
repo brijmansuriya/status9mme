@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Category;
+use App\Models\Categorie;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,16 +17,16 @@ class PostFactory extends Factory
      */
     public function definition()
     {
-            return [
-                'title' => $this->faker->sentence,
-                'slug' => $this->faker->slug,
-                'image' => $this->faker->imageUrl(),
-                'description' => $this->faker->paragraph,
-                'meta_description' => $this->faker->sentence,
-                'url' => $this->faker->url,
-                'category_id' => Category::all()->random()->id,
-                'created_at' => $this->faker->dateTimeBetween('-1 year', 'now'),
-                'updated_at' => $this->faker->dateTimeBetween('-1 year', 'now'),
-            ];
+        return [
+            'title' => $this->faker->sentence,
+            'slug' => $this->faker->slug,
+            'image' => $this->faker->imageUrl(),
+            'description' => $this->faker->paragraph,
+            'meta_description' => $this->faker->sentence,
+            'url' => $this->faker->url,
+            'category_id' => Categorie::all()->random()->id,
+            'created_at' => $this->faker->dateTimeBetween('-1 year', 'now'),
+            'updated_at' => $this->faker->dateTimeBetween('-1 year', 'now'),
+        ];
     }
 }

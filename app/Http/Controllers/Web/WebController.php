@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use Carbon\Carbon;
 use App\Models\Post;
-use App\Models\Category;
+use App\Models\Categorie;
 use App\Mail\ContactUsMail;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -16,11 +16,11 @@ class WebController extends Controller
 {
     public function index()
     {
-        $categorys = Category::active()->available()->latest()->take(config('app.home-category'))->get(['id','slug','name']);
+        $categorys = Categorie::active()->available()->latest()->take(config('app.home-category'))->get(['id','slug','name']);
 
         $post = $featureds = $populars = $latests = $trandings = Post::with('category')->latest()->active()->take(config('app.home-post'))->get();
 
-     
+
         return view('web.home',[
             'SEOData' => new SEOData(
                 title: config('app.name').' home page',

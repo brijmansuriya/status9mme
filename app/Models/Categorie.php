@@ -12,25 +12,25 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Spatie\MediaLibrary\Support\MediaStream;
 
-class Category extends Model implements HasMedia
+class Categorie extends Model implements HasMedia
 {
     use HasFactory, InteractsWithMedia, SoftDeletes;
 
-    protected $table = 'category';
+
     protected $fillable = ['name', 'status','slug'];
     protected $orderBy = ['id' => 'desc'];
-    
+
     protected $casts = [
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
         'deleted_at' => 'datetime',
     ];
-   
+
     public function registerMediaConversions(Media $media = null): void
     {
         $this->addMediaConversion('conversion')->format('webp');
     }
-   
+
 
     public function toggleStatus()
     {
@@ -79,7 +79,7 @@ class Category extends Model implements HasMedia
     }
 
     /**
-     * chack post is available show this cetegory  
+     * chack post is available show this cetegory
      */
     public function scopeAvailable($query)
     {

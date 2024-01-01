@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\Category;
+use App\Models\Categorie;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Services\DataTable;
@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
 
-class CategoryDataTable extends DataTable
+class CategorieDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -29,7 +29,7 @@ class CategoryDataTable extends DataTable
 
         return (new EloquentDataTable($query))
             ->editColumn('checkbox', function ($row) {
-                return '<input type="checkbox" class="checkall delete_check" value="'.$row['id'].'" >';
+                return '<input type="checkbox" class="checkall delete_check" value="' . $row['id'] . '" >';
             })
             ->editColumn('status', function ($row) {
                 $changeStatusUrl = route('category.status.toggle', $row['id']);
@@ -55,13 +55,13 @@ class CategoryDataTable extends DataTable
 
                 return $option;
             })
-            ->rawColumns(['checkbox','status', 'image', 'action']);
+            ->rawColumns(['checkbox', 'status', 'image', 'action']);
     }
 
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\Category $model
+     * @param \App\Models\Categorie $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function query(Category $model): QueryBuilder
@@ -108,14 +108,14 @@ class CategoryDataTable extends DataTable
             //       ->addClass('text-center'),
 
             Column::make('checkbox')
-            ->exportable(false)
-            ->printable(false)
-            ->title('<input type="checkbox" id="checkall">')
-            ->addClass('text-center')
-            ->width(30)
-            ->orderable(false)
-            ->searchable(false)
-            ->data('checkbox', 'checkbox'),
+                ->exportable(false)
+                ->printable(false)
+                ->title('<input type="checkbox" id="checkall">')
+                ->addClass('text-center')
+                ->width(30)
+                ->orderable(false)
+                ->searchable(false)
+                ->data('checkbox', 'checkbox'),
 
             Column::make('id'),
             // Column::computed('image'),

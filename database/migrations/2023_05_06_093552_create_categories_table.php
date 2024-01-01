@@ -13,13 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('apple_details', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('first_name')->nullable();
-            $table->string('last_name')->nullable();
-            $table->string('email');
-            $table->string('apple_id');
+            $table->string('name');
+            $table->string('slug')->nullable();
+            $table->enum('status', ['0', '1'])->default('1');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('apple_details');
+        Schema::dropIfExists('categories');
     }
 };

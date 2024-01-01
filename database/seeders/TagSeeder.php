@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Tag;
-use App\Models\Category;
+use App\Models\Categorie;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 

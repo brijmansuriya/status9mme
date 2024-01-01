@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Admin\Category;
 
-use App\Models\Category;
+use App\Models\Categorie;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Psy\Readline\Hoa\Console;
 use App\Models\ProviderCategory;
 use App\DataTables\AdminDataTable;
 use App\Http\Controllers\Controller;
-use App\DataTables\CategoryDataTable;
+use App\DataTables\CategorieDataTable;
 use Yajra\DataTables\Facades\DataTables;
 use App\Http\Requests\Admin\Category\CreateCategoryRequest;
 use App\Http\Requests\Admin\Category\UpdateCategoryRequest;
@@ -17,7 +17,7 @@ use App\Http\Requests\Admin\Category\UpdateCategoryRequest;
 class CategoryController extends Controller
 {
 
-    public function index(CategoryDataTable $dataTable)
+    public function index(CategorieDataTable $dataTable)
     {
         return $dataTable->render('admin.category.index');
     }
@@ -35,15 +35,15 @@ class CategoryController extends Controller
      */
     public function store(CreateCategoryRequest $request)
     {
-        $category = Category::create([
+        $category = Categorie::create([
             'name' => $request->name,
             'slug' => Str::slug($request->name),
         ]);
-        
+
         if ($request->hasFile('image')) {
             $media = $category->addMediaFromRequest('image')->toMediaCollection('image');
         }
-      
+
         session()->flash('success', __('messages.panel.admin.category.added'));
         return redirect()->route('category.index');
     }
@@ -53,7 +53,7 @@ class CategoryController extends Controller
      */
     public function toggleStatus($id)
     {
-        $category = Category::findOrFail($id);
+        $category = Categorie::findOrFail($id);
         $category->toggleStatus();
         return redirect()->back();
     }
@@ -63,19 +63,19 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        $category = Category::findOrFail($id);
+        $category = Categorie::findOrFail($id);
         return view('admin.category.show', compact('category'));
     }
 
     public function edit($id)
     {
-        $category = Category::findOrFail($id);
+        $category = Categorie::findOrFail($id);
         return view('admin.category.edit', compact('category'));
     }
 
     public function update(UpdateCategoryRequest $request, $id)
     {
-        $category = Category::whereId($id)->first();
+        $category = Categorie::whereId($id)->first();
         $category->update([
             'name' => request()->input('name'),
         ]);
@@ -92,17 +92,17 @@ class CategoryController extends Controller
      */
     public function delete($id)
     {
-        $category = Category::findOrFail($id);
+        $category = Categorie::findOrFail($id);
         $category->delete();
         return redirect()->back();
     }
 
-     /**
+    /**
      *  delete All the post
      */
     public function deleteAll(Request $request)
     {
-        $post = Category::whereIn('id',$request->ids)->delete();
+        $post = Categorie::whereIn('id', $request->ids)->delete();
         return redirect()->back();
     }
 }

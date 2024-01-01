@@ -15,10 +15,14 @@ return new class extends Migration
     {
         Schema::create('post_tags', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->BigInteger('post_id');
+            $table->unsignedBigInteger('post_id');
             $table->unsignedBigInteger('tag_id');
             $table->timestamps();
             $table->softDeletes();
+
+            //forien key
+            $table->foreign('post_id')->references('id')->on('posts');
+            $table->foreign('tag_id')->references('id')->on('tags');
         });
     }
 

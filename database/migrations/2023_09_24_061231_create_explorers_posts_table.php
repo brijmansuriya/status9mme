@@ -16,7 +16,11 @@ return new class extends Migration
             $table->unsignedBigInteger('explorer_id');
             $table->unsignedBigInteger('post_id');
             $table->timestamps();
+            //forien key
+            $table->foreign('explorer_id')->references('id')->on('explorers');
+            $table->foreign('post_id')->references('id')->on('posts');
         });
+
     }
 
     /**

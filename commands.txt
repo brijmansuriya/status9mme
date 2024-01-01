@@ -26,7 +26,7 @@ php artisan db:seed
 
 
 ------------------------------------------------
-php artisan datatables:make CategoryDataTable
+php artisan datatables:make CategorieDataTable
 php artisan datatables:make PostDataTable
 php artisan datatables:make TagDataTable
 php artisan datatables:make UserDataTable

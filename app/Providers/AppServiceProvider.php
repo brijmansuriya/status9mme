@@ -6,7 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 use Illuminate\Database\Eloquent\Builder;
 use App\Models\Tag;
-use App\Models\Category;
+use App\Models\Categorie;
 use Illuminate\Support\Str;
 // use App\Providers\TelescopeServiceProvider;
 class AppServiceProvider extends ServiceProvider
@@ -21,6 +21,11 @@ class AppServiceProvider extends ServiceProvider
         //     $this->app->register(\Laravel\Telescope\TelescopeServiceProvider::class);
         //     $this->app->register(TelescopeServiceProvider::class);
         // }
+
+        if ($this->app->environment('local')) {
+            $this->app->register(\Laravel\Telescope\TelescopeServiceProvider::class);
+            $this->app->register(TelescopeServiceProvider::class);
+        }
     }
 
     /**
@@ -29,7 +34,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         View::composer(['web.includes.footer'], function ($view) {
-            $categorys =  Category::has('post')->whereHas('post', function ($query) {
+            $categorys =  Categorie::has('post')->whereHas('post', function ($query) {
                 $query->active();
             })->active()->latest()->take(config('app.home-category'))->get(['id', 'name', 'slug']);
             $view->with('categorys', $categorys);

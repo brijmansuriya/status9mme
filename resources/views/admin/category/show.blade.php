@@ -61,7 +61,7 @@
                         <div class="col-md-4 text-break">
                             <label class="mt-2 mb-1 text-capitalize">Category Image  :</label>
                             <p class="">
-                                <img src="{{ $category->category_image}}" alt="" height="100" width="100"
+                                <img src="{{ $category->image}}" alt="" height="300" 
                                 id="js-admin-profile-image">
                             </p>
                         </div>

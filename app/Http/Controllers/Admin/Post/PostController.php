@@ -7,13 +7,13 @@ use Carbon\Carbon;
 use App\Models\Tag;
 use App\Models\Post;
 use App\Models\PostTag;
-use App\Models\Category;
+use App\Models\Categorie;
 use App\Models\AppMenuLink;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\DataTables\PostDataTable;
 use App\Http\Controllers\Controller;
-use App\DataTables\CategoryDataTable;
+use App\DataTables\CategorieDataTable;
 use Yajra\DataTables\Facades\DataTables;
 use App\Http\Requests\Admin\Post\StorePostRequest;
 use App\Http\Requests\Admin\Post\UpdatePostRequest;
@@ -92,7 +92,7 @@ class PostController extends Controller
     public function create()
     {
         $tags = Tag::get(['id', 'name', 'slug']);
-        $categorys = Category::active()->get(['id', 'name']);
+        $categorys = Categorie::active()->get(['id', 'name']);
         return view('admin.post.create', compact('categorys', 'tags'));
     }
 
@@ -102,7 +102,11 @@ class PostController extends Controller
     public function store(StorePostRequest $request)
     {
         $input = request()->all();
-        $input['slug'] = Str::slug($input['title']);
+        $count = Post::where('slug', $input['slug'])->count();
+        if ($count > 0) {
+            // Slug is not unique, so you need to make it unique
+            $input['slug'] = $input['slug'] . '-' . ($count + 1);
+        }
         $post = Post::create($input);
         $post->seo->update([
             'title' => 'My great post',
@@ -120,13 +124,13 @@ class PostController extends Controller
         return redirect()->route('post.index');
     }
 
-    /**     
+    /**
      *  returns the edit page for this
      */
     public function edit($id)
     {
         $post = Post::with('tags')->findOrFail($id);
-        $categorys = Category::active()->get(['id', 'name']);
+        $categorys = Categorie::active()->get(['id', 'name']);
         $tags = Tag::active()->get(['id', 'name']);
         return view('admin.post.edit', compact('post', 'categorys', 'tags'));
     }
@@ -163,7 +167,7 @@ class PostController extends Controller
      */
     public function deleteAll(Request $request)
     {
-        $post = Post::whereIn('id',$request->ids)->delete();
+        $post = Post::whereIn('id', $request->ids)->delete();
 
         return redirect()->back();
     }

@@ -97,9 +97,9 @@
 
                     </div>
 
-                    <div class="mb-3 pb-3">
+                    <!-- <div class="mb-3 pb-3">
                         <a href=""><img class="img-fluid w-100" src="web/img/ads-700x70.jpg" alt=""></a>
-                    </div>
+                    </div> -->
 
                     <div class="row">
                         <div class="col-12">
