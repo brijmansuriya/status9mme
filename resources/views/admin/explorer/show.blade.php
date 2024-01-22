@@ -14,8 +14,8 @@
                 <div class="page-title-right">
                     <ol class="breadcrumb m-0">
                         <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Dashboard</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('category.index') }}">Category</a></li>
-                        {{-- <li class="breadcrumb-item"><a href="#">Category</a></li> --}}
+                        <li class="breadcrumb-item"><a href="{{ route('categorie.index') }}">Categorie</a></li>
+                        {{-- <li class="breadcrumb-item"><a href="#">Categorie</a></li> --}}
                         <li class="breadcrumb-item active">Explorer Details</li>
                     </ol>
                 </div>
@@ -34,8 +34,8 @@
                             <h5 class="card-title font-16 "> Explorer Details</h5>
                         </div>
                         <div class="col-md-1">
-                            <a href="{{ route('category.edit', $explorer->id) }}" class="btn btn-success mb-2">Edit</a>
-                            {{-- <a href="{{ route('category.delete', $category->id) }}" class="btn btn-danger mb-2">Delete</a> --}}
+                            <a href="{{ route('categorie.edit', $explorer->id) }}" class="btn btn-success mb-2">Edit</a>
+                            {{-- <a href="{{ route('categorie.delete', $categorie->id) }}" class="btn btn-danger mb-2">Delete</a> --}}
                         </div>
                     </div>
                     <div class="clerfix"></div>

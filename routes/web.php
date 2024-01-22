@@ -29,7 +29,7 @@ Route::get('/', [WebController::class, 'index'])->name('web.home');
 
 //home page popular
 Route::get('/all-popular-post-list', [PopularPost::class, 'allPopularPostList'])->name('web.allpopularpostlist');
-Route::get('/popular-post/{slug}', [PopularPost::class, 'popularPostShow'])->name('web.popularpost');
+Route::get('/post/{slug}', [PopularPost::class, 'popularPostShow'])->name('web.popularpost');
 
 //home page latest
 Route::get('/all-latest-post-list', [PopularPost::class, 'allLatestPostList'])->name('web.alllatestpostlist');

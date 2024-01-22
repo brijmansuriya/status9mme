@@ -5,8 +5,8 @@
     <style>
         @media only screen and (max-width:1024px) and (min-width:768px) {
             /* #morris-donut-example{
-                height: 180px !important;
-            } */
+                    height: 180px !important;
+                } */
         }
     </style>
 @endsection
@@ -19,7 +19,7 @@
             <div class="col-12">
                 <div class="page-title-box mb-3">
                     <div class="page-title-right">
-                        
+
 
                     </div>
                     <h4 class="page-title">Dashboard</h4>
@@ -48,7 +48,7 @@
                     <!-- end widget-rounded-circle-->
                 </div>
             </a>
-            <a class="col-md-6 col-xl-3" href="{{ route('category.index') }}">
+            <a class="col-md-6 col-xl-3" href="{{ route('categorie.index') }}">
                 <div>
                     <div class="widget-rounded-circle card-box">
                         <div class="row">
@@ -59,7 +59,7 @@
                             </div>
                             <div class="col-6">
                                 <div class="text-right">
-                                    <h3 class="text-dark mt-1"><span data-plugin="counterup">{{ $category }}</span></h3>
+                                    <h3 class="text-dark mt-1"><span data-plugin="counterup">{{ $categorie }}</span></h3>
                                     <p class="text-muted mb-1">Categories</p>
                                 </div>
                             </div>
@@ -79,7 +79,6 @@
     <script src="{{ asset('assets/libs/raphael/raphael.min.js') }}"></script>
     <script src="{{ asset('assets/js/pages/dashboard-4.init.js') }}"></script> --}}
 
-      <!-- Init js -->
-      <script src="{{ asset('assets/js/pages/dashboard.js') }}"></script>
-   
+    <!-- Init js -->
+    <script src="{{ asset('assets/js/pages/dashboard.js') }}"></script>
 @endsection

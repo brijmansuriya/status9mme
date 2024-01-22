@@ -22,6 +22,6 @@ class CategoryFactory extends Factory
             'status' => '1',
             'slug' => Str::slug($this->faker->word),
         ];
-        $model->addMediaFromRequest($this->faker->imageUrl())->toMediaCollection('category/category-image');
+        $model->addMediaFromRequest($this->faker->imageUrl())->toMediaCollection('categorie/categorie-image');
     }
 }

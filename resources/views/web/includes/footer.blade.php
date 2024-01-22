@@ -2,7 +2,7 @@
 <div class="container-fluid bg-light pt-5 px-sm-3 px-md-5">
     <div class="row">
         <div class="col-lg-3 col-md-6 mb-5">
-            <a href="{{route('web.home')}}" class="navbar-brand">
+            <a href="{{ route('web.home') }}" class="navbar-brand">
                 <h1 class="mb-2 mt-n2 display-5 text-uppercase"><span class="text-primary">STATUS</span>9MME</h1>
             </a>
             <p>Old stories and and videos for knowledge for history</p>
@@ -22,9 +22,9 @@
         <div class="col-lg-6 col-md-6 mb-5">
             <h4 class="font-weight-bold mb-4">Categories</h4>
             <div class="d-flex flex-wrap m-n1">
-                @foreach ($categorys as $category)
-                <a href="{{route('web.categories',[$category->slug])}}"
-                    class="btn btn-sm btn-outline-secondary m-1">{{$category->name}}</a>
+                @foreach ($categorys as $categorie)
+                    <a href="{{ route('web.categories', [$categorie->slug]) }}"
+                        class="btn btn-sm btn-outline-secondary m-1">{{ $categorie->name }}</a>
                 @endforeach
             </div>
         </div>

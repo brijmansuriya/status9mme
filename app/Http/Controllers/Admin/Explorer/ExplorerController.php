@@ -28,7 +28,7 @@ class ExplorerController extends Controller
     {
         $input = $request->all();
         $input['slug'] = Str::slug($input['title']);
-        
+
         // Check if the slug is unique
         $isUniqueSlug = $this->isUniqueSlug($input['slug']);
         if (!$isUniqueSlug) {
@@ -75,7 +75,7 @@ class ExplorerController extends Controller
     {
         $post = Post::available()->latest()->get();
         $explorer = Explorer::findOrFail($id);
-        return view('admin.explorer.edit', compact('explorer','post'));
+        return view('admin.explorer.edit', compact('explorer', 'post'));
     }
 
     public function update(UpdateExplorerRequest $request, $id)
@@ -95,8 +95,8 @@ class ExplorerController extends Controller
 
     public function delete($id)
     {
-        $category = Explorer::findOrFail($id);
-        $category->delete();
+        $categorie = Explorer::findOrFail($id);
+        $categorie->delete();
         return redirect()->back();
     }
 

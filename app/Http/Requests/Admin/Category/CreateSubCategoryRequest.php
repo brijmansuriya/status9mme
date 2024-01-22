@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Admin\Category;
+namespace App\Http\Requests\Admin\Categorie;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -27,13 +27,13 @@ class CreateSubCategoryRequest extends FormRequest
             'category_id' => 'required',
             'name' => 'required',
             'image' => 'required|image|mimes:jpg,png,jpeg|max:5000',
-            'kyc_status' =>'required',
+            'kyc_status' => 'required',
         ];
     }
 
     public function messages()
     {
-        return[
+        return [
             'image.max' => 'The image may not be greater than 5MB.',
         ];
     }

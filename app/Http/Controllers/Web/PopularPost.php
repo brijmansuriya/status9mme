@@ -12,22 +12,22 @@ class PopularPost extends Controller
 {
     // public function index()
     // {
-    //     $categorys = Categorie::active()->latest()->take(config('app.home-category'))->get();
+    //     $categorys = Categorie::active()->latest()->take(config('app.home-categorie'))->get();
     //     // $post = Post::active()->latest()->take(config('app.home-post'))->get();
 
     //     $post = Post::query();
 
     //     //Featured post
-    //     $featureds = $post->with('category')->latest()->take(config('app.home-post'))->get();
+    //     $featureds = $post->with('categorie')->latest()->take(config('app.home-post'))->get();
 
     //     //Popular post
-    //     $populars = $post->with('category')->latest()->take(config('app.home-post'))->get();
+    //     $populars = $post->with('categorie')->latest()->take(config('app.home-post'))->get();
 
     //     //Latest post
-    //     $latests = $post->with('category')->latest()->take(config('app.home-post'))->get();
+    //     $latests = $post->with('categorie')->latest()->take(config('app.home-post'))->get();
 
     //     //Tranding post
-    //     $trandings = $post->with('category')->latest()->take(config('app.home-post'))->get();
+    //     $trandings = $post->with('categorie')->latest()->take(config('app.home-post'))->get();
 
     //     return view('web.home',compact('categorys','trandings','latests','populars','featureds'));
     // }
@@ -42,11 +42,11 @@ class PopularPost extends Controller
     //singl post popular post page
     public function popularPostShow($slug)
     {
-        $posts = Post::whereSlug($slug)->active()->with('category:id,name')->first();
+        $posts = Post::whereSlug($slug)->active()->with('categorie:id,name')->first();
         views($posts)->record();
 
         //Tranding post
-        $trandings = Post::with('category')->active()->latest()->take(config('app.home-post'))->get();
+        $trandings = Post::with('categorie')->active()->latest()->take(config('app.home-post'))->get();
 
         return view('web.post', compact('posts', 'trandings'));
     }
@@ -61,10 +61,10 @@ class PopularPost extends Controller
     //singl post latest post page
     public function LatestPostShow($slug)
     {
-        $posts = Post::whereSlug($slug)->active()->with('category:id,name')->first();
+        $posts = Post::whereSlug($slug)->active()->with('categorie:id,name')->first();
         $posts->visit();
         //Tranding post
-        $trandings = Post::with('category')->latest()->active()->take(config('app.home-post'))->get();
+        $trandings = Post::with('categorie')->latest()->active()->take(config('app.home-post'))->get();
         return view('web.post', compact('posts', 'trandings'));
     }
 }

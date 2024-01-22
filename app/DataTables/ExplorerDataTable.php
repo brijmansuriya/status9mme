@@ -22,7 +22,7 @@ class ExplorerDataTable extends DataTable
                 return '<input type="checkbox" class="checkall delete_check" value="' . $row['id'] . '" >';
             })
             // ->editColumn('status', function ($row) {
-            //     $changeStatusUrl = route('category.status.toggle', $row['id']);
+            //     $changeStatusUrl = route('categorie.status.toggle', $row['id']);
             //     $changeStatusUrl = "'" . $changeStatusUrl . "'";
             //     $tableName = "'CategorieDataTable'";
             //     $status = $row['status'] ? 'Active' : 'InActive';

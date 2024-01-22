@@ -4,7 +4,7 @@
     <!-- third party css -->
     <link href="{{ asset('assets/libs/custombox/custombox.min.css') }}" rel="stylesheet">
     <!-- third party css end -->
-     <link href="{{ URL::asset('assets/libs/selectize/css/selectize.bootstrap3.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ URL::asset('assets/libs/selectize/css/selectize.bootstrap3.css') }}" rel="stylesheet" type="text/css" />
 @endsection
 
 @section('content')
@@ -19,7 +19,8 @@
                         <ol class="breadcrumb m-0">
                             {{-- <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Dashboard</a></li> --}}
                             <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Dashboard</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('app-links.index') }}">App Menu Link Settings</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('app-links.index') }}">App Menu Link Settings</a>
+                            </li>
                             <li class="breadcrumb-item"><a href="#">Edit App Menu Link Setting</a></li>
                         </ol>
                     </div>
@@ -36,39 +37,41 @@
                     <div class="card-body">
 
 
-                        <form class="needs-validation " method="POST"
-                            action="{{ route('post.update', $post->id) }}" novalidate=""
-                            enctype="multipart/form-data">
+                        <form class="needs-validation " method="POST" action="{{ route('post.update', $post->id) }}"
+                            novalidate="" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
-                                <label for="product-summary">Category</label>
-                                <select name="category_id" id="category" class="form-control select2">
-                                    @foreach ($categorys as $category)
-                                        <option value="{{ $category->id }}" @if($category->id == $post->category_id) selected  @endif>{{ $category->name }}</option>
+                                <label for="product-summary">Categorie</label>
+                                <select name="category_id" id="categorie" class="form-control select2">
+                                    @foreach ($categorys as $categorie)
+                                        <option value="{{ $categorie->id }}"
+                                            @if ($categorie->id == $post->category_id) selected @endif>{{ $categorie->name }}
+                                        </option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="selectize-tags">Keyword</label>
-                                <input type="text" name="keyword" class="form-control" id="selectize-tags" value="{{$post->keyword}}">
+                                <input type="text" name="keyword" class="form-control" id="selectize-tags"
+                                    value="{{ $post->keyword }}">
                             </div>
                             @php $post_tags = $post->tags->pluck('id')->toArray();  @endphp
 
                             <div class="form-group">
                                 <label for="product-summary">Tag</label>
-                                <select name="tags[]" id="tag" class="form-control tagtest"  multiple="multiple">
+                                <select name="tags[]" id="tag" class="form-control tagtest" multiple="multiple">
                                     @foreach ($tags as $tag)
-                                        <option value="{{ $tag->id }}" 
-                                            @if(in_array($tag->id,$post_tags)) selected @endif>{{ $tag->name }}</option>
+                                        <option value="{{ $tag->id }}"
+                                            @if (in_array($tag->id, $post_tags)) selected @endif>{{ $tag->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="product-summary">title</label>
-                                <input type="text" class="form-control" name="title"
-                                    value="{{ $post->title }}" placeholder="Please enter Name">
+                                <input type="text" class="form-control" name="title" value="{{ $post->title }}"
+                                    placeholder="Please enter Name">
                             </div>
-                          
+
                             <div class="form-group">
                                 <label for="product-summary">Meta Description</label>
                                 <textarea class="form-control" name="meta_description" placeholder="Meta Description">{{ $post->meta_description }}</textarea>
@@ -82,14 +85,15 @@
                                 <input type="file" class="form-control" name="image" id="image-tham">
                             </div>
                             <div class="col-md-12 mt-2" id="jsUserImagePreview">
-                                <img id="preview-image-before-upload" height="150" width="160" src="{{$post->image}}">
+                                <img id="preview-image-before-upload" height="150" width="160"
+                                    src="{{ $post->image }}">
                             </div>
                             <div class="form-group">
                                 <label for="product-summary">Url</label>
-                                <input type="text" class="form-control" name="url"
-                                    value="{{$post->url}}" placeholder="Please enter Url">
+                                <input type="text" class="form-control" name="url" value="{{ $post->url }}"
+                                    placeholder="Please enter Url">
                             </div>
-                  
+
 
                             <div class="form-row">
                                 <div class="col-md-6">
@@ -112,12 +116,12 @@
 @endsection
 
 @section('script')
-<script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
-<script src="{{ URL::asset('assets/libs/selectize/js/standalone/selectize.min.js')}}"></script>
+    <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
+    <script src="{{ URL::asset('assets/libs/selectize/js/standalone/selectize.min.js') }}"></script>
     <script>
         var ids = @json($post->tags->pluck('id')->toArray());
         $(document).ready(function() {
-            console.log('::::::::::::',ids);
+            console.log('::::::::::::', ids);
             $('#tag').select2();
             $('.tagtest').val(ids).trigger('change');
         });
@@ -126,7 +130,7 @@
             delimiter: ",",
             persist: false,
             maxItems: null,
-            create: function (input) {
+            create: function(input) {
                 return {
                     value: input,
                     text: input,

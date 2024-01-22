@@ -19,9 +19,9 @@ use App\Http\Controllers\Admin\Explorer\ExplorerController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
-use App\Http\Controllers\Admin\Category\CategoryController;
+use App\Http\Controllers\Admin\Categorie\CategoryController;
 use App\Http\Controllers\Admin\Settings\AppSettingController;
-use App\Http\Controllers\Admin\Category\SubCategoryController;
+use App\Http\Controllers\Admin\Categorie\SubCategoryController;
 use App\Http\Controllers\Admin\Settings\AppVariableController;
 use App\Http\Controllers\Admin\Settings\AppLinkSettingsController;
 
@@ -117,17 +117,17 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
         Route::get('{id}/toggle', [CustomerController::class, 'toggleStatus'])->name('customer.status.toggle');
     });
 
-    Route::prefix('category')->group(function () {
-        Route::get('', [CategoryController::class, 'index'])->name('category.index');
-        Route::get('dataTable', [CategoryController::class, 'dataTable'])->name('category.dataTable');
-        Route::get('create', [CategoryController::class, 'create'])->name('category.create');
-        Route::post('store', [CategoryController::class, 'store'])->name('category.store');
-        Route::get('{id}/show', [CategoryController::class, 'show'])->name('category.show');
-        Route::get('{id}/edit', [CategoryController::class, 'edit'])->name('category.edit');
-        Route::post('{id}/update', [CategoryController::class, 'update'])->name('category.update');
-        Route::get('{id}/delete', [CategoryController::class, 'delete'])->name('category.delete');
-        Route::post('deleteAll', [CategoryController::class, 'deleteAll'])->name('category.deleteAll');
-        Route::get('{id}/toggle', [CategoryController::class, 'toggleStatus'])->name('category.status.toggle');
+    Route::prefix('categorie')->group(function () {
+        Route::get('', [CategoryController::class, 'index'])->name('categorie.index');
+        Route::get('dataTable', [CategoryController::class, 'dataTable'])->name('categorie.dataTable');
+        Route::get('create', [CategoryController::class, 'create'])->name('categorie.create');
+        Route::post('store', [CategoryController::class, 'store'])->name('categorie.store');
+        Route::get('{id}/show', [CategoryController::class, 'show'])->name('categorie.show');
+        Route::get('{id}/edit', [CategoryController::class, 'edit'])->name('categorie.edit');
+        Route::post('{id}/update', [CategoryController::class, 'update'])->name('categorie.update');
+        Route::get('{id}/delete', [CategoryController::class, 'delete'])->name('categorie.delete');
+        Route::post('deleteAll', [CategoryController::class, 'deleteAll'])->name('categorie.deleteAll');
+        Route::get('{id}/toggle', [CategoryController::class, 'toggleStatus'])->name('categorie.status.toggle');
     });
 
     Route::prefix('tag')->group(function () {
@@ -151,7 +151,6 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
         Route::get('/notification/{type}', [ExportController::class, 'notification'])->name('notification.export');
         Route::get('/faq/{type}', [ExportController::class, 'faq'])->name('faq.export');
 
-        Route::get('/categories/{type}', [ExportController::class, 'categories'])->name('category.export');
+        Route::get('/categories/{type}', [ExportController::class, 'categories'])->name('categorie.export');
     });
 });
-

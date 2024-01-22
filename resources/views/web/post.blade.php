@@ -1,15 +1,14 @@
 @extends('web.layouts.app')
 @section('css')
-{!! seo()->for($posts) !!}
+    {!! seo()->for($posts) !!}
 @endsection
 @section('content')
-
     <!-- Breadcrumb Start -->
     {{-- <div class="container-fluid">
         <div class="container">
             <nav class="breadcrumb bg-transparent m-0 p-0">
                 <a class="breadcrumb-item" href="#">Home</a>
-                <a class="breadcrumb-item" href="#">Category</a>
+                <a class="breadcrumb-item" href="#">Categorie</a>
                 <a class="breadcrumb-item" href="#">Technology</a>
                 <span class="breadcrumb-item active">News Title</span>
             </nav>
@@ -26,17 +25,18 @@
                     <!-- News Detail Start -->
 
                     <div class="position-relative mb-3">
-                        <img class="img-fluid w-100 h-100" src="{{$posts->image ?? ''}}"  style="object-fit: cover;height: 350px;">
+                        <img class="img-fluid w-100 h-100" src="{{ $posts->image ?? '' }}"
+                            style="object-fit: cover;height: 350px;">
                         <div class="overlay position-relative bg-light">
                             <h2>{{ $posts->title }}</h2>
-                            <div>{{$posts->category->name ?? ''}}</div>
+                            <div>{{ $posts->categorie->name ?? '' }}</div>
                             <hr>
                             <div>
                                 {!! $posts->description ?? '' !!}
                             </div>
 
                             <div class="mb-3">
-                                <span>{{$posts->created_at ?? ''}}</span>
+                                <span>{{ $posts->created_at ?? '' }}</span>
                             </div>
                         </div>
                     </div>
@@ -71,18 +71,20 @@
                         </div>
 
                         @foreach ($trandings as $tranding)
-                        <a href="{{route('web.popularpost',['slug' => $tranding->slug])}}">
-                        <div class="d-flex mb-3">
-                            <img src="{{$tranding->image}}" style="width: 100px; height: 100px; object-fit: cover;">
-                            <div class="w-100 d-flex flex-column justify-content-center bg-light px-3" style="height: 100px;">
-                                <div class="mb-1" style="font-size: 13px;">
-                                    <div>{{$tranding->category->name ?? ''}}</div>
-                                    <div class="h6 m-0" >{{$tranding->title}}</div>
+                            <a href="{{ route('web.popularpost', ['slug' => $tranding->slug]) }}">
+                                <div class="d-flex mb-3">
+                                    <img src="{{ $tranding->image }}"
+                                        style="width: 100px; height: 100px; object-fit: cover;">
+                                    <div class="w-100 d-flex flex-column justify-content-center bg-light px-3"
+                                        style="height: 100px;">
+                                        <div class="mb-1" style="font-size: 13px;">
+                                            <div>{{ $tranding->categorie->name ?? '' }}</div>
+                                            <div class="h6 m-0">{{ $tranding->title }}</div>
+                                        </div>
+                                        <span>{{ $tranding->created_at }}</span>
+                                    </div>
                                 </div>
-                                <span>{{$tranding->created_at}}</span>
-                            </div>
-                        </div>
-                        </a>
+                            </a>
                         @endforeach
 
                     </div>

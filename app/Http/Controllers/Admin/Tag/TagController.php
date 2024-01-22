@@ -64,7 +64,7 @@ class TagController extends Controller
     }
 
      /**
-     *  returns the create category page
+     *  returns the create categorie page
      */
     public function create()
     {
@@ -72,11 +72,11 @@ class TagController extends Controller
     }
 
     /**
-     *  store the category
+     *  store the categorie
      */
     public function store(CreateTagRequest $request)
     {
-        $category = Tag::create([
+        $categorie = Tag::create([
             'name' => $request->name,
             'slug'=> Str::slug($request->name),
         ]);
@@ -86,7 +86,7 @@ class TagController extends Controller
     }
 
     /**
-     *  toggles status of the category
+     *  toggles status of the categorie
      */
     public function toggleStatus($id)
     {
@@ -122,7 +122,7 @@ class TagController extends Controller
         return redirect()->route('tag.index');
     }
     /**
-     *  delete the category
+     *  delete the categorie
      */
     public function delete($id)
     {
@@ -141,4 +141,3 @@ class TagController extends Controller
     }
 
 }
-?>

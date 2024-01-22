@@ -17,9 +17,9 @@
                 <div class="page-title-right">
                     <ol class="breadcrumb m-0">
                         <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Dashboard</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('category.index') }}">Category</a></li>
-                        {{-- <li class="breadcrumb-item"><a href="#">Category</a></li> --}}
-                        <li class="breadcrumb-item active">Category Details</li>
+                        <li class="breadcrumb-item"><a href="{{ route('categorie.index') }}">Categorie</a></li>
+                        {{-- <li class="breadcrumb-item"><a href="#">Categorie</a></li> --}}
+                        <li class="breadcrumb-item active">Categorie Details</li>
                     </ol>
                 </div>
                 <h4 class="page-title">Categoy Details</h4>
@@ -37,11 +37,11 @@
 
                     <div class="row">
                         <div class="col-md-11">
-                            <h5 class="card-title font-16 "> Category Details</h5>
+                            <h5 class="card-title font-16 "> Categorie Details</h5>
                         </div>
                         <div class="col-md-1">
-                            <a href="{{ route('category.edit', $category->id) }}" class="btn btn-success mb-2">Edit</a>
-                            {{-- <a href="{{ route('category.delete', $category->id) }}" class="btn btn-danger mb-2">Delete</a> --}}
+                            <a href="{{ route('categorie.edit', $categorie->id) }}" class="btn btn-success mb-2">Edit</a>
+                            {{-- <a href="{{ route('categorie.delete', $categorie->id) }}" class="btn btn-danger mb-2">Delete</a> --}}
                         </div>
                     </div>
                     <div class="clerfix"></div>
@@ -52,17 +52,17 @@
                         <div class="col-md-4 text-break">
                             <label class="mt-2 mb-1 text-capitalize">Name :</label>
                             <p class="">
-                                {{ $category->name }}
+                                {{ $categorie->name }}
                             </p>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-md-4 text-break">
-                            <label class="mt-2 mb-1 text-capitalize">Category Image  :</label>
+                            <label class="mt-2 mb-1 text-capitalize">Categorie Image :</label>
                             <p class="">
-                                <img src="{{ $category->image}}" alt="" height="300" 
-                                id="js-admin-profile-image">
+                                <img src="{{ $categorie->image }}" alt="" height="300"
+                                    id="js-admin-profile-image">
                             </p>
                         </div>
                     </div>
@@ -76,6 +76,6 @@
 
     </div>
 
-  
+
     </div> <!-- container -->
 @endsection

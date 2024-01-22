@@ -5,7 +5,6 @@
     <link href="{{ asset('assets/libs/custombox/custombox.min.css') }}" rel="stylesheet">
     <!-- third party css end -->
     <link href="{{ URL::asset('assets/libs/selectize/css/selectize.bootstrap3.css') }}" rel="stylesheet" type="text/css" />
-
 @endsection
 @section('content')
     <!-- Start Content-->
@@ -18,7 +17,8 @@
                         <ol class="breadcrumb m-0">
                             {{-- <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Dashboard</a></li> --}}
                             <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Dashboard</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('app-links.index') }}">App Menu Link Settings</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('app-links.index') }}">App Menu Link Settings</a>
+                            </li>
                             <li class="breadcrumb-item"><a href="#">Edit App Menu Link Setting</a></li>
                         </ol>
                     </div>
@@ -31,25 +31,25 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <form class="needs-validation " method="POST"
-                            action="{{ route('post.store') }}" novalidate=""
+                        <form class="needs-validation " method="POST" action="{{ route('post.store') }}" novalidate=""
                             enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
-                                <label for="product-summary">Category</label>
-                                <select name="category_id" id="category" class="form-control select2">
-                                    @foreach ($categorys as $category)
-                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                <label for="product-summary">Categorie</label>
+                                <select name="category_id" id="categorie" class="form-control select2">
+                                    @foreach ($categorys as $categorie)
+                                        <option value="{{ $categorie->id }}">{{ $categorie->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="selectize-tags">Keyword</label>
-                                <input type="text" name="keyword" class="form-control" id="selectize-tags" value="{{ old('keyword') }}">
+                                <input type="text" name="keyword" class="form-control" id="selectize-tags"
+                                    value="{{ old('keyword') }}">
                             </div>
                             <div class="form-group">
                                 <label for="product-summary">Tag</label>
-                                <select name="tags[]" id="tag" class="form-control select2"  multiple="multiple">
+                                <select name="tags[]" id="tag" class="form-control select2" multiple="multiple">
                                     @foreach ($tags as $tag)
                                         <option value="{{ $tag->id }}">{{ $tag->name }}</option>
                                     @endforeach
@@ -57,8 +57,8 @@
                             </div>
                             <div class="form-group">
                                 <label for="product-summary">Title</label>
-                                <input type="text" class="form-control" name="title"
-                                    value="{{ old('title') }}" placeholder="Please enter Name">
+                                <input type="text" class="form-control" name="title" value="{{ old('title') }}"
+                                    placeholder="Please enter Name">
                             </div>
                             <div class="form-group">
                                 <label for="product-summary">Meta Description</label>
@@ -81,8 +81,8 @@
                             </div>
                             <div class="form-group">
                                 <label for="product-summary">Url</label>
-                                <input type="text" class="form-control" name="url"
-                                    value="{{ old('url') }}" placeholder="Please enter Url">
+                                <input type="text" class="form-control" name="url" value="{{ old('url') }}"
+                                    placeholder="Please enter Url">
                             </div>
                             <div class="form-row">
                                 <div class="col-md-6">
@@ -101,9 +101,9 @@
 
 @section('script')
     <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
-    <script src="{{ URL::asset('assets/libs/selectize/js/standalone/selectize.min.js')}}"></script>
+    <script src="{{ URL::asset('assets/libs/selectize/js/standalone/selectize.min.js') }}"></script>
     <script>
-        $( document ).ready(function() {
+        $(document).ready(function() {
             $('#image-tham').change(function() {
                 $('#jsUserProfilePicture').hide();
                 var fileExtension = ['jpeg', 'jpg', 'png', 'webp'];
@@ -137,13 +137,12 @@
             delimiter: ",",
             persist: false,
             maxItems: null,
-            create: function (input) {
+            create: function(input) {
                 return {
                     value: input,
                     text: input,
                 };
             }
         });
-
     </script>
 @endsection

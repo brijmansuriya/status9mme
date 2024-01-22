@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Category;
+namespace App\Http\Controllers\Admin\Categorie;
 
 use App\Models\Categorie;
 use Illuminate\Support\Str;
@@ -11,50 +11,50 @@ use App\DataTables\AdminDataTable;
 use App\Http\Controllers\Controller;
 use App\DataTables\CategorieDataTable;
 use Yajra\DataTables\Facades\DataTables;
-use App\Http\Requests\Admin\Category\CreateCategoryRequest;
-use App\Http\Requests\Admin\Category\UpdateCategoryRequest;
+use App\Http\Requests\Admin\Categorie\CreateCategoryRequest;
+use App\Http\Requests\Admin\Categorie\UpdateCategoryRequest;
 
 class CategoryController extends Controller
 {
 
     public function index(CategorieDataTable $dataTable)
     {
-        return $dataTable->render('admin.category.index');
+        return $dataTable->render('admin.categorie.index');
     }
 
     /**
-     *  returns the create category page
+     *  returns the create categorie page
      */
     public function create()
     {
-        return view('admin.category.create');
+        return view('admin.categorie.create');
     }
 
     /**
-     *  store the category
+     *  store the categorie
      */
     public function store(CreateCategoryRequest $request)
     {
-        $category = Categorie::create([
+        $categorie = Categorie::create([
             'name' => $request->name,
             'slug' => Str::slug($request->name),
         ]);
 
         if ($request->hasFile('image')) {
-            $media = $category->addMediaFromRequest('image')->toMediaCollection('image');
+            $media = $categorie->addMediaFromRequest('image')->toMediaCollection('image');
         }
 
-        session()->flash('success', __('messages.panel.admin.category.added'));
-        return redirect()->route('category.index');
+        session()->flash('success', __('messages.panel.admin.categorie.added'));
+        return redirect()->route('categorie.index');
     }
 
     /**
-     *  toggles status of the category
+     *  toggles status of the categorie
      */
     public function toggleStatus($id)
     {
-        $category = Categorie::findOrFail($id);
-        $category->toggleStatus();
+        $categorie = Categorie::findOrFail($id);
+        $categorie->toggleStatus();
         return redirect()->back();
     }
 
@@ -63,37 +63,37 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        $category = Categorie::findOrFail($id);
-        return view('admin.category.show', compact('category'));
+        $categorie = Categorie::findOrFail($id);
+        return view('admin.categorie.show', compact('categorie'));
     }
 
     public function edit($id)
     {
-        $category = Categorie::findOrFail($id);
-        return view('admin.category.edit', compact('category'));
+        $categorie = Categorie::findOrFail($id);
+        return view('admin.categorie.edit', compact('categorie'));
     }
 
     public function update(UpdateCategoryRequest $request, $id)
     {
-        $category = Categorie::whereId($id)->first();
-        $category->update([
+        $categorie = Categorie::whereId($id)->first();
+        $categorie->update([
             'name' => request()->input('name'),
         ]);
 
         if ($request->hasFile('image')) {
-            $category->deleteImage();
-            $category->addMediaFromRequest('image')->toMediaCollection('image');
+            $categorie->deleteImage();
+            $categorie->addMediaFromRequest('image')->toMediaCollection('image');
         }
-        session()->flash('success', __('messages.panel.admin.category.updated'));
-        return redirect()->route('category.index');
+        session()->flash('success', __('messages.panel.admin.categorie.updated'));
+        return redirect()->route('categorie.index');
     }
     /**
-     *  delete the category
+     *  delete the categorie
      */
     public function delete($id)
     {
-        $category = Categorie::findOrFail($id);
-        $category->delete();
+        $categorie = Categorie::findOrFail($id);
+        $categorie->delete();
         return redirect()->back();
     }
 

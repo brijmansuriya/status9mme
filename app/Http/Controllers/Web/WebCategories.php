@@ -19,9 +19,9 @@ class WebCategories extends Controller
     public function show($slug)
     {
         $posts = Post::active()
-            ->withHas('category')
-            ->whereRelation('category', 'slug', $slug)
-            ->take(config('app.home-category'))
+            // ->withHas('categorie')
+            ->whereRelation('categorie', 'slug', $slug)
+            // ->take(config('app.home-categorie'))
             ->latest()
             ->paginate(10);
         return view('web.category_post_list', compact('posts'));

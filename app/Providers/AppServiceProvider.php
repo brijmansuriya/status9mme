@@ -36,12 +36,12 @@ class AppServiceProvider extends ServiceProvider
         View::composer(['web.includes.footer'], function ($view) {
             $categorys =  Categorie::has('post')->whereHas('post', function ($query) {
                 $query->active();
-            })->active()->latest()->take(config('app.home-category'))->get(['id', 'name', 'slug']);
+            })->active()->latest()->take(config('app.home-categorie'))->get(['id', 'name', 'slug']);
             $view->with('categorys', $categorys);
         });
 
         View::composer(['web.includes.footer'], function ($view) {
-            $tags = Tag::active()->latest()->take(config('app.home-category'))->get(['id', 'name', 'slug']);
+            $tags = Tag::active()->latest()->take(config('app.home-categorie'))->get(['id', 'name', 'slug']);
             $view->with('tags', $tags);
         });
 

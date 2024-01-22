@@ -11,10 +11,10 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('category.index') }}"
-                        class="{{ request()->is('admin/category/*') ? 'active' : '' }}">
+                    <a href="{{ route('categorie.index') }}"
+                        class="{{ request()->is('admin/categorie/*') ? 'active' : '' }}">
                         <i class="fa fa-list-alt" aria-hidden="true"></i>
-                        <span> Category </span>
+                        <span> Categorie </span>
                     </a>
                 </li>
                 <li>

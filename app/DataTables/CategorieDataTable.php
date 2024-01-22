@@ -23,7 +23,7 @@ class CategorieDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         // return (new EloquentDataTable($query))
-        //     ->addColumn('action', 'category.action')
+        //     ->addColumn('action', 'categorie.action')
         //     ->setRowId('id');
 
 
@@ -32,24 +32,24 @@ class CategorieDataTable extends DataTable
                 return '<input type="checkbox" class="checkall delete_check" value="' . $row['id'] . '" >';
             })
             ->editColumn('status', function ($row) {
-                $changeStatusUrl = route('category.status.toggle', $row['id']);
+                $changeStatusUrl = route('categorie.status.toggle', $row['id']);
                 $changeStatusUrl = "'" . $changeStatusUrl . "'";
-                $tableName = "'category-table'";
+                $tableName = "'categorie-table'";
                 $status = $row['status'] ? 'Active' : 'InActive';
                 $statusClass = $row['status'] ? 'bg-soft-success text-success' : 'bg-soft-danger text-danger';
                 return '<span class="badge ' . $statusClass . '" onclick="changeStatus(' . $changeStatusUrl . ',' . $tableName . ')">' . $status . '</span>';
             })
 
             ->addColumn('action', function ($row) {
-                $view_link = route('category.show', $row['id']);
+                $view_link = route('categorie.show', $row['id']);
                 $option = '<a href="' . $view_link . '" class="action-icon"><i class="mdi mdi-eye"></i></a>';
 
-                $updateLink = route('category.edit', $row['id']);
+                $updateLink = route('categorie.edit', $row['id']);
                 $option .= '<a href="' . $updateLink . '" class="action-icon"   data-overlaycolor="#38414a"><i class="mdi mdi-square-edit-outline"></i></a>';
 
-                $delete_link = route('category.delete', $row['id']);
+                $delete_link = route('categorie.delete', $row['id']);
                 $delete_link = "'" . $delete_link . "'";
-                $tableName = "'category-table'";
+                $tableName = "'categorie-table'";
 
                 $option .= '<a href="javascript:void(0);" onclick="deleteRecord(' . $delete_link . ',' . $tableName . ');"  class="action-icon" "><i class="mdi mdi-delete"></i></a>';
 
@@ -77,7 +77,7 @@ class CategorieDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-            ->setTableId('category-table')
+            ->setTableId('categorie-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
             //->dom('Bfrtip')

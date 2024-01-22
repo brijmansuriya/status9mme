@@ -86,7 +86,7 @@ class Post extends Model implements HasMedia, Viewable
         $this->update();
     }
 
-    public function category()
+    public function categorie()
     {
         return $this->belongsTo(Categorie::class);
     }
@@ -105,7 +105,7 @@ class Post extends Model implements HasMedia, Viewable
     // Scope for available posts
     public function scopeAvailable($query)
     {
-        return $query->active()->whereHas('category', function ($query) {
+        return $query->active()->whereHas('categorie', function ($query) {
             $query->active();
         });
     }

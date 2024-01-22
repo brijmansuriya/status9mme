@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Admin\Category;
+namespace App\Http\Requests\Admin\Categorie;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -31,7 +31,7 @@ class CreateCategoryRequest extends FormRequest
 
     public function messages()
     {
-        return[
+        return [
             'image.max' => 'The image may not be greater than 5MB.',
         ];
     }

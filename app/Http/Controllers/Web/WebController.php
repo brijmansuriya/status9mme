@@ -16,9 +16,9 @@ class WebController extends Controller
 {
     public function index()
     {
-        $categorys = Categorie::active()->available()->latest()->take(config('app.home-category'))->get(['id','slug','name']);
+        $categorys = Categorie::active()->available()->latest()->take(config('app.home-categorie'))->get(['id','slug','name']);
 
-        $post = $featureds = $populars = $latests = $trandings = Post::with('category')->latest()->active()->take(config('app.home-post'))->get();
+        $post = $featureds = $populars = $latests = $trandings = Post::with('categorie')->latest()->active()->take(config('app.home-post'))->get();
 
 
         return view('web.home',[

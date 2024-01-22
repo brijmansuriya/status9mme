@@ -38,8 +38,8 @@ class DashboardController extends Controller
 
         $admin = Admin::count();
 
-        $category = Categorie::count();
-        return view('admin.home', compact('admin', 'category'));
+        $categorie = Categorie::count();
+        return view('admin.home', compact('admin', 'categorie'));
     }
 
     public function logout(Request $request)
