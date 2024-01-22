@@ -1,13 +1,9 @@
 <!-- ========== Left Sidebar Start ========== -->
 <div class="left-side-menu">
-
     <div class="slimscroll-menu">
-
         <!--- Sidemenu -->
         <div id="sidebar-menu">
-
             <ul class="metismenu" id="side-menu">
-
                 <li>
                     <a href="{{ route('admin.home') }}" class="{{ request()->is('admin') ? 'active' : '' }}">
                         <i class="fe-airplay"></i>
@@ -22,15 +18,13 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('tag.index') }}"
-                        class="{{ request()->is('admin/tag/*') ? 'active' : '' }}">
+                    <a href="{{ route('tag.index') }}" class="{{ request()->is('admin/tag/*') ? 'active' : '' }}">
                         <i class="fa fa-list-alt" aria-hidden="true"></i>
                         <span> Tag </span>
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('post.index') }}"
-                        class="{{ request()->is('admin/post/*') ? 'active' : '' }}">
+                    <a href="{{ route('post.index') }}" class="{{ request()->is('admin/post/*') ? 'active' : '' }}">
                         <i class="fa fa-list-alt" aria-hidden="true"></i>
                         <span> Post </span>
                     </a>
@@ -48,7 +42,6 @@
                         <span> Admin </span>
                     </a>
                 </li>
-
                 <li>
                     <a href="javascript: void(0);">
                         <i class="fe-folder-plus"></i>
@@ -63,8 +56,7 @@
                         <li>
                             <a href="{{ route('app-links.index') }}"
                                 class="{{ request()->is('admin/settings/app-links/*') ? 'active' : '' }}">App Menu
-                                Link
-                                Settings</a>
+                                Link Settings</a>
                         </li>
                     </ul>
                 </li>

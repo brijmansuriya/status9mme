@@ -64,7 +64,7 @@ class CategorieDataTable extends DataTable
      * @param \App\Models\Categorie $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Category $model): QueryBuilder
+    public function query(Categorie $model): QueryBuilder
     {
         return $model->newQuery();
     }

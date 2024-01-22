@@ -31,7 +31,7 @@ class Post extends Model implements HasMedia, Viewable
         'active',
         'status',
         'created_by',
-        'category_id',
+        'categorie_id',
     ];
     protected $casts = [
         'created_at' => 'datetime',

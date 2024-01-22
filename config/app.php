@@ -177,6 +177,9 @@ return [
         Yajra\DataTables\ButtonsServiceProvider::class,
         Spatie\Sitemap\SitemapServiceProvider::class,
         CyrildeWit\EloquentViewable\EloquentViewableServiceProvider::class,
+        //add for youtube video
+        Alaouy\Youtube\YoutubeServiceProvider::class,
+
         // JordanMiguel\LaravelPopular\LaravelPopularServiceProvider::class,
     ])->toArray(),
 
@@ -196,6 +199,7 @@ return [
         'Datatables' => Yajra\Datatables\Facades\Datatables::class,
         // 'Example' => App\Facades\Example::class,
         'Viewable' => CyrildeWit\EloquentViewable\Facades\Viewable::class,
+        'Youtube' => Alaouy\Youtube\Facades\Youtube::class,
     ])->toArray(),
 
 ];

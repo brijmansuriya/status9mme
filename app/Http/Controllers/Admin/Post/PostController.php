@@ -101,13 +101,25 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)
     {
-        $input = request()->all();
-        $count = Post::where('slug', $input['slug'])->count();
+        $slug = Str::slug($request->title);
+
+        $request->slug = $slug;
+
+        $count = Post::where('slug', $slug)->count();
+
         if ($count > 0) {
-            // Slug is not unique, so you need to make it unique
-            $input['slug'] = $input['slug'] . '-' . ($count + 1);
+            $request->slug = $slug . '-' . ($count + 1);
         }
-        $post = Post::create($input);
+        
+        $post = Post::create([
+            'categorie_id' => $request->categorie_id,
+            'keyword' => 'Vitae enim sed quia',
+            'title' => $request->title,
+            'meta_description' => $request->meta_description,
+            'description' => $request->description,
+            'url' => $request->url,
+            'slug' => $slug,
+        ]);
         $post->seo->update([
             'title' => 'My great post',
             'description' => 'This great post will enhance your live.',
@@ -118,8 +130,6 @@ class PostController extends Controller
         if ($request->hasFile('image')) {
             $post->addMediaFromRequest('image')->toMediaCollection('post/image');
         }
-
-
         session()->flash('success', __('messages.panel.post.added'));
         return redirect()->route('post.index');
     }
