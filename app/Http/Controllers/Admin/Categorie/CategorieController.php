@@ -14,7 +14,7 @@ use Yajra\DataTables\Facades\DataTables;
 use App\Http\Requests\Admin\Categorie\CreateCategoryRequest;
 use App\Http\Requests\Admin\Categorie\UpdateCategoryRequest;
 
-class CategoryController extends Controller
+class CategorieController extends Controller
 {
 
     public function index(CategorieDataTable $dataTable)

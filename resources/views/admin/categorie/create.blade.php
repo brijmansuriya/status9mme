@@ -35,11 +35,13 @@
                             enctype="multipart/form-data" data-parsley-validate="">
                             @csrf
 
+                            {{-- <x-admin-inputs-text name="name" id="name"  error="{{ $errors->has('name') ? $errors->first('name') : '' }}" old="{{ old('name') }}" /> --}}
+
                             <div class="form-group" id="categorie-name-group">
                                 <label for="product-summary">Name</label>
-                                <input type="text" class="form-control" name="name" value="{{ old('name') }}"
-                                    placeholder="Please enter name" required data-parsley-trigger="keyup"
-                                    data-parsley-required-message="The name field is required"
+                                <input type="text" class="form-control" id="name" name="name"
+                                    value="{{ old('name') }}" placeholder="Please enter name" required
+                                    data-parsley-trigger="keyup" data-parsley-required-message="The name field is required"
                                     data-parsley-class-handler="#categorie-name-group" data-parsley-minlength="2"
                                     data-parsley-minlength-message="Name must contains more than 2 characters"
                                     data-parsley-pattern="^[a-zA-Z_ ]*$"
@@ -47,6 +49,21 @@
                                 @if ($errors->has('name'))
                                     <span class="text-danger">
                                         {{ $errors->first('name') }}
+                                    </span>
+                                @endif
+                            </div>
+                            <div class="form-group" id="slug-group">
+                                <label for="product-summary">Slug</label>
+                                <input type="text" class="form-control" id="slug" name="slug"
+                                    value="{{ old('slug') }}" placeholder="Please enter slug" required
+                                    data-parsley-trigger="keyup" data-parsley-required-message="The slug field is required"
+                                    data-parsley-class-handler="#slug-group" data-parsley-minlength="2"
+                                    data-parsley-minlength-message="slug must contains more than 2 characters"
+                                    data-parsley-pattern="^[a-z0-9]+(?:-[a-z0-9]+)*$"
+                                    data-parsley-pattern-message="Please enter valid slug">
+                                @if ($errors->has('slug'))
+                                    <span class="text-danger">
+                                        {{ $errors->first('slug') }}
                                     </span>
                                 @endif
                             </div>
@@ -87,4 +104,11 @@
 @endsection
 @section('script')
     <script type="text/javascript" src="{{ URL::asset('assets/libs/dropify/dropify.min.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('#name').on('keyup', function() {
+                $('#slug').val(createSlug($('#name').val()));
+            });
+        });
+    </script>
 @endsection
