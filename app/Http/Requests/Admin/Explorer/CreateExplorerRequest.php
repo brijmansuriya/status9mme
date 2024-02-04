@@ -22,13 +22,14 @@ class CreateExplorerRequest extends FormRequest
      * @return array
      */
     public function rules()
-    {   
+    {
         return [
             'keywords' => 'required', // Adjust as needed
             'title' => 'required|string|max:255', // Adjust as needed
             'description' => 'required|string', // Adjust as needed
             'meta_description' => 'required|string|max:255', // Adjust as needed
             'image' => 'required|image|mimes:jpg,png,jpeg,webp',
+            'slug' => 'required|string|max:255|unique:explorers,slug', // Adjust as needed
         ];
     }
 

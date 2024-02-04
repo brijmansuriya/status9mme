@@ -105,8 +105,6 @@ class Post extends Model implements HasMedia, Viewable
     // Scope for available posts
     public function scopeAvailable($query)
     {
-        return $query->active()->whereHas('categorie', function ($query) {
-            $query->active();
-        });
+        return $query->active();
     }
 }

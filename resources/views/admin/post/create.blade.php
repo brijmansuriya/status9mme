@@ -57,8 +57,23 @@
                             </div>
                             <div class="form-group">
                                 <label for="product-summary">Title</label>
-                                <input type="text" class="form-control" name="title" value="{{ old('title') }}"
+                                <input type="text" class="form-control" id="title" name="title" value="{{ old('title') }}"
                                     placeholder="Please enter Name">
+                            </div>
+                            <div class="form-group" id="slug-group">
+                                <label for="product-summary">Slug</label>
+                                <input type="text" class="form-control" id="slug" name="slug"
+                                    value="{{ old('slug') }}" placeholder="Please enter slug" required
+                                    data-parsley-trigger="keyup" data-parsley-required-message="The slug field is required"
+                                    data-parsley-class-handler="#slug-group" data-parsley-minlength="2"
+                                    data-parsley-minlength-message="slug must contains more than 2 characters"
+                                    data-parsley-pattern="^[a-z0-9]+(?:-[a-z0-9]+)*$"
+                                    data-parsley-pattern-message="Please enter valid slug">
+                                @if ($errors->has('slug'))
+                                    <span class="text-danger">
+                                        {{ $errors->first('slug') }}
+                                    </span>
+                                @endif
                             </div>
                             <div class="form-group">
                                 <label for="product-summary">Meta Description</label>
@@ -88,7 +103,8 @@
                                 <div class="col-md-6">
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <button type="submit" class="btn btn-primary waves-effect waves-light">Submit</button>
+                                    <button type="submit"
+                                        class="btn btn-primary waves-effect waves-light">Submit</button>
                                 </div>
                             </div>
                         </form>
@@ -143,6 +159,11 @@
                     text: input,
                 };
             }
+        });
+
+
+        $('#title').on('keyup', function() {
+            $('#slug').val(createSlug($('#title').val()));
         });
     </script>
 @endsection

@@ -23,7 +23,7 @@ class TagController extends Controller
         return $dataTable->render('admin.tag.index');
     }
 
-     /**
+    /**
      * data table ajax
      */
     public function dataTable()
@@ -63,7 +63,7 @@ class TagController extends Controller
             ->make(true);
     }
 
-     /**
+    /**
      *  returns the create categorie page
      */
     public function create()
@@ -78,9 +78,10 @@ class TagController extends Controller
     {
         $categorie = Tag::create([
             'name' => $request->name,
-            'slug'=> Str::slug($request->name),
+            'slug' => $request->slug,
+            // 'slug'=> Str::slug($request->name),
         ]);
-       
+
         session()->flash('success', __('messages.panel.admin.tag.added'));
         return redirect()->route('tag.index');
     }
@@ -110,7 +111,7 @@ class TagController extends Controller
         return view('admin.tag.edit', compact('tag'));
     }
 
-    public function update(UpdateTagRequest $request,$id)
+    public function update(UpdateTagRequest $request, $id)
     {
         $tag = Tag::whereId($id)->first();
 
@@ -136,8 +137,7 @@ class TagController extends Controller
      */
     public function deleteAll(Request $request)
     {
-        $tag = Tag::whereIn('id',$request->ids)->delete();
+        $tag = Tag::whereIn('id', $request->ids)->delete();
         return redirect()->back();
     }
-
 }

@@ -20,28 +20,27 @@ class ExplorerController extends Controller
 
     public function create()
     {
-        $post = Post::available()->get();
+        $post = Post::available()->latest()->get();
         return view('admin.explorer.create', compact('post'));
     }
 
     public function store(CreateExplorerRequest $request)
     {
         $input = $request->all();
-        $input['slug'] = Str::slug($input['title']);
-
-        // Check if the slug is unique
-        $isUniqueSlug = $this->isUniqueSlug($input['slug']);
-        if (!$isUniqueSlug) {
-            // Handle the case where the slug is not unique, maybe add a suffix or handle it in your way
-            $input['slug'] = $this->makeUniqueSlug($input['slug']);
-        }
+        // $input['slug'] = Str::slug($input['title']);
+        // // Check if the slug is unique
+        // $isUniqueSlug = $this->isUniqueSlug($input['slug']);
+        // if (!$isUniqueSlug) {
+        //     // Handle the case where the slug is not unique, maybe add a suffix or handle it in your way
+        //     $input['slug'] = $this->makeUniqueSlug($input['slug']);
+        // }
         $explorer = Explorer::create($input);
-        //image store 
+        //image store
         if ($request->hasFile('image')) {
             $media = $explorer->addMediaFromRequest('image')->toMediaCollection('explorer/image');
         }
 
-        //seo data store 
+        //seo data store
         $explorer->seo->update([
             'title' => $input['title'],
             'description' => $input['description'],
@@ -51,7 +50,7 @@ class ExplorerController extends Controller
             // 'canonical_url' => url(),
         ]);
 
-        //post exploer store  
+        //post exploer store
         $explorer->posts()->sync($request->posts);
 
         session()->flash('success', __('messages.panel.admin.explorer.added'));

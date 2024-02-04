@@ -37,7 +37,8 @@ class CategorieController extends Controller
     {
         $categorie = Categorie::create([
             'name' => $request->name,
-            'slug' => Str::slug($request->name),
+            'slug' => $request->slug,
+            // 'slug' => Str::slug($request->name),
         ]);
 
         if ($request->hasFile('image')) {

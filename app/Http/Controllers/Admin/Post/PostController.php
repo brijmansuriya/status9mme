@@ -12,6 +12,7 @@ use App\Models\AppMenuLink;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\DataTables\PostDataTable;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\DataTables\CategorieDataTable;
 use Yajra\DataTables\Facades\DataTables;
@@ -101,16 +102,16 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)
     {
-        $slug = Str::slug($request->title);
+        // $slug = Str::slug($request->title);
 
-        $request->slug = $slug;
+        // $request->slug = $slug;
 
-        $count = Post::where('slug', $slug)->count();
+        // $count = Post::where('slug', $slug)->count();
 
-        if ($count > 0) {
-            $request->slug = $slug . '-' . ($count + 1);
-        }
-        
+        // if ($count > 0) {
+        //     $request->slug = $slug . '-' . ($count + 1);
+        // }
+
         $post = Post::create([
             'categorie_id' => $request->categorie_id,
             'keyword' => 'Vitae enim sed quia',
@@ -118,7 +119,7 @@ class PostController extends Controller
             'meta_description' => $request->meta_description,
             'description' => $request->description,
             'url' => $request->url,
-            'slug' => $slug,
+            'slug' => $request->slug,
         ]);
         $post->seo->update([
             'title' => 'My great post',
@@ -177,7 +178,13 @@ class PostController extends Controller
      */
     public function deleteAll(Request $request)
     {
-        $post = Post::whereIn('id', $request->ids)->delete();
+        DB::transaction(function () use ($request) {
+            Post::whereIn('id', $request->ids)->each(function ($post) {
+                $post->tags()->detach();
+                $post->explorers()->detach();
+                $post->delete();
+            });
+        });
 
         return redirect()->back();
     }

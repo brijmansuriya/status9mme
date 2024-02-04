@@ -25,6 +25,7 @@ class CreateTagRequest extends FormRequest
     {
         return [
             'name' => 'required',
+            'slug'=>'required|unique:tags',
         ];
     }
 
