@@ -34,6 +34,6 @@ class SitemapController extends Controller
         SitemapGenerator::create(config('app.url'))->hasCrawled(function (Url $url) {
             return $url->setPriority(0.9);
         })->writeToFile(public_path('sitemap.xml'));
-        // return response()->view('sitemap.generated');    
+        return response()->view('sitemap.generated');    
     }
 }

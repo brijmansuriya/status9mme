@@ -36,7 +36,7 @@
                             @csrf
                             <div class="form-group">
                                 <label for="product-summary">Categorie</label>
-                                <select name="category_id" id="categorie" class="form-control select2">
+                                <select name="categorie_id" id="categorie" class="form-control select2">
                                     @foreach ($categorys as $categorie)
                                         <option value="{{ $categorie->id }}">{{ $categorie->name }}</option>
                                     @endforeach
