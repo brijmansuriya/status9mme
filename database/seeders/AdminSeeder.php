@@ -17,7 +17,7 @@ class AdminSeeder extends Seeder
     {
         Admin::created([
             'name' => 'admin',
-            'email' => $this->faker->unique()->safeEmail,
+            'email' => 'admin@gmail.com',
             'password' => bcrypt('12345678'),
             'created_at' => now(),
             'updated_at' => now(),

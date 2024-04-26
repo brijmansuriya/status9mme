@@ -16,11 +16,11 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-            // AppSeeder::class,
-            // AppMenuLinkSeeder::class,
-            // AdminSeeder::class,
-            // CategorieSeeder::class,
-            // TagSeeder::class,
+            AppSeeder::class,
+            AppMenuLinkSeeder::class,
+            AdminSeeder::class,
+            CategorieSeeder::class,
+            TagSeeder::class,
         ]);
 
         Admin::factory()->count(5)->create();

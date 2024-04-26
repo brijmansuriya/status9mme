@@ -78,7 +78,7 @@
             </div>
         </div>
         <div class="col-md-6">
-            <img width="600" src="{{ url('assets/images/products/product-8.jpg') }}">
+            <img src="{{ url('assets/images/logo/favicon.ico') }}">
         </div>
     </div>
 
