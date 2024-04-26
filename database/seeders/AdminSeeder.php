@@ -15,12 +15,25 @@ class AdminSeeder extends Seeder
      */
     public function run()
     {
-        Admin::created([
-            'name' => 'admin',
-            'email' => $this->faker->unique()->safeEmail,
-            'password' => bcrypt('12345678'),
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
+        Admin::factory()
+        ->count(10)
+        ->create();
+
+        Admin::factory()->count(5)->create();
+        // Create a specific admin with a custom email
+        if (!Admin::where('email', 'brij@gmail.com')->exists()) {
+            // If the email doesn't exist, create a new admin
+            Admin::factory()->create([
+                'email' => 'brij@gmail.com',
+            ]);
+        }
+
+        // Admin::created([
+        //     'name' => 'admin',
+        //     'email' => 'brij@gmail.com',
+        //     'password' => bcrypt('12345678'),
+        //     'created_at' => now(),
+        //     'updated_at' => now(),
+        // ]);
     }
 }

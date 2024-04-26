@@ -38,6 +38,7 @@
                             <div class="mb-3">
                                 <span>{{ $posts->created_at ?? '' }}</span>
                             </div>
+                            <p>{{ $posts->url }}</p>
                         </div>
                     </div>
                     <!-- News Detail End -->
@@ -82,6 +83,8 @@
                                             <div class="h6 m-0">{{ $tranding->title }}</div>
                                         </div>
                                         <span>{{ $tranding->created_at }}</span>
+
+                     
                                     </div>
                                 </div>
                             </a>
