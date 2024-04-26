@@ -28,6 +28,9 @@ class AdminSeeder extends Seeder
             ]);
         }
 
+
+        
+
         // Admin::created([
         //     'name' => 'admin',
         //     'email' => 'brij@gmail.com',
