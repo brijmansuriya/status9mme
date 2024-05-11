@@ -137,10 +137,8 @@
             }
         });
 
-        $(document).ready(function () {
             $('#title').on('keyup', function() {
                 $('#slug').val(createSlug($('#title').val()));
             });
-        });
         </script>
 @endsection

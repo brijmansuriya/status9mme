@@ -97,7 +97,7 @@
                             <div class="form-group">
                                 <label for="product-summary">Url</label>
                                 <input type="text" class="form-control" name="url" value="{{ old('url') }}"
-                                    placeholder="Please enter Url">
+                                    placeholder="Please enter Url" required>
                             </div>
                             <div class="form-row">
                                 <div class="col-md-6">

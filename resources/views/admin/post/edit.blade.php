@@ -91,7 +91,7 @@
                             <div class="form-group">
                                 <label for="product-summary">Url</label>
                                 <input type="text" class="form-control" name="url" value="{{ $post->url }}"
-                                    placeholder="Please enter Url">
+                                    placeholder="Please enter Url" required>
                             </div>
 
 

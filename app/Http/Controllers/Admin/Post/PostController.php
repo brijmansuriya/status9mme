@@ -35,57 +35,57 @@ class PostController extends Controller
         return $dataTable->render('admin.post.index');
     }
 
-    /**
-     *  returns the datatables details
-     */
-    public function dataTables()
-    {
-        $orderSettings = Post::select('*')->latest();
-        return DataTables::of($orderSettings)
+    // /**
+    //  *  returns the datatables details
+    //  */
+    // public function dataTables()
+    // {
+    //     $orderSettings = Post::select('*')->latest();
+    //     return DataTables::of($orderSettings)
 
-            ->addColumn('image', function ($row) {
-                $image  = '';
-                $image .= '<img src="' . $row->image . '" class="img-fluid" style="width:100px;height:100px; border-radius:10%;"> ';
-                return $image;
-            })
+    //         ->addColumn('image', function ($row) {
+    //             $image  = '';
+    //             $image .= '<img src="' . $row->image . '" class="img-fluid" style="width:100px;height:100px; border-radius:10%;"> ';
+    //             return $image;
+    //         })
 
-            ->editColumn('status', function ($row) {
-                $changeStatusUrl = route('post.status.toggle', $row['id']);
-                $changeStatusUrl = "'" . $changeStatusUrl . "'";
-                $tableName = "'postsDataTable'";
-                $status = $row['status'] ? 'Active' : 'InActive';
-                $statusClass = $row['status'] ? 'bg-soft-success text-success' : 'bg-soft-danger text-danger';
-                return '<span class="badge ' . $statusClass . '" onclick="changeStatus(' . $changeStatusUrl . ',' . $tableName . ')">' . $status . '</span>';
-            })
-            ->addColumn('action', function ($row) {
+    //         ->editColumn('status', function ($row) {
+    //             $changeStatusUrl = route('post.status.toggle', $row['id']);
+    //             $changeStatusUrl = "'" . $changeStatusUrl . "'";
+    //             $tableName = "'postsDataTable'";
+    //             $status = $row['status'] ? 'Active' : 'InActive';
+    //             $statusClass = $row['status'] ? 'bg-soft-success text-success' : 'bg-soft-danger text-danger';
+    //             return '<span class="badge ' . $statusClass . '" onclick="changeStatus(' . $changeStatusUrl . ',' . $tableName . ')">' . $status . '</span>';
+    //         })
+    //         ->addColumn('action', function ($row) {
 
-                $updateLink = route('post.edit', $row['id']);
-                $option = '';
+    //             $updateLink = route('post.edit', $row['id']);
+    //             $option = '';
 
-                $option .= '<a href="' . $updateLink . '" class="action-icon" data-overlaycolor="#38414a"><i class="mdi mdi-square-edit-outline"></i></a>';
+    //             $option .= '<a href="' . $updateLink . '" class="action-icon" data-overlaycolor="#38414a"><i class="mdi mdi-square-edit-outline"></i></a>';
 
-                $delete_link = route('post.delete', $row['id']);
-                $delete_link = "'" . $delete_link . "'";
-                $tableName = "'postsDataTable'";
+    //             $delete_link = route('post.delete', $row['id']);
+    //             $delete_link = "'" . $delete_link . "'";
+    //             $tableName = "'postsDataTable'";
 
-                $option .= '<a href="javascript:void(0);" onclick="deleteRecord(' . $delete_link . ',' . $tableName . ');"  class="action-icon" "><i class="mdi mdi-delete"></i></a>';
+    //             $option .= '<a href="javascript:void(0);" onclick="deleteRecord(' . $delete_link . ',' . $tableName . ');"  class="action-icon" "><i class="mdi mdi-delete"></i></a>';
 
-                return $option;
-            })
-            ->addColumn('updated_at', function ($row) {
-                return Carbon::parse($row['updated_at'])->format('n/j/Y g:i A');
-            })
-            ->addColumn('generated_link', function ($row) {
-                $link =  $row->generated_link;
+    //             return $option;
+    //         })
+    //         ->addColumn('updated_at', function ($row) {
+    //             return Carbon::parse($row['updated_at'])->format('n/j/Y g:i A');
+    //         })
+    //         ->addColumn('generated_link', function ($row) {
+    //             $link =  $row->generated_link;
 
-                return '<a href="' . $link . '" class="btn btn-primary" data-overlaycolor="#38414a">View Link</a>';
-            })
-            ->orderColumn("updated_at", function ($query, $row) {
-                return $query->orderBy("updated_at", $row);
-            })
-            ->rawColumns(['action', 'generated_link', 'status', 'image'])
-            ->make(true);
-    }
+    //             return '<a href="' . $link . '" class="btn btn-primary" data-overlaycolor="#38414a">View Link</a>';
+    //         })
+    //         ->orderColumn("updated_at", function ($query, $row) {
+    //             return $query->orderBy("updated_at", $row);
+    //         })
+    //         ->rawColumns(['action', 'generated_link', 'status', 'image'])
+    //         ->make(true);
+    // }
 
     /**
      *  returns the admins add page
