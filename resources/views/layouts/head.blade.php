@@ -24,5 +24,11 @@
         text-decoration: none;
     }
 
+
+    /* //admin top heder logo and logout section */
+
+    .navbar-custom {
+        background: linear-gradient(90deg, #FDBB2D 0%, #3A1C71 100%);
+}
 </style>
 @yield('css')

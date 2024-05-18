@@ -27,7 +27,7 @@
             </div>
         </div>
         <div class="row">
-            <a class="col-md-6 col-xl-3" href="{{ route('admin.index') }}">
+            <a class="col-md-3 col-xl-3" href="{{ route('admin.index') }}">
                 <div>
                     <div class="widget-rounded-circle card-box">
                         <div class="row">
@@ -48,7 +48,7 @@
                     <!-- end widget-rounded-circle-->
                 </div>
             </a>
-            <a class="col-md-6 col-xl-3" href="{{ route('categorie.index') }}">
+            <a class="col-md-3 col-xl-3" href="{{ route('categorie.index') }}">
                 <div>
                     <div class="widget-rounded-circle card-box">
                         <div class="row">
