@@ -42,6 +42,8 @@ class PopularPost extends Controller
     //singl post popular post page
     public function popularPostShow($slug)
     {
+
+        
         $posts = Post::whereSlug($slug)->active()->with('categorie:id,name')->first();
  
         //fiend $posts->url to /shorts/
