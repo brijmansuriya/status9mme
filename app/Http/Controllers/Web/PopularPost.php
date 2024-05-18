@@ -60,9 +60,7 @@ class PopularPost extends Controller
         //Tranding post
         $trandings = Post::with('categorie')->active()->latest()->take(config('app.home-post'))->get();
 
-        return view('web.post', compact('posts', 'trandings'));
-
-        
+        return view('web.post', compact('posts', 'trandings'));        
     }
 
     //home page latest post list page
