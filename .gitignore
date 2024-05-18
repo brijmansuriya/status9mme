@@ -1,0 +1,103 @@
+# Laravel specific
+/vendor/
+/node_modules/
+/public/storage
+/public/hot
+/public/vendor
+/public/mix-manifest.json
+/storage/*.key
+.env
+.env.*.php
+.env.backup
+Homestead.yaml
+Homestead.json
+npm-debug.log
+yarn-error.log
+
+# Laravel Jetstream specific
+/public/js/*
+/public/css/*
+/public/mix-manifest.json
+/public/hot
+/public/storage
+/public/vendor
+/public/sitemap
+/public/sitemap.xml
+
+# Ignore IDE specific files
+.idea
+*.swp
+*.swo
+*.swn
+*.sublime-project
+*.sublime-workspace
+*.code-workspace
+
+# Ignore all files starting with a dot (hidden files)
+.*.sublime-*
+*.DS_Store
+*.directory
+
+# Ignore compiled and generated files
+*.log
+*.cache
+*.tmp
+
+# Composer dependencies
+/vendor/
+
+# Laravel Mix and NPM dependencies
+/node_modules/
+npm-debug.log*
+yarn-error.log*
+
+# Laravel package cache
+/.phpunit.result.cache
+
+# Laravel Telescope logs and storage
+/telescope/entries
+
+# Laravel IDE Helper files
+.phpstorm.meta.php
+/_ide_helper.php
+/_ide_helper_models.php
+
+# PHPUnit result cache
+.phpunit.result.cache
+
+# Coverage reports
+/coverage/
+
+# Logs and cache
+*.log
+*.cache
+*.tmp
+*.temp
+*.pid
+*.seed
+*.sql
+
+# IDE specific files
+/.idea
+/.vscode
+
+# dotenv environment variables file
+.env
+.env.backup
+
+# compiled files
+/public/hot
+/public/storage
+/public/vendor
+/public/mix-manifest.json
+/public/css/app.css
+/public/js/app.js
+
+# Debugbar specific files
+/storage/debugbar
+
+# Ignore test results
+/test-results
+
+# Ignore build artifacts
+/build
