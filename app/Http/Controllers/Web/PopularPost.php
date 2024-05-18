@@ -43,7 +43,17 @@ class PopularPost extends Controller
     public function popularPostShow($slug)
     {
         $posts = Post::whereSlug($slug)->active()->with('categorie:id,name')->first();
-        views($posts)->record();
+ 
+        //fiend $posts->url to /shorts/
+
+        if($this->getDomainName($posts) == Post::YOUTUBE && $this->isShortsUrl($posts)){
+            return 'sort';
+        }
+        
+        if($this->getDomainName($posts) == Post::YOUTUBE && !$this->isShortsUrl($posts)){
+            return 'youtub video';
+
+        }
 
         //Tranding post
         $trandings = Post::with('categorie')->active()->latest()->take(config('app.home-post'))->get();
@@ -66,5 +76,22 @@ class PopularPost extends Controller
         //Tranding post
         $trandings = Post::with('categorie')->latest()->active()->take(config('app.home-post'))->get();
         return view('web.post', compact('posts', 'trandings'));
+    }
+
+    //hepers functions
+    public function getDomainName(Post $post)
+    {
+        // Parse the URL
+        $parsed_url = parse_url($post->url);
+
+        // Extract the domain name
+        $domain = $parsed_url['host'];
+
+        return $domain;
+    }
+
+    public static function isShortsUrl($url)
+    {
+        return strpos($url, 'shorts/') !== true;
     }
 }
