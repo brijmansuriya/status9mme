@@ -38,21 +38,19 @@
                             <div class="mb-3">
                                 <span>{{ $posts->created_at ?? '' }}</span>
                             </div>
-                            <p>URL {{ $posts->url }}</p>
-                            {{-- URL https://www.youtube.com/shorts/U2oTh-m20y0 --}}
-                            <iframe src="{{ $posts->url }}"
-                                frameborder="0"  allowfullscreen="false"  sandbox="allow-scripts allow-same-origin allow-forms"  width="600" height="400">
-                            </iframe>
 
-                            <iframe width="315" height="560"
-                            src="https://www.youtube.com/embed/<Shorts_video_code>"
+                            <a href="{{ $posts->url }}?view_as=subscriber" class="my-3 text-center"><<< GO TO YOUTUBE>>></a>
+                           
+
+                            <iframe height="560"
+                            src="{{ $posts->url }}?view_as=subscriber?sub_confirmation=1"
+                            {{-- src="https://www.youtube.com/embed/<Shorts_video_code>" --}}
                             title="YouTube video player"
                             frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                             allowfullscreen></iframe>
 
-                            <iframe width="560" height="315" src="https://www.youtube.com/embed/LXtNqL2vxoA?si=Z4gW9eBJqp6U-ISJ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
+                           
                         
                         </div>
                     </div>
