@@ -43,6 +43,12 @@
                     </a>
                 </li>
                 <li>
+                    <a href="{{ route('template.index') }}" class="{{ request()->is('admin/template/*') ? 'active' : '' }}">
+                        <i class="fa fa-user"></i>
+                        <span> Template </span>
+                    </a>
+                </li>
+                <li>
                     <a href="javascript: void(0);">
                         <i class="fe-folder-plus"></i>
                         <span> Settings </span>

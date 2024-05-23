@@ -92,7 +92,7 @@
                                 </div>
                                 <div class="form-group col-md-6">
                                     <button type="submit"
-                                        class="btn btn-primary waves-effect waves-light ">Submit</button>
+                                        class="btn btn-primary waves-effect waves-light " id="submit">Submit</button>
                                 </div>
                             </div>
 
@@ -160,5 +160,9 @@
             });
         
         });
+
+        // on submit btn click ajax call using jquery?
+        
+        
     </script>
 @endsection
