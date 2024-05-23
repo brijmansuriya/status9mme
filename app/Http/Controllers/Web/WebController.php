@@ -133,4 +133,9 @@ class WebController extends Controller
         Mail::to('news9mme+@gmail.com')->send(new ContactUsMail($data));
         return redirect()->back()->with('success', 'Thank you for contacting us!');
     }
+    //contactus Submit
+    public function template(Request $request) {
+      
+        return view('web.template');
+    }
 }

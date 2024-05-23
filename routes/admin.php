@@ -1,29 +1,31 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\Admin\AdminController;
+use App\Http\Controllers\Admin\Categorie\CategorieController;
+use App\Http\Controllers\Admin\Categorie\SubCategorieController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\Explorer\ExplorerController;
+use App\Http\Controllers\Admin\ExportController;
+use App\Http\Controllers\Admin\Post\PostController;
+use App\Http\Controllers\Admin\Settings\AppLinkSettingsController;
+use App\Http\Controllers\Admin\Settings\AppSettingController;
+use App\Http\Controllers\Admin\Settings\AppVariableController;
+use App\Http\Controllers\Admin\Tag\TagController;
+use App\Http\Controllers\Api\Auth\RegisterController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\Web\PopularPost;
 use App\Http\Controllers\SitemapController;
+use App\Http\Controllers\Web\PopularPost;
 use App\Http\Controllers\Web\WebCategories;
 use App\Http\Controllers\Web\WebController;
 use App\Http\Controllers\WebViewController;
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Admin\ExportController;
-use App\Http\Controllers\Admin\Tag\TagController;
-use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\Post\PostController;
-use App\Http\Controllers\Admin\Admin\AdminController;
-use App\Http\Controllers\Api\Auth\RegisterController;
-use App\Http\Controllers\Auth\VerificationController;
-use App\Http\Controllers\Auth\ResetPasswordController;
-use App\Http\Controllers\Auth\ForgotPasswordController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
-use App\Http\Controllers\Admin\Explorer\ExplorerController;
-use App\Http\Controllers\Admin\Categorie\CategorieController;
-use App\Http\Controllers\Admin\Settings\AppSettingController;
-use App\Http\Controllers\Admin\Settings\AppVariableController;
-use App\Http\Controllers\Admin\Categorie\SubCategorieController;
-use App\Http\Controllers\Admin\Settings\AppLinkSettingsController;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -105,17 +107,17 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
         Route::post('saveToken', [AdminController::class, 'saveToken'])->name('admin.save-device.token');
     });
 
-    Route::prefix('customer')->group(function () {
-        Route::get('', [CustomerController::class, 'index'])->name('customer.index');
-        Route::get('create', [CustomerController::class, 'create'])->name('customer.create');
-        Route::post('store', [CustomerController::class, 'store'])->name('customer.store');
-        Route::get('dataTable', [CustomerController::class, 'dataTable'])->name('customer.dataTable');
-        Route::get('{id}', [CustomerController::class, 'show'])->name('customer.show');
-        Route::get('{id}/edit', [CustomerController::class, 'edit'])->name('customer.edit');
-        Route::get('{id}/delete', [CustomerController::class, 'delete'])->name('customer.delete');
-        Route::post('{id}/update', [CustomerController::class, 'update'])->name('customer.update');
-        Route::get('{id}/toggle', [CustomerController::class, 'toggleStatus'])->name('customer.status.toggle');
-    });
+    // Route::prefix('customer')->group(function () {
+    //     Route::get('', [CustomerController::class, 'index'])->name('customer.index');
+    //     Route::get('create', [CustomerController::class, 'create'])->name('customer.create');
+    //     Route::post('store', [CustomerController::class, 'store'])->name('customer.store');
+    //     Route::get('dataTable', [CustomerController::class, 'dataTable'])->name('customer.dataTable');
+    //     Route::get('{id}', [CustomerController::class, 'show'])->name('customer.show');
+    //     Route::get('{id}/edit', [CustomerController::class, 'edit'])->name('customer.edit');
+    //     Route::get('{id}/delete', [CustomerController::class, 'delete'])->name('customer.delete');
+    //     Route::post('{id}/update', [CustomerController::class, 'update'])->name('customer.update');
+    //     Route::get('{id}/toggle', [CustomerController::class, 'toggleStatus'])->name('customer.status.toggle');
+    // });
 
     Route::prefix('categorie')->group(function () {
         Route::get('', [CategorieController::class, 'index'])->name('categorie.index');
@@ -141,6 +143,10 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
         Route::get('{id}/delete', [TagController::class, 'delete'])->name('tag.delete');
         Route::post('deleteAll', [TagController::class, 'deleteAll'])->name('tag.deleteAll');
         Route::get('{id}/toggle', [TagController::class, 'toggleStatus'])->name('tag.status.toggle');
+    });
+
+    Route::prefix('template')->group(function () {
+        Route::get('', [TagController::class, 'index'])->name('template.index');
     });
 
     Route::prefix('export')->group(function () {

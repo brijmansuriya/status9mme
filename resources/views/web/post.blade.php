@@ -38,7 +38,20 @@
                             <div class="mb-3">
                                 <span>{{ $posts->created_at ?? '' }}</span>
                             </div>
-                            <p>{{ $posts->url }}</p>
+
+                            <a href="{{ $posts->url }}?view_as=subscriber" class="my-3 text-center"><<< GO TO YOUTUBE>>></a>
+                           
+
+                            <iframe height="560"
+                            src="{{ $posts->url }}?view_as=subscriber?sub_confirmation=1"
+                            {{-- src="https://www.youtube.com/embed/<Shorts_video_code>" --}}
+                            title="YouTube video player"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen></iframe>
+
+                           
+                        
                         </div>
                     </div>
                     <!-- News Detail End -->
@@ -103,3 +116,7 @@
     </div>
     <!-- News With Sidebar End -->
 @endsection
+
+
+
+

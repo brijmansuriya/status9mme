@@ -18,6 +18,8 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class Post extends Model implements HasMedia, Viewable
 {
+    public const YOUTUBE = 'www.youtube.com';
+    public const YOUTUBE_SORT_PATH = 'shorts';
     use HasFactory, HasAppDateTime, InteractsWithMedia, HasSEO, InteractsWithViews;
     protected $fillable = [
         'id',

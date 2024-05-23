@@ -45,6 +45,7 @@ Route::get('/privacy-policy', [WebController::class, 'privacypolicy'])->name('we
 Route::get('/contact-us', [WebController::class, 'contactus'])->name('web.contactus');
 Route::post('/contact-us', [WebController::class, 'contactusSubmit'])->name('contact.submit');
 Route::get('/dmca', [WebController::class, 'dmca'])->name('web.dmca');
+Route::get('/template', [WebController::class, 'template'])->name('web.template');
 
 /**
  * forgot password route for all users
