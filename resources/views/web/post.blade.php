@@ -1,6 +1,6 @@
 @extends('web.layouts.app')
 @section('css')
-    {!! seo()->for($posts) !!}
+    {!! seo()->for($post) !!}
 @endsection
 @section('content')
     <!-- Breadcrumb Start -->
@@ -15,8 +15,6 @@
         </div>
     </div> --}}
     <!-- Breadcrumb End -->
-
-
     <!-- News With Sidebar Start -->
     <div class="container-fluid py-3">
         <div class="container">
@@ -25,33 +23,25 @@
                     <!-- News Detail Start -->
 
                     <div class="position-relative mb-3">
-                        <img class="img-fluid w-100 h-100" src="{{ $posts->image ?? '' }}"
+                        <img class="img-fluid w-100 h-50" src="{{ $post->image ?? '' }}"
                             style="object-fit: cover;height: 350px;">
                         <div class="overlay position-relative bg-light">
-                            <h2>{{ $posts->title }}</h2>
-                            <div>{{ $posts->categorie->name ?? '' }}</div>
+                            <h2>{{ $post->title }}</h2>
+                            <div>{{ $post->categorie->name ?? '' }}</div>
                             <hr>
                             <div>
-                                {!! $posts->description ?? '' !!}
+                                {!! $post->description ?? '' !!}
                             </div>
 
                             <div class="mb-3">
-                                <span>{{ $posts->created_at ?? '' }}</span>
+                                <span>{{ $post->created_at ?? '' }}</span>
                             </div>
 
-                            <a href="{{ $posts->url }}?view_as=subscriber" class="my-3 text-center"><<< GO TO YOUTUBE>>></a>
-                           
-
-                            <iframe height="560"
-                            src="{{ $posts->url }}?view_as=subscriber?sub_confirmation=1"
-                            {{-- src="https://www.youtube.com/embed/<Shorts_video_code>" --}}
-                            title="YouTube video player"
-                            frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            allowfullscreen></iframe>
-
-                           
-                        
+                            <a href="{{ $post->url }}?view_as=subscriber" class="my-3 text-center"><<< GO TO YOUTUBE>>></a>
+                           {{-- ifrem using pakeg --}}
+                           <div class="embed-responsive embed-responsive-16by9">
+                            @youtube($post->url)
+                          </div>
                         </div>
                     </div>
                     <!-- News Detail End -->
@@ -107,7 +97,15 @@
                     <!-- Popular News End -->
 
                     <!-- Tags Start -->
-
+                    {{-- <div class="mb-5">
+                        <h4 class="font-weight-semi-bold mb-4">Tags</h4>
+                        <div class="d-flex flex-wrap m-n1">
+                            @foreach ($post->tags as $tag)
+                                <a href="{{ route('web.tag', ['slug' => $tag->slug]) }}" 
+                                    class="btn btn-sm btn-outline-secondary m-1">{{ $tag->name }}</a>
+                            @endforeach
+                        </div>
+                    </div> --}}
                     <!-- Tags End -->
                 </div>
             </div>

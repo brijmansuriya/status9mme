@@ -1090,6 +1090,67 @@
             "install-path": "../filp/whoops"
         },
         {
+            "name": "fomvasss/youtube",
+            "version": "v1.3.0",
+            "version_normalized": "1.3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/fomvasss/youtube.git",
+                "reference": "3c85cf86fc5b65147ac73985a44e26344605e70f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/fomvasss/youtube/zipball/3c85cf86fc5b65147ac73985a44e26344605e70f",
+                "reference": "3c85cf86fc5b65147ac73985a44e26344605e70f",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6.0"
+            },
+            "time": "2018-06-13T20:13:34+00:00",
+            "type": "package",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Fomvasss\\Youtube\\YoutubeServiceProvider"
+                    ]
+                }
+            },
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "Fomvasss\\Youtube\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "WebWest",
+                    "homepage": "http://web-west.net.ua",
+                    "role": "Company"
+                },
+                {
+                    "name": "Fomin Vasyl",
+                    "email": "fomvasss@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Package for generate IFrame with youtube-link",
+            "keywords": [
+                "laravel",
+                "video",
+                "youtube"
+            ],
+            "support": {
+                "issues": "https://github.com/fomvasss/youtube/issues",
+                "source": "https://github.com/fomvasss/youtube/tree/v1.3.0"
+            },
+            "install-path": "../fomvasss/youtube"
+        },
+        {
             "name": "fruitcake/php-cors",
             "version": "v1.2.0",
             "version_normalized": "1.2.0.0",

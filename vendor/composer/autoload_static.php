@@ -188,6 +188,7 @@ class ComposerStaticInit3aef05eec7e348144134bac61c8e1a77
         'F' => 
         array (
             'Fruitcake\\Cors\\' => 15,
+            'Fomvasss\\Youtube\\' => 17,
             'Faker\\' => 6,
         ),
         'E' => 
@@ -237,11 +238,11 @@ class ComposerStaticInit3aef05eec7e348144134bac61c8e1a77
         ),
         'Yajra\\DataTables\\' => 
         array (
-            0 => __DIR__ . '/..' . '/yajra/laravel-datatables-oracle/src',
-            1 => __DIR__ . '/..' . '/yajra/laravel-datatables-html/src',
+            0 => __DIR__ . '/..' . '/yajra/laravel-datatables-buttons/src',
+            1 => __DIR__ . '/..' . '/yajra/laravel-datatables-editor/src',
             2 => __DIR__ . '/..' . '/yajra/laravel-datatables-fractal/src',
-            3 => __DIR__ . '/..' . '/yajra/laravel-datatables-editor/src',
-            4 => __DIR__ . '/..' . '/yajra/laravel-datatables-buttons/src',
+            3 => __DIR__ . '/..' . '/yajra/laravel-datatables-html/src',
+            4 => __DIR__ . '/..' . '/yajra/laravel-datatables-oracle/src',
         ),
         'Whoops\\' => 
         array (
@@ -477,8 +478,8 @@ class ComposerStaticInit3aef05eec7e348144134bac61c8e1a77
         ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-message/src',
-            1 => __DIR__ . '/..' . '/psr/http-factory/src',
+            0 => __DIR__ . '/..' . '/psr/http-factory/src',
+            1 => __DIR__ . '/..' . '/psr/http-message/src',
         ),
         'Psr\\Http\\Client\\' => 
         array (
@@ -626,6 +627,10 @@ class ComposerStaticInit3aef05eec7e348144134bac61c8e1a77
         array (
             0 => __DIR__ . '/..' . '/fruitcake/php-cors/src',
         ),
+        'Fomvasss\\Youtube\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/fomvasss/youtube/src',
+        ),
         'Faker\\' => 
         array (
             0 => __DIR__ . '/..' . '/fakerphp/faker/src/Faker',
@@ -735,6 +740,7 @@ class ComposerStaticInit3aef05eec7e348144134bac61c8e1a77
         'App\\Http\\Controllers\\Admin\\Settings\\AppSettingController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/Settings/AppSettingController.php',
         'App\\Http\\Controllers\\Admin\\Settings\\AppVariableController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/Settings/AppVariableController.php',
         'App\\Http\\Controllers\\Admin\\Tag\\TagController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/Tag/TagController.php',
+        'App\\Http\\Controllers\\Admin\\Template\\TemplateController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/Template/TemplateController.php',
         'App\\Http\\Controllers\\Auth\\ConfirmPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ConfirmPasswordController.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
         'App\\Http\\Controllers\\Auth\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/LoginController.php',
@@ -797,6 +803,7 @@ class ComposerStaticInit3aef05eec7e348144134bac61c8e1a77
         'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
         'App\\Providers\\TelescopeServiceProvider' => __DIR__ . '/../..' . '/app/Providers/TelescopeServiceProvider.php',
+        'App\\Services\\YoutubeUrlServices' => __DIR__ . '/../..' . '/app/Services/YoutubeUrlServices.php',
         'App\\Traits\\HasAppDateTime' => __DIR__ . '/../..' . '/app/Traits/HasAppDateTime.php',
         'App\\Traits\\HasPrice' => __DIR__ . '/../..' . '/app/Traits/HasPrice.php',
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
@@ -2000,6 +2007,9 @@ class ComposerStaticInit3aef05eec7e348144134bac61c8e1a77
         'Faker\\Provider\\zh_TW\\Text' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Provider/zh_TW/Text.php',
         'Faker\\UniqueGenerator' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/UniqueGenerator.php',
         'Faker\\ValidGenerator' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/ValidGenerator.php',
+        'Fomvasss\\Youtube\\Facades\\Youtube' => __DIR__ . '/..' . '/fomvasss/youtube/src/Facades/Youtube.php',
+        'Fomvasss\\Youtube\\Youtube' => __DIR__ . '/..' . '/fomvasss/youtube/src/Youtube.php',
+        'Fomvasss\\Youtube\\YoutubeServiceProvider' => __DIR__ . '/..' . '/fomvasss/youtube/src/YoutubeServiceProvider.php',
         'Fruitcake\\Cors\\CorsService' => __DIR__ . '/..' . '/fruitcake/php-cors/src/CorsService.php',
         'Fruitcake\\Cors\\Exceptions\\InvalidOptionException' => __DIR__ . '/..' . '/fruitcake/php-cors/src/Exceptions/InvalidOptionException.php',
         'GrahamCampbell\\ResultType\\Error' => __DIR__ . '/..' . '/graham-campbell/result-type/src/Error.php',

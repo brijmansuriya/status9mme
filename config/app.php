@@ -179,7 +179,7 @@ return [
         CyrildeWit\EloquentViewable\EloquentViewableServiceProvider::class,
         //add for youtube video
         Alaouy\Youtube\YoutubeServiceProvider::class,
-
+        Fomvasss\Youtube\YoutubeServiceProvider::class,
         // JordanMiguel\LaravelPopular\LaravelPopularServiceProvider::class,
     ])->toArray(),
 
