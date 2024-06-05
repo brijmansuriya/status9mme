@@ -47,6 +47,11 @@ Route::post('/contact-us', [WebController::class, 'contactusSubmit'])->name('con
 Route::get('/dmca', [WebController::class, 'dmca'])->name('web.dmca');
 Route::get('/template', [WebController::class, 'template'])->name('web.template');
 
+//home page exploer latest (not working)
+// Route::get('/explorer', [ExplorerController::class, 'index'])->name('explorer');
+// Route::get('/latest-post/{slug}', [PopularPost::class, 'popularPostShow'])->name('web.latestpost');
+//home page exploer latest (not working)
+
 /**
  * forgot password route for all users
  */
