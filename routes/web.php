@@ -4,12 +4,14 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SitemapController;
+use App\Http\Controllers\Web\ExplorerController;
 use App\Http\Controllers\Web\PopularPost;
 use App\Http\Controllers\Web\WebCategories;
 use App\Http\Controllers\Web\WebController;
 use App\Http\Controllers\WebViewController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\SitemapController;
+
 
 
 /*
@@ -51,6 +53,8 @@ Route::get('/template', [WebController::class, 'template'])->name('web.template'
 // Route::get('/explorer', [ExplorerController::class, 'index'])->name('explorer');
 // Route::get('/latest-post/{slug}', [PopularPost::class, 'popularPostShow'])->name('web.latestpost');
 //home page exploer latest (not working)
+Route::get('/exploer/{slug}', [ExplorerController::class, 'show'])->name('web.exploer.show');
+
 
 /**
  * forgot password route for all users

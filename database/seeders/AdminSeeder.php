@@ -16,20 +16,35 @@ class AdminSeeder extends Seeder
     public function run()
     {
         Admin::factory()
-        ->count(10)
-        ->create();
+            ->count(10)
+            ->create();
 
         Admin::factory()->count(5)->create();
         // Create a specific admin with a custom email
-        if (!Admin::where('email', 'brij@gmail.com')->exists()) {
-            // If the email doesn't exist, create a new admin
-            Admin::factory()->create([
-                'email' => 'brij@gmail.com',
-            ]);
+        $addAdminArray = [
+            'brij@gmail.com',
+            'mansuriyabri@gmail.com',
+        ];
+        // if (!Admin::whereIn('email', $addAdminArray)->exists()) {
+        //     // If the email doesn't exist, create a new admin
+        //     Admin::factory()->create([
+        //         'email' => 'brij@gmail.com',
+        //     ]);
+        // }
+
+        // Check for existing emails and filter out those that already exist
+        $existingEmails = Admin::whereIn('email', $addAdminArray)->pluck('email')->toArray();
+        $newEmails = array_diff($addAdminArray, $existingEmails);
+
+        // Prepare the data to be inserted
+        $newAdmins = array_map(function ($email) {
+            return ['email' => $email];
+        }, $newEmails);
+
+        // Insert new admins if there are any
+        if (!empty($newAdmins)) {
+            DB::table('admins')->insert($newAdmins);
         }
-
-
-        
 
         // Admin::created([
         //     'name' => 'admin',

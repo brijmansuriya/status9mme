@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\ServiceProvider;
+use CyrildeWit\EloquentViewable\Facades\Viewable;
 
 return [
 
@@ -17,6 +18,15 @@ return [
     */
 
     'name' => env('APP_NAME', 'Laravel'),
+
+    //home page benner(crogal) sidebar category list show limit home-categorie
+    'home-categorie' => 4
+    ,
+    //home page benner(crogal) post list show home-post
+    'home-post' => 6,
+    
+    //home page benner(crogal) explorer list home-explorer
+    'home-explorer' => 6,
 
     /*
     |--------------------------------------------------------------------------
@@ -198,7 +208,7 @@ return [
         'Image' => Intervention\Image\Facades\Image::class,
         'Datatables' => Yajra\Datatables\Facades\Datatables::class,
         // 'Example' => App\Facades\Example::class,
-        'Viewable' => CyrildeWit\EloquentViewable\Facades\Viewable::class,
+        'Viewable' => Viewable::class,
         'Youtube' => Alaouy\Youtube\Facades\Youtube::class,
     ])->toArray(),
 
