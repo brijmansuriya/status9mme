@@ -99,10 +99,6 @@
 
                     </div>
 
-                    <!-- <div class="mb-3 pb-3">
-                            <a href=""><img class="img-fluid w-100" src="web/img/ads-700x70.jpg" alt=""></a>
-                        </div> -->
-
                     <div class="row">
                         <div class="col-12">
                             <div class="d-flex align-items-center justify-content-between bg-light py-2 px-4 mb-3">
@@ -125,6 +121,35 @@
                                                 {{ Str::limit($latest->title, 35, '...') }}
                                             </div>
                                             <div class="h6">{{ $latest->created_at }}</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        @endforeach
+
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="d-flex align-items-center justify-content-between bg-light py-2 px-4 mb-3">
+                                <h3 class="m-0">Latest Explorer</h3>
+                                <a class="text-secondary font-weight-medium text-decoration-none"
+                                    href="{{ route('web.alllatestpostlist') }}">View All</a>
+                            </div>
+                        </div>
+                        @foreach ($explorers as $explorer)
+                            <div class="col-lg-6">
+                                <a class="h4" href="{{ route('web.exploer.show', ['slug' => $explorer->slug]) }}">
+                                    <div class="position-relative mb-3">
+                                        <img class="img-fluid w-100 h-200" src="{{ $explorer->image }}"
+                                            style="object-fit: cover;">
+                                        <div class="overlay position-relative bg-light">
+                                            <div class="mb-2" style="font-size: 14px;">
+                                                <div>{{ $explorer->categorie->name ?? '' }}</div>
+                                            </div>
+                                            <div class="h4">
+                                                {{ Str::limit($explorer->title, 35, '...') }}
+                                            </div>
+                                            <div class="h6">{{ $explorer->created_at }}</div>
                                         </div>
                                     </div>
                                 </a>

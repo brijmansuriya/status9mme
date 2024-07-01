@@ -22,7 +22,6 @@
 
         /* Center the image */
         .col-md-6 .image-container {
-            height: 100%; /* Set height to fill parent container */
             overflow: hidden; /* Hide overflowing content */
         }
 
@@ -30,7 +29,6 @@
             display: block;
             margin: 0 auto;
             max-width: 100%; /* Make sure the image doesn't exceed its container's width */
-            height: auto; /* Maintain aspect ratio */
         }
     </style>
 </head>
@@ -103,8 +101,8 @@
             </div>
         </div>
         <div class="col-md-6 p-0 m-0">
-            <div class="image-container">
-                <img src="https://source.unsplash.com/random/">
+            <div class="image-container" style="height: 96vh;">
+                <img class="img-fluid" src="https://source.unsplash.com/random/">
             </div>
         </div>
     </div>

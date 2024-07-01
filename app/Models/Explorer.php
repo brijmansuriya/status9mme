@@ -53,4 +53,10 @@ class Explorer extends Model implements HasMedia, Viewable
           asset('default_images/admin.png');
     }
 
+    // Scope for available posts
+    public function scopeAvailable($query)
+    {
+        return $query->active();
+    }
+
 }

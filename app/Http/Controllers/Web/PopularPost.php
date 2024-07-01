@@ -24,16 +24,16 @@ class PopularPost extends Controller
     public function popularPostShow($slug)
     {
 
-        $posts = Post::whereSlug($slug)->active()->with('categorie:id,name')->first();
+        $post = Post::whereSlug($slug)->active()->with('categorie:id,name')->first();
 
         //fiend $posts->url to /shorts/
 
-        $this->youtubeUrlServices->urlSet($posts);
+        $this->youtubeUrlServices->urlSet($post);
 
         //Tranding post
         $trandings = Post::with('categorie')->active()->latest()->take(config('app.home-post'))->get();
 
-        return view('web.post', compact('posts', 'trandings'));
+        return view('web.post', compact('post', 'trandings'));
     }
 
     //home page latest post list page

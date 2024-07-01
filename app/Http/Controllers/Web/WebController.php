@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use Carbon\Carbon;
 use App\Models\Post;
+use App\Models\Explorer;
 use App\Models\Categorie;
 use App\Mail\ContactUsMail;
 use Illuminate\Http\Request;
@@ -18,7 +19,9 @@ class WebController extends Controller
     {
         $categorys = Categorie::active()->available()->latest()->take(config('app.home-categorie'))->get(['id','slug','name']);
 
-        $post = $featureds = $populars = $latests = $trandings = Post::with('categorie')->latest()->active()->available()->take(config('app.home-post'))->get();
+        $post = $featureds = $populars = $latests = $trandings = Post::with('categorie')->latest()->active()->available()->paginate(config('app.home-post'));
+
+        $explorers = Explorer::latest()->available()->paginate(config('app.home-categorie'));
 
 
         return view('web.home',[
@@ -34,6 +37,7 @@ class WebController extends Controller
                 locale    : 'Lorem Ipsum',
                 url    : 'Lorem Ipsum',
             ),
+            'explorers' => $explorers,
             'categorys' => $categorys,
             'trandings' => $trandings,
             'latests' => $latests,
