@@ -11,6 +11,7 @@ class ExplorerController extends Controller
 
     public function show($slug)
     {
+        
         $explorer = Explorer::with('posts')->whereSlug($slug)->firstOrFail();
 
         // return view('web.explorer.show',compact('explorer'));

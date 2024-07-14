@@ -29,7 +29,7 @@ class PopularPost extends Controller
         //fiend $posts->url to /shorts/
 
         $this->youtubeUrlServices->urlSet($post);
-
+        // return $post;
         //Tranding post
         $trandings = Post::with('categorie')->active()->latest()->take(config('app.home-post'))->get();
 

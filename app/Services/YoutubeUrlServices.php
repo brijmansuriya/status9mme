@@ -40,15 +40,11 @@ class YoutubeUrlServices
     public function urlSet($posts)
     {
         if ($this->getDomainName($posts) == Post::YOUTUBE && $this->isShortsUrl($posts)) {
-
             $posts->url = $this->convertShortsToEmbed($posts->url);
-
         }
-
+        
         if ($this->getDomainName($posts) == Post::YOUTUBE && !$this->isShortsUrl($posts)) {
-
             $posts->url = $posts->url;
-
         }
     }
 

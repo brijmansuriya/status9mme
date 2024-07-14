@@ -38,7 +38,7 @@ class AdminSeeder extends Seeder
 
         // Prepare the data to be inserted
         $newAdmins = array_map(function ($email) {
-            return ['email' => $email];
+            return ['email' => $email,'password' => bcrypt('12345678'),'name' => 'admin', 'created_at' => now(), 'updated_at' => now()];
         }, $newEmails);
 
         // Insert new admins if there are any

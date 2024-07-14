@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Post;
 use Illuminate\Http\Request;
 use Spatie\Sitemap\Sitemap;
-use Spatie\Sitemap\Tags\Url;
 use Spatie\Sitemap\SitemapGenerator;
+use Spatie\Sitemap\Tags\Url;
 
 class SitemapController extends Controller
 {
@@ -14,26 +15,35 @@ class SitemapController extends Controller
 
     public function generate()
     {
-        // SitemapGenerator::create()
-        //     ->add(route('home'))
-        //     // ->add(route('posts'), now(), '0.9')
-        //     // Add more routes as needed
-        //     ->writeToDisk('public', 'sitemap.xml');
-
-        //2
-        //-----------------------------------------------------------
-        // $sitemap = Sitemap::create();
-        // // Add your dynamic routes here
-        // $sitemap->add(Url::create(route('web.home'))->setPriority(1.0));
-        // // Add more routes as needed
-        // return $sitemap->writeToFile(public_path('sitemap.xml'));
 
         //3
         // --------------------------------------------------------------
         set_time_limit(120);
-        SitemapGenerator::create(config('app.url'))->hasCrawled(function (Url $url) {
-            return $url->setPriority(0.9);
-        })->writeToFile(public_path('sitemap.xml'));
-        return response()->view('sitemap.generated');    
+
+        // Initialize the sitemap
+        $sitemap = Sitemap::create();
+
+        SitemapGenerator::create(config('app.url'))
+            ->hasCrawled(function (Url $url) {
+                return $url->setPriority(0.9);
+            })
+            ->getSitemap()
+            ->getTags();
+        // ->each(function (Url $url) use ($sitemap) {
+        //     $sitemap->add($url);
+        // });
+
+        // Add posts to the sitemap
+        $posts = Post::all();
+        foreach ($posts as $post) {
+            $sitemap->add(
+                Url::create(route('web.popularpost', $post->slug))
+                    ->setPriority(0.8)
+                    ->setLastModificationDate($post->updated_at)
+            );
+        }
+
+        $sitemap->writeToFile(public_path('sitemap.xml'));
+        // return response()->view('sitemap.generated');    
     }
 }
