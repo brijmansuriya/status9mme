@@ -189,9 +189,7 @@ return [
         Spatie\Sitemap\SitemapServiceProvider::class,
         CyrildeWit\EloquentViewable\EloquentViewableServiceProvider::class,
         //add for youtube video
-        // Alaouy\Youtube\YoutubeServiceProvider::class,
-        Fomvasss\Youtube\YoutubeServiceProvider::class,
-        // JordanMiguel\LaravelPopular\LaravelPopularServiceProvider::class,
+        Cohensive\Embed\EmbedServiceProvider::class,
     ])->toArray(),
 
     /*
@@ -208,9 +206,9 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         'Image' => Intervention\Image\Facades\Image::class,
         'Datatables' => Yajra\Datatables\Facades\Datatables::class,
-        // 'Example' => App\Facades\Example::class,
-        // 'Viewable' => Viewable::class,
-        'Youtube' => Alaouy\Youtube\Facades\Youtube::class,
+        //youtube 
+        'Embed' => Cohensive\Embed\Facades\Embed::class,
+        'OEmbed' => Cohensive\OEmbed\Facades\OEmbed::class,
     ])->toArray(),
 
 ];

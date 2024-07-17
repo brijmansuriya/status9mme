@@ -41,24 +41,20 @@
                             {{-- <div class="embed-responsive embed-responsive-16by9">
                                 @youtube($explorer->url)
                             </div> --}}
-                            @foreach ($explorer->posts as $posts)
-                                <h2>{{ $loop->index + 1 }} | {{ $posts->title }}</h2>
-                                <div>
-                                    {!! $posts->description ?? '' !!}
-                                </div>
-                                <div class="mb-3">
-                                    <span>{{ $posts->created_at->diffForHumans() ?? '' }}</span>
-                                </div>
-                                <div class="embed-responsive embed-responsive-16by9">
-                                    @youtube($posts->url)
-                                </div>
-                                {{!! Youtube::iFrame($posts->url) !!}}
-                                {{ $posts->url }}
-                                <iframe width="560" height="315" src="https://www.youtube.com/embed/tsa5PpbqHwA?si=ykUkqX8FaYy9qyVB" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-                                <iframe width="560" height="315" src="https://www.youtube.com/embed/example1234" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-                            @endforeach
+                            <div>
+                                @foreach ($explorer->posts as $posts)
+                                    <h2>{{ $loop->index + 1 }} | {{ $posts->title }}</h2>
+                                    <div>
+                                        {!! $posts->description ?? '' !!}
+                                    </div>
+                                    <div class="mb-3">
+                                        <span>{{ $posts->created_at->diffForHumans() ?? '' }}</span>
+                                    </div>
+                                    <div class="embed-responsive embed-responsive-16by9 mb-3">
+                                        @youtube($posts->url)
+                                    </div>
+                                @endforeach
+                            </div>
                         </div>
                     </div>
                 </div>

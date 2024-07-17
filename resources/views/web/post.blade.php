@@ -39,9 +39,25 @@
 
                             <a href="{{ $post->url }}?view_as=subscriber" class="my-3 text-center"><<< GO TO YOUTUBE>>></a>
                            {{-- ifrem using pakeg --}}
-                           <div class="embed-responsive embed-responsive-16by9">
-                            @youtube($post->url)
-                          </div>
+
+                           {{ $post->url ?? '' }}
+
+                       
+                           https://www.youtube.com/embed/QPOLrbKI5oQ
+
+
+                           <iframe width="315" height="560" 
+                           src="{{ $post->url }}" 
+                           title="YouTube video player" frameborder="0" 
+                           allowfullscreen></iframe>
+
+                           <iframe width="315" height="560" 
+                           src="https://www.youtube.com/embed/QPOLrbKI5oQ" 
+                           title="YouTube video player" frameborder="0" 
+                           allowfullscreen></iframe>
+                           
+
+                          
                         </div>
                     </div>
                     <!-- News Detail End -->
