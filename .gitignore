@@ -1,52 +1,5 @@
-# Laravel specific
-/vendor
 /node_modules
-/.env
-.env.example
-/public/storage
+/public/storage/
+/vendor
+/storage
 /public/hot
-/*.key
-
-# IDE and OS specific
-.idea/
-.vscode/
-*.sublime-settings
-*.sublime-workspace
-Homestead.yaml
-Homestead.json
-Vagrantfile
-
-# Logs, cache, and temporary files
-/storage/*.log
-/bootstrap/cache/
-/cache/
-
-# Testing
-phpunit.xml
-phpunit.xml.dist
-
-# IDE and OS specific helpers (optional)
-.DS_Store
-nbproject/
-*.swp
-
-# Composer lock file
-composer.lock
-
-# Blade templates with compiled CSS (optional)
-public/assets/css/*.blade.rendered
-
-# Generated artisan files (optional)
-routes/api.php
-routes/web.php
-
-# Add more specific exclusions as needed
-
-# Consider these based on your project setup
-# - package manager specific cache files (e.g., npm-debug.log, yarn.lock)
-# - database backup files
-# - testing frameworks' output (e.g., Codeception/coverage)
-storage/
-public/storage/
-vendor/composer/autoload_classmap.php
-vendor/
