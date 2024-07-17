@@ -159,4 +159,7 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
 
         Route::get('/categories/{type}', [ExportController::class, 'categories'])->name('categorie.export');
     });
+
+    //generate SitemapController
+    Route::get('/sitemap', [SitemapController::class, 'generate'])->name('sitemap');
 });

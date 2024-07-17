@@ -18,9 +18,9 @@ class DatabaseSeeder extends Seeder
         $this->call([
             AppSeeder::class,
             AppMenuLinkSeeder::class,
-            AdminSeeder::class,
             CategorieSeeder::class,
             TagSeeder::class,
+            AdminSeeder::class,
         ]);
 
         

@@ -1,6 +1,6 @@
 @extends('web.layouts.app')
 @section('css')
-    {!! seo()->for($posts) !!}
+    {!! seo()->for($explorer) !!}
 @endsection
 @section('content')
     <!-- Breadcrumb Start -->
@@ -21,31 +21,45 @@
             <div class="row">
                 <div class="col-lg-8">
                     <div class="position-relative mb-3">
-                        <img class="img-fluid w-100 h-50" src="{{ $post->image ?? '' }}"
+                        <img class="img-fluid w-100 h-50" src="{{ $explorer->image ?? '' }}"
                             style="object-fit: cover;height: 350px;">
                         <div class="overlay position-relative bg-light">
-                            <h2>{{ $post->title }}</h2>
-                            <div>{{ $post->categorie->name ?? '' }}</div>
+                            <h2>{{ $explorer->title }}</h2>
+                            <div>{{ $explorer->categorie->name ?? '' }}</div>
                             <hr>
                             <div>
-                                {!! $post->description ?? '' !!}
+                                {!! $explorer->description ?? '' !!}
                             </div>
 
                             <div class="mb-3">
-                                <span>{{ $post->created_at ?? '' }}</span>
+                                <span>{{ $explorer->created_at ?? '' }}</span>
                             </div>
 
-                            <a href="{{ $post->url }}?view_as=subscriber" class="my-3 text-center">
+                            <a href="{{ $explorer->url }}?view_as=subscriber" class="my-3 text-center">
                                 <<< GO TO YOUTUBE>>>
                             </a>
-                            <div class="embed-responsive embed-responsive-16by9">
-                                @youtube($post->url)
+                            {{-- <div class="embed-responsive embed-responsive-16by9">
+                                @youtube($explorer->url)
+                            </div> --}}
+                            <div>
+                                @foreach ($explorer->posts as $posts)
+                                    <h2>{{ $loop->index + 1 }} | {{ $posts->title }}</h2>
+                                    <div>
+                                        {!! $posts->description ?? '' !!}
+                                    </div>
+                                    <div class="mb-3">
+                                        <span>{{ $posts->created_at->diffForHumans() ?? '' }}</span>
+                                    </div>
+                                    <div class="embed-responsive embed-responsive-16by9 mb-3">
+                                        @youtube($posts->url)
+                                    </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-lg-4 pt-3 pt-lg-0">
+                {{-- <div class="col-lg-4 pt-3 pt-lg-0">
                     <div class="pb-3">
                         <div class="bg-light py-2 px-4 mb-3">
                             <h3 class="m-0">Tranding</h3>
@@ -70,7 +84,7 @@
                             </a>
                         @endforeach
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>

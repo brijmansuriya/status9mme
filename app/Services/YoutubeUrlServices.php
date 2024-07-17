@@ -12,8 +12,8 @@ class YoutubeUrlServices
         $parsed_url = parse_url($post->url);
 
         // Extract the domain name
-        $domain = $parsed_url['host'];
-
+        $domain = $parsed_url['path'];
+        
         return $domain;
     }
 
@@ -39,16 +39,12 @@ class YoutubeUrlServices
     //check shorts and embed video set posts array url set 
     public function urlSet($posts)
     {
-        if ($this->getDomainName($posts) == Post::YOUTUBE && $this->isShortsUrl($posts)) {
-
+        if ($this->getDomainName($posts) == Post::YOUTUBE_SORT_PATH && $this->isShortsUrl($posts->url)) {
             $posts->url = $this->convertShortsToEmbed($posts->url);
-
         }
-
-        if ($this->getDomainName($posts) == Post::YOUTUBE && !$this->isShortsUrl($posts)) {
-
+        
+        if ($this->getDomainName($posts) == Post::YOUTUBE && $this->isShortsUrl($posts->url)) {
             $posts->url = $posts->url;
-
         }
     }
 

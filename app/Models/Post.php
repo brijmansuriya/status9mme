@@ -2,18 +2,22 @@
 
 namespace App\Models;
 
+use App\Models\Categorie;
+use App\Models\Explorer;
+use App\Models\Tag;
 use App\Models\Visit;
-use Laravel\Horizon\Tags;
 use App\Traits\HasAppDateTime;
-use Spatie\MediaLibrary\HasMedia;
-use Illuminate\Database\Eloquent\Model;
-use RalphJSmit\Laravel\SEO\Support\HasSEO;
-use RalphJSmit\Laravel\SEO\Support\SEOData;
-use Spatie\MediaLibrary\InteractsWithMedia;
-// use \JordanMiguel\LaravelPopular\Traits\Visitable;
+use Cohensive\OEmbed\Facades\OEmbed;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
+// use \JordanMiguel\LaravelPopular\Traits\Visitable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Laravel\Horizon\Tags;
+use RalphJSmit\Laravel\SEO\Support\HasSEO;
+use RalphJSmit\Laravel\SEO\Support\SEOData;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class Post extends Model implements HasMedia, Viewable
@@ -109,4 +113,6 @@ class Post extends Model implements HasMedia, Viewable
     {
         return $query->active();
     }
+
+    
 }
