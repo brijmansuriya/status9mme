@@ -35,8 +35,6 @@ class ExplorerController extends Controller
         //     $input['slug'] = $this->makeUniqueSlug($input['slug']);
         // }
         $explorer = Explorer::create($input);
-
-        $explorer->posts()->sync($request->posts);
         //image store
         if ($request->hasFile('image')) {
             $media = $explorer->addMediaFromRequest('image')->toMediaCollection('explorer/image');
@@ -82,13 +80,9 @@ class ExplorerController extends Controller
     public function update(UpdateExplorerRequest $request, $id)
     {
         $explorer = Explorer::whereId($id)->first();
-
         $explorer->update([
             'name' => request()->input('name'),
         ]);
-
-        
-        $explorer->posts()->sync($request->posts);
 
         if ($request->hasFile('image')) {
             $explorer->deleteFile();

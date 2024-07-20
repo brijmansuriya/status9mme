@@ -31,4 +31,3 @@ php artisan datatables:make PostDataTable
 php artisan datatables:make TagDataTable
 php artisan datatables:make UserDataTable
 
-
