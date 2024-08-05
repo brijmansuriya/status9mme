@@ -78,3 +78,5 @@ Route::get('webview/{id}', WebViewController::class)->name('menu.webview');
 Route::get('webview/post/{id}', [WebViewController::class, 'post'])->name('menu.post.webview');
 Route::get('sitemap.xml', [SitemapController::class, 'generate'])->name('sitemap');
 Route::get('sitemap', [SitemapController::class, 'generate'])->name('sitemap');
+
+
