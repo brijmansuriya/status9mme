@@ -44,6 +44,7 @@ class SitemapController extends Controller
         }
 
         $sitemap->writeToFile(public_path('sitemap.xml'));
+        return '<h1>DONE</h1>';
         // return response()->view('sitemap.generated');    
     }
 }
