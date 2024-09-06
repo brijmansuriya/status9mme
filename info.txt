@@ -21,22 +21,15 @@ dev
 tS50hE^SH,@A
 
 prod
-J2Sbz9;gl}Rq
-
+##Hvo@i3D%FZ
 
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
-DB_DATABASE=statusmm_status_prod
-DB_USERNAME=statusmm_prod
-DB_PASSWORD=J2Sbz9;gl}Rq
+DB_DATABASE=statusmm_status
+DB_USERNAME=statusmm_root
+DB_PASSWORD=0^nb[l2dsiVF
 
-#DB_CONNECTION=mysql
-#DB_HOST=127.0.0.1
-#DB_PORT=3306
-#DB_DATABASE=statusmm_status_dev
-#DB_USERNAME=statusmm_dev
-#DB_PASSWORD=tS50hE^SH,@A
 
 -------------------------------
 git ssh key password
