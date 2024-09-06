@@ -3,17 +3,24 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Models\Explorer;
+use App\Services\YoutubeUrlServices;
 use Carbon\Carbon;
 use RalphJSmit\Laravel\SEO\Support\SEOData;
 
 class ExplorerController extends Controller
 {
-
+    public function __construct(private YoutubeUrlServices $youtubeUrlServices) {
+    }
     public function show($slug)
     {
         
         $explorer = Explorer::with('posts')->whereSlug($slug)->firstOrFail();
 
+        //all posts url cunvert to embed url set
+            foreach($explorer->posts as $post){
+                $this->youtubeUrlServices->urlSet($post);
+            }        
+       
         // return view('web.explorer.show',compact('explorer'));
         return view('web.explorer.show',[
             'SEOData' => new SEOData(

@@ -30,6 +30,7 @@ class Post extends Model implements HasMedia, Viewable
         'description',
         'meta_description',
         'url',
+        'video_type',
         'active',
         'status',
         'created_by',
@@ -39,6 +40,11 @@ class Post extends Model implements HasMedia, Viewable
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
     ];
+
+    //constnts YOUTUBE_short
+    public const YOUTUBE_VIDEO  = '0';
+    public const YOUTUBE_SHORT  = '1';
+    public const NORMAL_VIDEO  = '2';
 
     public function registerMediaConversions(Media $media = null): void
     {

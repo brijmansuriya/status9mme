@@ -41,24 +41,45 @@
                             {{-- <div class="embed-responsive embed-responsive-16by9">
                                 @youtube($explorer->url)
                             </div> --}}
-                            @foreach ($explorer->posts as $posts)
-                                <h2>{{ $loop->index + 1 }} | {{ $posts->title }}</h2>
-                                <div>
-                                    {!! $posts->description ?? '' !!}
-                                </div>
-                                <div class="mb-3">
-                                    <span>{{ $posts->created_at->diffForHumans() ?? '' }}</span>
-                                </div>
-                                <div class="embed-responsive embed-responsive-16by9">
-                                    @youtube($posts->url)
-                                </div>
-                                {{!! Youtube::iFrame($posts->url) !!}}
-                                {{ $posts->url }}
-                                <iframe width="560" height="315" src="https://www.youtube.com/embed/tsa5PpbqHwA?si=ykUkqX8FaYy9qyVB" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            <div class="row mt-3">
+                            @foreach ($explorer->posts as $post)
+                                <div class="col-md-12 mb-5">
 
-                                <iframe width="560" height="315" src="https://www.youtube.com/embed/example1234" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                    <h2>{{ $loop->index + 1 }} | {{ $post->title }}</h2>
+                                    <div class="">
+                                        <div class="my-3">
+                                            {!! $post->description ?? '' !!}
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <span>{{ $post->created_at->diffForHumans() ?? '' }}</span>
+                                    </div>
+                                    {{-- //if video type 0 is youtube full video  --}}
+                                    @if($post->video_type == '0') 
+                                    <div class="embed-responsive embed-responsive-16by9">
+                                        @youtube($post->url)
+                                    </div>
 
-                            @endforeach
+                                    @elseif ($post->video_type == '1')
+                                    {{-- video type 1  is youtube short --}}
+                                    <iframe width="315" height="560"
+                                    src="{{ $post->url }}"
+                                    title="YouTube video player"
+                                    frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    allowfullscreen loading="lazy"></iframe>
+                                    {{-- <iframe width="315" height="560"
+                                    src="https://www.youtube.com/embed/TO1EOI1l_ss?si=_G0ZmgbmPz-WyV6w"
+                                    title="YouTube video player"
+                                    frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    allowfullscreen></iframe> --}}
+
+                                    @endif
+                              
+                                </div>
+                                @endforeach
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -91,7 +112,6 @@
                 </div> --}}
             </div>
         </div>
-    </div>
     </div>
     <!-- News With Sidebar End -->
 @endsection

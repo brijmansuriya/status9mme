@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Services;
 
 use App\Models\Post;
@@ -26,26 +27,33 @@ class YoutubeUrlServices
     {
         // Pattern for YouTube Shorts URLs
         $shortsPattern = '/youtube\.com\/shorts\/([a-zA-Z0-9_-]+)/';
-        // Replacement for YouTube Shorts embed URL
-        $shortsReplacement = 'youtube.com/embed/$1';
+
+        // Fixed base URL for YouTube embed
+        $embedBaseUrl = 'https://www.youtube.com/embed/';
+
         // Check if the URL is a YouTube Shorts URL
-        if (preg_match($shortsPattern, $shortsUrl)) {
-            return preg_replace($shortsPattern, $shortsReplacement, $shortsUrl);
+        if (preg_match($shortsPattern, $shortsUrl, $matches)) {
+            // Get the video ID (the part after '/shorts/')
+            $videoId = $matches[1];
+
+            // Return the full embed URL
+            return $embedBaseUrl . $videoId;
         }
-        // If the URL does not match any known pattern, return it as is
+
+        // If the URL does not match the pattern, return it as is
         return $shortsUrl;
     }
 
+
     //check shorts and embed video set posts array url set 
-    public function urlSet($posts)
+    public function urlSet($post)
     {
-        if ($this->getDomainName($posts) == Post::YOUTUBE && $this->isShortsUrl($posts)) {
-            $posts->url = $this->convertShortsToEmbed($posts->url);
+        if ($post->video_type == Post::YOUTUBE_SHORT) {
+            $post->url = $this->convertShortsToEmbed($post->url);
         }
-        
-        if ($this->getDomainName($posts) == Post::YOUTUBE && !$this->isShortsUrl($posts)) {
-            $posts->url = $posts->url;
+
+        if ($post->video_type == Post::YOUTUBE_VIDEO) {
+            $post->url = $post->url;
         }
     }
-
 }

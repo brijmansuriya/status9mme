@@ -84,6 +84,9 @@ class ExplorerController extends Controller
             'name' => request()->input('name'),
         ]);
 
+        //post exploer store
+        $explorer->posts()->sync($request->posts);
+        
         if ($request->hasFile('image')) {
             $explorer->deleteFile();
             $explorer->addMediaFromRequest('image')->toMediaCollection('explorer/image');
