@@ -37,3 +37,9 @@ git ssh key password
 YEPpVj5uEawU
 
 https://github.com/fomvasss/youtube
+
+c:\Herd\status9mme
+
+
+git config --global user.email "mansuriyabri@gmail.com"
+  git config --global user.name "Mansuriya Brij"
