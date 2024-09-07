@@ -16,7 +16,7 @@ class ExplorerController extends Controller
         
         $explorer = Explorer::with('posts')->whereSlug($slug)->firstOrFail();
 
-        //all posts url cunvert to embed url set
+            //all posts url cunvert to embed url set
             foreach($explorer->posts as $post){
                 $this->youtubeUrlServices->urlSet($post);
             }        

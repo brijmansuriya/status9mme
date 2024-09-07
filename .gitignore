@@ -3,7 +3,6 @@
 /vendor
 /storage
 /public/hot
-.cpanel.yml
-.env
 commands.txt
 info.txt
+.env

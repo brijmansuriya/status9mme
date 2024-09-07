@@ -1,8 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
     <url>
-        <loc>http://127.0.0.1:8000/post/Quisquam%20consequuntu</loc>
-        <lastmod>2024-08-04T06:36:18+00:00</lastmod>
+        <loc>https://status9mme.test/post/Illo%20tenetur%20nulla%20i</loc>
+        <lastmod>2024-08-31T04:12:50+00:00</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
+        <loc>https://status9mme.test/post/Vel%20id%20ut%20enim%20perfe</loc>
+        <lastmod>2024-08-31T04:13:58+00:00</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
+        <loc>https://status9mme.test/post/Blanditiis%20repellend</loc>
+        <lastmod>2024-09-07T11:21:19+00:00</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
             </url>

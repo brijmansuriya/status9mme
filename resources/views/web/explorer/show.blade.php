@@ -42,44 +42,33 @@
                                 @youtube($explorer->url)
                             </div> --}}
                             <div class="row mt-3">
-                            @foreach ($explorer->posts as $post)
-                                <div class="col-md-12 mb-5">
+                                    @foreach ($explorer->posts as $post)
+                                    <div class="col-md-12 mb-5">
 
-                                    <h2>{{ $loop->index + 1 }} | {{ $post->title }}</h2>
-                                    <div class="">
-                                        <div class="my-3">
-                                            {!! $post->description ?? '' !!}
+                                        <h2>{{ $loop->index + 1 }} | {{ $post->title }}</h2>
+                                        <div class="">
+                                            <div class="my-3">
+                                                {!! $post->description ?? '' !!}
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <span>{{ $post->created_at->diffForHumans() ?? '' }}</span>
-                                    </div>
-                                    {{-- //if video type 0 is youtube full video  --}}
-                                    @if($post->video_type == '0') 
-                                    <div class="embed-responsive embed-responsive-16by9">
-                                        @youtube($post->url)
-                                    </div>
+                                        <div class="mb-3">
+                                            <span>{{ $post->created_at->diffForHumans() ?? '' }}</span>
+                                        </div>
+                                        {{-- //if video type 0 is youtube full video  --}}
+                                        @if ($post->video_type == '0')
+                                            <div class="embed-responsive embed-responsive-16by9">
+                                                @youtube($post->url)
+                                            </div>
+                                        @elseif ($post->video_type == '1')
+                                            {{-- video type 1  is youtube short --}}
+                                            <iframe width="315" height="560" src="{{ $post->url }}" title="YouTube video player" frameborder="0"
+                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                                allowfullscreen loading="lazy"></iframe>
+                                        @endif
 
-                                    @elseif ($post->video_type == '1')
-                                    {{-- video type 1  is youtube short --}}
-                                    <iframe width="315" height="560"
-                                    src="{{ $post->url }}"
-                                    title="YouTube video player"
-                                    frameborder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                    allowfullscreen loading="lazy"></iframe>
-                                    {{-- <iframe width="315" height="560"
-                                    src="https://www.youtube.com/embed/TO1EOI1l_ss?si=_G0ZmgbmPz-WyV6w"
-                                    title="YouTube video player"
-                                    frameborder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                    allowfullscreen></iframe> --}}
-
-                                    @endif
-                              
+                                    </div>
+                                    @endforeach
                                 </div>
-                                @endforeach
-                            </div>
                         </div>
                     </div>
                 </div>
