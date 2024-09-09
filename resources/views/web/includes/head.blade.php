@@ -3,6 +3,15 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <meta content="Free HTML Templates" name="keywords">
 <meta content="Free HTML Templates" name="description">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P553KKW1VX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P553KKW1VX');
+</script>
 <!-- Favicon -->
 <link href="{{ asset('web/img/favicon.ico')}}" rel="icon">
 <!-- Google Web Fonts -->

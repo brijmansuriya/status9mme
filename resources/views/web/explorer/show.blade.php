@@ -5,14 +5,14 @@
 @section('content')
     <!-- Breadcrumb Start -->
     <div class="container-fluid">
-        <div class="container">
+        {{-- <div class="container">
             <nav class="breadcrumb bg-transparent m-0 p-0">
                 <a class="breadcrumb-item" href="#">Home</a>
                 <a class="breadcrumb-item" href="#">Categorie</a>
                 <a class="breadcrumb-item" href="#">Technology</a>
                 <span class="breadcrumb-item active">News Title</span>
             </nav>
-        </div>
+        </div> --}}
     </div>
     <!-- Breadcrumb End -->
     <!-- News With Sidebar Start -->
