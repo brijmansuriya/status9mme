@@ -102,7 +102,8 @@
         </div>
         <div class="col-md-6 p-0 m-0">
             <div class="image-container" style="height: 96vh;">
-                <img class="img-fluid" src="https://source.unsplash.com/random/">
+                {{-- <img class="img-fluid" src="https://source.unsplash.com/random/"> --}}
+                <img class="img-fluid" src="https://picsum.photos/700/700.webp">
             </div>
         </div>
     </div>

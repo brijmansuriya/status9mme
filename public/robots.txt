@@ -6,9 +6,9 @@ Disallow: /database/
 Disallow: /tests/
 Disallow: /artisan
 Disallow: /phpunit.xml
+Disallow: /admin
+Disallow: /storage/  
 
-Allow: /storage/app/public/
-Allow: /storage/framework/
-Allow: /storage/logs/
+Allow: /
 
 Sitemap: https://status9mme.com/sitemap.xml

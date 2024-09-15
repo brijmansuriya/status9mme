@@ -24,7 +24,7 @@ class PopularPost extends Controller
     public function popularPostShow($slug)
     {
 
-        $post = Post::whereSlug($slug)->active()->with('categorie:id,name')->first();
+        $post = Post::whereSlug($slug)->active()->with('categorie:id,name')->firstOrFail();
 
         //fiend $posts->url to /shorts/
 
@@ -45,16 +45,16 @@ class PopularPost extends Controller
     }
 
     //singl post latest post page
-    public function LatestPostShow($slug)
-    {
-        $posts = Post::whereSlug($slug)->active()->with('categorie:id,name')->first();
+    // public function LatestPostShow($slug)
+    // {
+    //     $posts = Post::whereSlug($slug)->active()->with('categorie:id,name')->first();
 
-        $posts->visit();
+    //     $posts->visit();
 
-        //Tranding post
-        $trandings = Post::with('categorie')->latest()->active()->take(config('app.home-post'))->get();
+    //     //Tranding post
+    //     $trandings = Post::with('categorie')->latest()->active()->take(config('app.home-post'))->get();
 
-        return view('web.post', compact('posts', 'trandings'));
-    }
+    //     return view('web.post', compact('posts', 'trandings'));
+    // }
 
 }
