@@ -5,3 +5,5 @@
 <script src="{{ asset('web/lib/owlcarousel/owl.carousel.min.js')}}"></script>
 <!-- Template Javascript -->
 <script src="{{ asset('web/js/main.js')}}"></script>
+
+@yield('script')

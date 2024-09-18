@@ -43,7 +43,8 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('template.index') }}" class="{{ request()->is('admin/template/*') ? 'active' : '' }}">
+                    <a href="{{ route('template.index') }}"
+                        class="{{ request()->is('admin/template/*') ? 'active' : '' }}">
                         <i class="fa fa-user"></i>
                         <span> Template </span>
                     </a>
@@ -66,9 +67,7 @@
                         </li>
                     </ul>
                 </li>
-
             </ul>
-
         </div>
         <!-- End Sidebar -->
 

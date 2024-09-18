@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-lg-3 col-md-6 mb-5">
             <a href="{{ route('web.home') }}" class="navbar-brand">
-                <h1 class="mb-2 mt-n2 display-5 text-uppercase"><span class="text-primary">STATUS</span>9MME</h1>
+                <div class="mb-2 mt-n2 display-5 text-uppercase logo"><span class="text-primary">STATUS</span>9MME</div>
             </a>
             <p>Old stories and and videos for knowledge for history</p>
             <div class="d-flex justify-content-start mt-4">

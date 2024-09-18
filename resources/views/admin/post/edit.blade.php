@@ -76,7 +76,7 @@
                                 <label for="product-summary">Meta Description</label>
                                 <textarea class="form-control" name="meta_description" placeholder="Meta Description">{{ $post->meta_description }}</textarea>
                             </div>
-                            <div class="form-group" id="ckblock">
+                            <div class="form-group" >
                                 <label for="product-summary">description</label>
                                 <textarea class="ckeditor form-control" name="description" placeholder="Content">{{ $post->description }}</textarea>
                             </div>
@@ -119,6 +119,27 @@
     <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
     <script src="{{ URL::asset('assets/libs/selectize/js/standalone/selectize.min.js') }}"></script>
     <script>
+        CKEDITOR.replace('editor1', {
+        extraPlugins: 'font', // Enable the font plugin
+        toolbar: [
+            { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat'] },
+            { name: 'paragraph', items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote'] },
+            { name: 'links', items: ['Link', 'Unlink'] },
+            { name: 'insert', items: ['Image', 'Table', 'HorizontalRule'] },
+            { name: 'styles', items: ['Styles', 'Format', 'Font', 'FontSize'] }, // Add Font and FontSize
+            { name: 'colors', items: ['TextColor', 'BGColor'] }, // Optionally, you can add color pickers
+            { name: 'tools', items: ['Maximize'] }
+        ],
+        fontSize_sizes: '8/8px;9/9px;10/10px;12/12px;14/14px;16/16px;18/18px;24/24px;36/36px;48/48px;', // Define available font sizes
+        font_names: 'Arial/Arial, Helvetica, sans-serif;' + 
+                    'Comic Sans MS/Comic Sans MS, cursive;' + 
+                    'Courier New/Courier New, Courier, monospace;' + 
+                    'Georgia/Georgia, serif;' + 
+                    'Tahoma/Tahoma, Geneva, sans-serif;' + 
+                    'Times New Roman/Times New Roman, Times, serif;' + 
+                    'Verdana/Verdana, Geneva, sans-serif;', // Define available font styles
+    });
+
         var ids = @json($post->tags->pluck('id')->toArray());
         $(document).ready(function() {
             console.log('::::::::::::', ids);

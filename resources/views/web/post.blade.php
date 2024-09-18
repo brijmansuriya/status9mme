@@ -1,6 +1,8 @@
 @extends('web.layouts.app')
 @section('css')
     {!! seo()->for($post) !!}
+    <meta property="article:published_time" content="{{ $post->created_at->toIso8601String() }}" />
+    <meta property="article:modified_time" content="{{ $post->updated_at->toIso8601String() }}" />
 @endsection
 @section('content')
     <!-- Breadcrumb Start -->
@@ -26,7 +28,7 @@
                         <img class="img-fluid w-100 h-50" src="{{ $post->image ?? '' }}"
                             style="object-fit: cover;height: 350px;">
                         <div class="overlay position-relative bg-light">
-                            <h2>{{ $post->title }}</h2>
+                            <h1>{{ $post->title }}</h1>
                             <div>{{ $post->categorie->name ?? '' }}</div>
                             <hr>
                             <div>
@@ -83,7 +85,7 @@
                                         style="height: 100px;">
                                         <div class="mb-1" style="font-size: 13px;">
                                             <div>{{ $tranding->categorie->name ?? '' }}</div>
-                                            <div class="h6 m-0">{{ $tranding->title }}</div>
+                                            <div class="h6 m-0">{{ Str::limit($tranding->title, 70, '...') }}</div>
                                         </div>
                                         <span>{{ $tranding->created_at }}</span>
 

@@ -207,3 +207,9 @@
     </div>
     <!-- News With Sidebar End -->
 @endsection
+
+@section('script')
+    <script type="application/ld+json">
+        {!! $homePageSchema->toScript() !!}
+    </script>
+@endsection

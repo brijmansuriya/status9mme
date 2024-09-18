@@ -77,7 +77,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="product-summary">Meta Description</label>
-                                <textarea class="form-control" name="meta_description" placeholder="Meta Description">{{ old('meta_description') }}</textarea>
+                                <textarea class="form-control" name="meta_description" placeholder="Meta Description" maxlength="160">{{ old('meta_description') }}</textarea>
                             </div>
                             <div class="form-group" id="ckblock">
                                 <label for="product-summary">Content</label>

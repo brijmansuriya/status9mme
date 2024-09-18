@@ -85,7 +85,7 @@
 
     <!-- LOGO -->
     <div class="logo-box">
-        <a href="{{ route('admin.login') }}" class="logo text-center">
+        <a href="{{ route('web.home') }}" class="logo text-center">
             <span class="logo-lg">
              
                 <span class="logo-lg-text-light">{{ config('app.name') }}</span>

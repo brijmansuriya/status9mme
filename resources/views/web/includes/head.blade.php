@@ -38,4 +38,9 @@ a:hover {
   text-decoration: none !important;
   cursor: pointer;
 }
+
+.logo{
+  font-size: 34px;
+  font-weight: 800;
+}
 </style>

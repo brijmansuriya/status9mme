@@ -12,7 +12,7 @@
                             <a href="{{ route('web.categories', [$categorie->slug]) }}">
                                 <div class="col-md-3 mb-3">
                                     <div class="d-flex ">
-                                        <img src="{{ $categorie->category_image }}"
+                                        <img src="{{ $categorie->image }}"
                                             style="width: 200px;height:200px;object-fit: cover;">
                                     </div>
                                     {{ $categorie->name }}
