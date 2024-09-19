@@ -125,10 +125,6 @@ class PostController extends Controller
         $post->seo->update([
             'title' => $request->title,
             'description' => $request->meta_description,
-            'keywords' => $request->meta_keywords,
-            'image' => $request->image,
-            'published' => $post->created_at,
-            'updated' => $post->updated_at,
         ]);
 
         $post->tags()->sync($request->tags);
