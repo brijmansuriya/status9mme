@@ -121,6 +121,8 @@ class PostController extends Controller
             'url' => $request->url,
             'slug' => $request->slug,
         ]);
+
+        
         
         $post->seo->update([
             'title' => $request->title,
