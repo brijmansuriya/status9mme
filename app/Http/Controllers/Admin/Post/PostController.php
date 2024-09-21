@@ -2,33 +2,34 @@
 
 namespace App\Http\Controllers\Admin\Post;
 
-use Seo;
-use Carbon\Carbon;
-use App\Models\Tag;
-use App\Models\Post;
-use App\Models\PostTag;
-use App\Models\Categorie;
-use App\Models\AppMenuLink;
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
-use App\DataTables\PostDataTable;
-use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Controller;
 use App\DataTables\CategorieDataTable;
-use Yajra\DataTables\Facades\DataTables;
+use App\DataTables\PostDataTable;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Post\StorePostRequest;
 use App\Http\Requests\Admin\Post\UpdatePostRequest;
 use App\Http\Requests\Admin\Settings\UpdateAppMenuLinkRequest;
+use App\Models\AppMenuLink;
+use App\Models\Categorie;
+use App\Models\Post;
+use App\Models\PostTag;
+use App\Models\Tag;
+use App\Services\YoutubeUrlServices;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
+use Seo;
+use Yajra\DataTables\Facades\DataTables;
+
 
 class PostController extends Controller
 {
-    /**
-     *  returns the app links
-     */
-    // public function index()
-    // {
-    //     return view('admin.post.index');
-    // }
+    //custocter 
+
+    public function __construct(protected YoutubeUrlServices $youtubeUrlServices)
+    {
+       
+    }
 
     public function index(PostDataTable $dataTable)
     {
@@ -102,15 +103,10 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)
     {
-        // $slug = Str::slug($request->title);
-
-        // $request->slug = $slug;
-
-        // $count = Post::where('slug', $slug)->count();
-
-        // if ($count > 0) {
-        //     $request->slug = $slug . '-' . ($count + 1);
-        // }
+        $videoType = '0';
+        if($this->youtubeUrlServices->isShortsUrl($request->url)){
+            $videoType = '1';
+        }
 
         $post = Post::create([
             'categorie_id' => $request->categorie_id,
@@ -120,9 +116,10 @@ class PostController extends Controller
             'description' => $request->description,
             'url' => $request->url,
             'slug' => $request->slug,
+            'video_type' => $videoType,
         ]);
 
-        
+
         
         $post->seo->update([
             'title' => $request->title,
@@ -154,8 +151,15 @@ class PostController extends Controller
      */
     public function update(UpdatePostRequest $request, $id)
     {
+        $videoType = '0';
+        if($this->youtubeUrlServices->isShortsUrl($request->url)){
+            $videoType = '1';
+        }
+
         $post = Post::findOrFail($id);
-        $post->update($request->all());
+        $requestData = $request->all();
+        $requestData['video_type'] = $videoType;
+        $post->update($requestData);
         $post->tags()->sync($request->tags);
 
         if ($request->hasFile('image')) {

@@ -25,7 +25,7 @@ class UpdateCategoryRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'image' => 'image|mimes:jpg,png,jpeg|max:5000',
+            'image' => 'image|max:5000',
         ];
     }
 
