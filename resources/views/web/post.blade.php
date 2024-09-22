@@ -120,6 +120,43 @@
     <!-- News With Sidebar End -->
 @endsection
 
+@section('script')
 
+{{-- JSON-LD for Breadcrumb Schema --}}
+@php
+    $breadcrumbs = [
+        [
+            '@type' => 'ListItem',
+            'position' => 1,
+            'name' => 'Home',
+            'item' => route('web.home')
+        ]
+    ];
+
+    if ($post?->categorie?->slug && $post?->categorie?->name) {
+        $breadcrumbs[] = [
+            '@type' => 'ListItem',
+            'position' => 2,
+            'name' => $post->categorie->name,
+            'item' => route('web.categories', ['slug' => $post->categorie->slug])
+        ];
+    }
+
+    $breadcrumbs[] = [
+        '@type' => 'ListItem',
+        'position' => count($breadcrumbs) + 1,
+        'name' => Str::limit($post->title, 50, '...')
+    ];
+
+@endphp
+
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": {!! json_encode($breadcrumbs) !!}
+    }
+</script>
+@endsection
 
 

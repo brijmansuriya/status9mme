@@ -30,7 +30,5 @@
 
 @endsection
 @section('script')
-<script type="application/ld+json">
     {!! $dmcaPageSchema->toScript() !!}
-</script>
 @endsection

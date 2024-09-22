@@ -213,7 +213,5 @@
 @endsection
 
 @section('script')
-    <script type="application/ld+json">
         {!! $homePageSchema->toScript() !!}
-    </script>
 @endsection
