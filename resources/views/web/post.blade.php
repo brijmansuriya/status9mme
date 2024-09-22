@@ -6,16 +6,19 @@
 @endsection
 @section('content')
     <!-- Breadcrumb Start -->
-    {{-- <div class="container-fluid">
+    <div class="container-fluid">
         <div class="container">
             <nav class="breadcrumb bg-transparent m-0 p-0">
-                <a class="breadcrumb-item" href="#">Home</a>
-                <a class="breadcrumb-item" href="#">Categorie</a>
-                <a class="breadcrumb-item" href="#">Technology</a>
-                <span class="breadcrumb-item active">News Title</span>
+                <a class="breadcrumb-item" href="{{ route('web.home') }}">Home</a>
+
+                @if($post?->categorie?->slug && $post?->categorie?->name)
+                <a class="breadcrumb-item" href="{{ route('web.categories', ['slug' => $post->categorie->slug]) }}">{{ $post?->categorie?->name  }}</a>
+                @endif
+               
+                <span class="breadcrumb-item active">{{  Str::limit($post->title, 50, '...') }}</span>
             </nav>
         </div>
-    </div> --}}
+    </div>
     <!-- Breadcrumb End -->
     <!-- News With Sidebar Start -->
     <div class="container-fluid py-3">
@@ -26,7 +29,7 @@
 
                     <div class="position-relative mb-3">
                         <img class="img-fluid w-100 h-50" src="{{ $post->image ?? '' }}"
-                            style="object-fit: cover;height: 350px;">
+                            style="object-fit: cover;height: 350px;" alt="{{ $post->title }}">
                         <div class="overlay position-relative bg-light">
                             <h1>{{ $post->title }}</h1>
                             <div>{{ $post->categorie->name ?? '' }}</div>

@@ -1,8 +1,13 @@
 @yield('css')
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
-<meta content="Free HTML Templates" name="keywords">
-<meta content="Free HTML Templates" name="description">
+
+<!-- Time Meta Tag -->
+<meta name="time" content="{{ now()->toDateTimeString() }}">
+<!-- Logo Meta Tag -->
+<meta property="og:image" content="{{ asset('web/img/status9mme-Logo.png') }}" />
+
+@yield('meta')
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-P553KKW1VX"></script>
 <script>

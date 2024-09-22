@@ -79,11 +79,21 @@ class WebController extends Controller
                 locale: 'Lorem Ipsum',
                 url: 'Lorem Ipsum',
             ),
+            'aboutPageSchema' => $aboutPageSchema
         ]);
     }
     //privacypolicy
     public function privacypolicy()
     {
+
+        //js Schema data for home page
+        $privacyPolicyPageSchema = Schema::WebPage()
+            ->name(config('app.name') .'Privacy Policy')
+            ->description('At status9mme, accessible from status9mme.com, one of our main priorities is the privacy of our visitors.
+                This Privacy Policy document contains types of information that is collected and recorded by status9mme
+                and how we use it')
+            ->url(route('web.privacypolicy'))
+            ->inLanguage(['en', 'hi']);
         return view('web.privacypolicy', [
             'SEOData' => new SEOData(
                 title: config('app.name') . ' Privacy Policy',
@@ -97,11 +107,19 @@ class WebController extends Controller
                 locale: 'Lorem Ipsum',
                 url: 'Lorem Ipsum',
             ),
+            'privacyPolicyPageSchema' => $privacyPolicyPageSchema
         ]);
     }
     //dmca page
     public function dmca()
     {
+        //js Schema data for home page
+        $dmcaPageSchema = Schema::WebPage()
+            ->name(config('app.name') .'DMCA')
+            ->description('If we Have added some content that belong to you or your organization by mistake, We are sorry for that.
+                We apologize for that and assure you that this wont be repeated in future.')
+            ->url(route('web.dmca'))
+            ->inLanguage(['en', 'hi']);
         return view('web.dmca', [
             'SEOData' => new SEOData(
                 title: config('app.name') . ' DMCA',
@@ -115,11 +133,18 @@ class WebController extends Controller
                 locale: 'Lorem Ipsum',
                 url: 'Lorem Ipsum',
             ),
+            'dmcaPageSchema' => $dmcaPageSchema
         ]);
     }
     //contactus page
     public function contactus()
     {
+         //js Schema data for home page
+         $contactPageSchema = Schema::WebPage()
+         ->name(config('app.name') .'Contact Us')
+         ->description('Contact Us')
+         ->url(route('web.contactus'))
+         ->inLanguage(['en', 'hi']);
         return view('web.contactus', [
             'SEOData' => new SEOData(
                 title: config('app.name') . ' Contact Us',
@@ -133,6 +158,7 @@ class WebController extends Controller
                 locale: 'Lorem Ipsum',
                 url: 'Lorem Ipsum',
             ),
+            'contactPageSchema' => $contactPageSchema
         ]);
     }
 
@@ -157,9 +183,5 @@ class WebController extends Controller
         return redirect()->back()->with('success', 'Thank you for contacting us!');
     }
     //contactus Submit
-    public function template(Request $request)
-    {
-
-        return view('web.template');
-    }
+   
 }

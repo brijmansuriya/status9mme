@@ -76,3 +76,9 @@
 
     </div>
 @endsection
+
+@section('script')
+<script type="application/ld+json">
+    {!! $aboutPageSchema->toScript() !!}
+</script>
+@endsection

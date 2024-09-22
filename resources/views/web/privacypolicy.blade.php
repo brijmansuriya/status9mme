@@ -86,3 +86,8 @@
 
 </div>
 @endsection
+@section('script')
+<script type="application/ld+json">
+    {!! $privacyPolicyPageSchema->toScript() !!}
+</script>
+@endsection

@@ -24,7 +24,7 @@ class PopularPost extends Controller
     public function popularPostShow($slug)
     {
 
-        $post = Post::whereSlug($slug)->active()->with('categorie:id,name')->firstOrFail();
+        $post = Post::whereSlug($slug)->active()->with('categorie:id,name,slug')->firstOrFail();
 
         //fiend $posts->url to /shorts/
 

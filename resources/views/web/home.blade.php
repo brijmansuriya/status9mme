@@ -2,6 +2,10 @@
 @section('css')
     {!! seo($SEOData) !!}
 @endsection
+@section('meta')
+<meta content="Radhe Krishna, Gita quotes in Hindi, Shiva quotes in Hindi, YouTube videos, devotional quotes, Bhagavad Gita, Lord Shiva, spiritual quotes in Hindi" name="keywords">
+
+@endsection
 @section('content')
     <!-- Main News Slider Start -->
     <div class="container-fluid py-3">
@@ -128,7 +132,7 @@
                         @endforeach
 
                     </div>
-                    <div class="row">
+                    {{-- <div class="row">
                         <div class="col-12">
                             <div class="d-flex align-items-center justify-content-between bg-light py-2 px-4 mb-3">
                                 <h3 class="m-0">Latest Explorer</h3>
@@ -156,7 +160,7 @@
                             </div>
                         @endforeach
 
-                    </div>
+                    </div> --}}
                 </div>
 
                 <div class="col-lg-4 pt-3 pt-lg-0">
