@@ -185,7 +185,7 @@
                                                 {{ $tranding->categorie->name ?? '' }}
                                             </div>
                                         </div>
-                                        <div class="h6 m-0">{{ $tranding->title }}</div>
+                                        <div class="h6 m-0">{{ Str::limit($tranding->title, 50, '...') }}</div>
                                         <span>{{ $tranding->created_at }}</span>
                                     </div>
                                 </div>

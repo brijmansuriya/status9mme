@@ -28,7 +28,7 @@
 <link href="{{ asset('web/lib/owlcarousel/assets/owl.carousel.min.css')}}" rel="stylesheet">
 <!-- Customized Bootstrap Stylesheet -->
 <link href="{{ asset('web/css/style.css')}}" rel="stylesheet">
-
+<meta name="p:domain_verify" content="b966a68636b5f65c2b6ac4926d1205cb"/>
 <style>
     .h-200{
     height: 200px;
