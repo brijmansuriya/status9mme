@@ -5,5 +5,6 @@
 <script src="{{ asset('web/lib/owlcarousel/owl.carousel.min.js')}}"></script>
 <!-- Template Javascript -->
 <script src="{{ asset('web/js/main.js')}}"></script>
-
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8934395733555587"
+     crossorigin="anonymous"></script>
 @yield('script')
