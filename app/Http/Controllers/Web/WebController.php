@@ -20,13 +20,17 @@ class WebController extends Controller
     {
         $categorys = Categorie::active()->available()->latest()->take(config('app.home-categorie'))->get(['id', 'slug', 'name']);
 
-        $featureds = $populars = $latests = $trandings = Post::with('categorie')->latest()->active()->available()->paginate(config('app.home-post'));
+        $featureds = $latests = $trandings = $populars = Post::with('categorie')->latest()->active()->available()->paginate(config('app.home-post'));
+
+        $latests =  Post::with('categorie')->latest()->active()->available()->orderBy('id', 'desc')->paginate(config('app.home-post'));
+
+        $populars = Post::with('categorie')->orderByUniqueViews('asc')->latest()->active()->available()->paginate(config('app.home-post'));
 
         $explorers = Explorer::latest()->available()->paginate(config('app.home-categorie'));
 
         //js Schema data for home page
         $homePageSchema = Schema::WebPage()
-            ->name(config('app.name') .'Home Page')
+            ->name(config('app.name') . 'Home Page')
             ->description('Witness the eternal love of Radhe Krishna through our heartwarming video statuses. These clips portray their divine romance and the lessons of devotion that resonate through the ages.')
             ->url(route('web.home'))
             ->inLanguage(['en', 'hi']);
@@ -59,10 +63,10 @@ class WebController extends Controller
     {
         //js Schema data for home page
         $aboutPageSchema = Schema::AboutPage()
-        ->name(config('app.name') .'About Us')
-        ->description('Learn more about Status9mme, our mission, and our team.')
-        ->url(route('web.aboutus'))
-        ->inLanguage(['en','hi']);
+            ->name(config('app.name') . 'About Us')
+            ->description('Learn more about Status9mme, our mission, and our team.')
+            ->url(route('web.aboutus'))
+            ->inLanguage(['en', 'hi']);
 
         // Seo::setTitle('Custom Home Page Title');
         // Seo::setDescription('Custom Home Page Description');
@@ -88,7 +92,7 @@ class WebController extends Controller
 
         //js Schema data for home page
         $privacyPolicyPageSchema = Schema::WebPage()
-            ->name(config('app.name') .'Privacy Policy')
+            ->name(config('app.name') . 'Privacy Policy')
             ->description('At status9mme, accessible from status9mme.com, one of our main priorities is the privacy of our visitors.
                 This Privacy Policy document contains types of information that is collected and recorded by status9mme
                 and how we use it')
@@ -115,7 +119,7 @@ class WebController extends Controller
     {
         //js Schema data for home page
         $dmcaPageSchema = Schema::WebPage()
-            ->name(config('app.name') .'DMCA')
+            ->name(config('app.name') . 'DMCA')
             ->description('If we Have added some content that belong to you or your organization by mistake, We are sorry for that.
                 We apologize for that and assure you that this wont be repeated in future.')
             ->url(route('web.dmca'))
@@ -139,12 +143,12 @@ class WebController extends Controller
     //contactus page
     public function contactus()
     {
-         //js Schema data for home page
-         $contactPageSchema = Schema::WebPage()
-         ->name(config('app.name') .'Contact Us')
-         ->description('Contact Us')
-         ->url(route('web.contactus'))
-         ->inLanguage(['en', 'hi']);
+        //js Schema data for home page
+        $contactPageSchema = Schema::WebPage()
+            ->name(config('app.name') . 'Contact Us')
+            ->description('Contact Us')
+            ->url(route('web.contactus'))
+            ->inLanguage(['en', 'hi']);
         return view('web.contactus', [
             'SEOData' => new SEOData(
                 title: config('app.name') . ' Contact Us',
@@ -183,5 +187,5 @@ class WebController extends Controller
         return redirect()->back()->with('success', 'Thank you for contacting us!');
     }
     //contactus Submit
-   
+
 }

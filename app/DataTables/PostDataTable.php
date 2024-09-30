@@ -61,10 +61,13 @@ class PostDataTable extends DataTable
                 $link =  $row->generated_link;
                 return '<a href="' . $link . '" class="btn btn-primary" data-overlaycolor="#38414a">View Link</a>';
             })
+            ->addColumn('count', function ($row) {
+                return views($row)->count();;
+            })
             ->orderColumn("updated_at", function ($query, $row) {
                 return $query->orderBy("updated_at", $row);
             })
-            ->rawColumns(['checkbox','action', 'generated_link', 'status', 'image'])
+            ->rawColumns(['checkbox','action', 'generated_link', 'status', 'image','count'])
             ->setRowId('id');
     }
 
@@ -125,6 +128,7 @@ class PostDataTable extends DataTable
             Column::make('image'),
             Column::make('title'),
             Column::make('slug'),
+            Column::make('count'),
             Column::make('status'),
             Column::computed('action')
                 ->exportable(false)
