@@ -138,6 +138,7 @@
             capturedImagePreview.src = imageData;
             capturedImagePreview.style.display = 'block';
         }
+        
     </script>
 
     {!! $videoToImagePageSchema->toScript() !!}
