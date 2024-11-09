@@ -26,7 +26,7 @@
 
         <!-- Video Element for Uploaded Video -->
         <div class="mb-3">
-            <video id="videoPreview" class="w-100" controls></video>
+            <video id="videoPreview" class="w-100 h-auto" controls></video>
         </div>
 
         <!-- Capture Frame Button -->
