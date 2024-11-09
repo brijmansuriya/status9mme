@@ -26,7 +26,7 @@ class WebController extends Controller
 
         $populars = Post::with('categorie')->orderByUniqueViews('asc')->latest()->active()->available()->paginate(config('app.home-post'));
 
-        $explorers = Explorer::latest()->available()->paginate(config('app.home-categorie'));
+        $explorers = Explorer::latest()->available()->paginate(config('app.home-explorer'));
 
         //js Schema data for home page
         $homePageSchema = Schema::WebPage()

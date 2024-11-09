@@ -21,8 +21,10 @@ return [
     'name' => env('APP_NAME', 'Laravel'),
 
     //home page benner(crogal) sidebar category list show limit home-categorie
-    'home-categorie' => 4
-    ,
+    'home-categorie' => 9,
+
+    'home-explorer' => 4,
+
     //home page benner(crogal) post list show home-post
     'home-post' => 6,
     

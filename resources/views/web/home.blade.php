@@ -1,22 +1,43 @@
 @extends('web.layouts.app')
 @section('css')
     {!! seo($SEOData) !!}
+    <style>
+        .gradient-text {
+            background: linear-gradient(90deg, #4b2478, #f955ff);
+            /* Customize colors */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
 @endsection
 @section('meta')
-<meta content="Radhe Krishna, Gita quotes in Hindi, Shiva quotes in Hindi, YouTube videos, devotional quotes, Bhagavad Gita, Lord Shiva, spiritual quotes in Hindi" name="keywords">
-
+    <meta
+        content="Radhe Krishna, Gita quotes in Hindi, Shiva quotes in Hindi, YouTube videos, devotional quotes, Bhagavad Gita, Lord Shiva, spiritual quotes in Hindi"
+        name="keywords">
 @endsection
 @section('content')
     <!-- Main News Slider Start -->
     <div class="container-fluid py-3">
+
+        {{-- hero section --}}
+        <div class="hero-section" style="padding: 60px 0;">
+            <div class="container text-center">
+                <h1 class="display-4 font-weight-bold gradient-text">Discover Amazing Status Videos</h1>
+                <p class="lead">Explore, download, and share high-quality status videos for every mood and occasion.</p>
+                <a href="{{ route('web.categorieslist') }}" class="btn btn-primary btn-lg mt-3">Browse Categories</a>
+            </div>
+        </div>
+        {{-- hero section --}}
+
+
         <div class="container">
-            <div class="row">
-                <div class="col-lg-8">
-                    <div class="owl-carousel owl-carousel-2 carousel-item-1 position-relative mb-3 mb-lg-0">
-                        <div class="position-relative overflow-hidden" style="height: 435px;">
+            {{-- <div class="row">
+                <div class="col-lg-12">
+                    <div class="owl-carousel owl-carousel-2 carousel-item-1 position-relative mb-3 mb-lg-0 p-1">
+                        <div class="position-relative overflow-hidden" >
                             <img class="img-fluid h-100" src="{{ asset('web/img/status9mme-banner-1.webp') }}" style="object-fit: cover;">
                         </div>
-                        <div class="position-relative overflow-hidden" style="height: 435px;">
+                        <div class="position-relative overflow-hidden" >
                             <img class="img-fluid h-100" src="{{ asset('web/img/status9mme-banner-2.webp')}}" style="object-fit: cover;">
                         </div>
                     </div>
@@ -35,13 +56,64 @@
                         </div>
                     @endforeach
                 </div>
-            </div>
+            </div> --}}
+
+
+
+
         </div>
     </div>
     <!-- Main News Slider End -->
 
 
 
+    <div class="container">
+        <div class="row">
+            {{-- Tools start --}}
+            <div class="col-12">
+                    <div class="d-flex align-items-center justify-content-between bg-light py-2 px-4 mb-3">
+                        <h3 class="m-0">Tools</h3>
+                        {{-- <a class="text-secondary font-weight-medium text-decoration-none"
+                            href="{{ route('web.categorieslist') }}">View All</a> --}}
+                    </div>
+                   
+            </div>
+            {{-- Tools end --}}
+        </div>
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="position-relative overflow-hidden mb-3" style="height: 80px;">
+                    <a href="{{ route('web.tools.video_to_image') }}"
+                        class="overlay align-items-center justify-content-center h4 m-0 text-white text-decoration-none">Video
+                        to Image</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            {{-- cetegory start --}}
+            <div class="col-lg-12">
+                <div class="d-flex align-items-center justify-content-between bg-light py-2 px-4 mb-3">
+                    <h3 class="m-0">Categories</h3>
+                    <a class="text-secondary font-weight-medium text-decoration-none"
+                        href="{{ route('web.categorieslist') }}">View All</a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            @foreach ($categorys as $categorie)
+                <div class="col-lg-4">
+                    <div class="position-relative overflow-hidden mb-3" style="height: 80px;">
+                        <a href="{{ route('web.categories', [$categorie->slug]) }}"
+                            class="overlay align-items-center justify-content-center h4 m-0 text-white text-decoration-none">{{ $categorie->name }}</a>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+        {{-- cetegory end --}}
+    </div>
 
     <!-- Featured News Slider Start -->
     <div class="container-fluid py-3">
@@ -68,7 +140,7 @@
             </div>
         </div>
     </div>
-    
+
     <!-- News With Sidebar Start -->
     <div class="container-fluid py-3">
         <div class="container">
@@ -214,5 +286,5 @@
 @endsection
 
 @section('script')
-        {!! $homePageSchema->toScript() !!}
+    {!! $homePageSchema->toScript() !!}
 @endsection
