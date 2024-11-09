@@ -23,7 +23,8 @@ return [
      * to the root domain and not relative to the current URL. The `spatie/laravel-sitemap` package
      * is a great package to generate sitemaps for your application.
      */
-    'sitemap' => url('/sitemap.xml'),
+    // 'sitemap' => url('/sitemap.xml'),
+    'sitemap' => '/sitemap.xml',
 
     /**
      * Use this setting to specify whether you want self-referencing `<link rel="canonical" href="$url">` tags to
@@ -59,7 +60,8 @@ return [
      *
      * You can use the following filetypes: ico, png, gif, jpeg, svg.
      */
-    'favicon' => asset('web/img/favicon.ico'),
+    // 'favicon' => asset('web/img/favicon.ico'),
+    'favicon' => '/web/img/favicon.ico',
 
     'title' => [
         /**
