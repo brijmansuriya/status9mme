@@ -19,12 +19,12 @@
                         <ol class="breadcrumb m-0">
                             {{-- <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Dashboard</a></li> --}}
                             <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Dashboard</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('app-links.index') }}">App Menu Link Settings</a>
+                            <li class="breadcrumb-item"><a href="{{ route('app-links.index') }}">Post</a>
                             </li>
-                            <li class="breadcrumb-item"><a href="#">Edit App Menu Link Setting</a></li>
+                            <li class="breadcrumb-item"><a href="#">Edit Post</a></li>
                         </ol>
                     </div>
-                    <h4 class="page-title">Edit App Menu Link Setting</h4>
+                    <h4 class="page-title">Edit Post</h4>
                 </div>
             </div>
         </div>
@@ -37,8 +37,8 @@
                     <div class="card-body">
 
 
-                        <form class="needs-validation " method="POST" action="{{ route('post.update', $post->id) }}"
-                            novalidate="" enctype="multipart/form-data">
+                        <form class="needs-validation" id="form-post" method="POST"
+                            action="{{ route('post.update', $post->id) }}" novalidate="" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
                                 <label for="product-summary">Categorie</label>
@@ -67,16 +67,31 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="product-summary">title</label>
-                                <input type="text" class="form-control" name="title" value="{{ $post->title }}"
-                                    placeholder="Please enter Name">
+                                <label for="product-summary">Title</label>
+                                <input type="text" class="form-control slug_check" name="title"
+                                    value="{{ $post->title }}" placeholder="Please enter Name" id="title">
                             </div>
-
+                            <div class="form-group" id="slug-group">
+                                <label for="product-summary">Slug</label>
+                                <input type="text" class="form-control slug_check" id="slug" name="slug"
+                                    value="{{ $post->slug }}" placeholder="Please enter slug" required
+                                    data-parsley-trigger="keyup" data-parsley-required-message="The slug field is required"
+                                    data-parsley-class-handler="#slug-group" data-parsley-minlength="2"
+                                    data-parsley-minlength-message="slug must contains more than 2 characters"
+                                    data-parsley-pattern="^[a-z0-9]+(?:-[a-z0-9]+)*$"
+                                    data-parsley-pattern-message="Please enter valid slug">
+                                @if ($errors->has('slug'))
+                                    <span class="text-danger">
+                                        {{ $errors->first('slug') }}
+                                    </span>
+                                @endif
+                                <span class="text-danger" id="slug-error"></span>
+                            </div>
                             <div class="form-group">
                                 <label for="product-summary">Meta Description</label>
                                 <textarea class="form-control" name="meta_description" placeholder="Meta Description">{{ $post->meta_description }}</textarea>
                             </div>
-                            <div class="form-group" >
+                            <div class="form-group">
                                 <label for="product-summary">description</label>
                                 <textarea class="ckeditor form-control" name="description" placeholder="Content">{{ $post->description }}</textarea>
                             </div>
@@ -99,7 +114,8 @@
                                 <div class="col-md-6">
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <button type="submit" class="btn btn-primary waves-effect waves-light">Submit</button>
+                                    <button type="submit" id="submit-btn"
+                                        class="btn btn-primary waves-effect waves-light submit-btn">Submit</button>
                                 </div>
                             </div>
                         </form>
@@ -120,29 +136,50 @@
     <script src="{{ URL::asset('assets/libs/selectize/js/standalone/selectize.min.js') }}"></script>
     <script>
         CKEDITOR.replace('editor1', {
-        extraPlugins: 'font', // Enable the font plugin
-        toolbar: [
-            { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat'] },
-            { name: 'paragraph', items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote'] },
-            { name: 'links', items: ['Link', 'Unlink'] },
-            { name: 'insert', items: ['Image', 'Table', 'HorizontalRule'] },
-            { name: 'styles', items: ['Styles', 'Format', 'Font', 'FontSize'] }, // Add Font and FontSize
-            { name: 'colors', items: ['TextColor', 'BGColor'] }, // Optionally, you can add color pickers
-            { name: 'tools', items: ['Maximize'] }
-        ],
-        fontSize_sizes: '8/8px;9/9px;10/10px;12/12px;14/14px;16/16px;18/18px;24/24px;36/36px;48/48px;', // Define available font sizes
-        font_names: 'Arial/Arial, Helvetica, sans-serif;' + 
-                    'Comic Sans MS/Comic Sans MS, cursive;' + 
-                    'Courier New/Courier New, Courier, monospace;' + 
-                    'Georgia/Georgia, serif;' + 
-                    'Tahoma/Tahoma, Geneva, sans-serif;' + 
-                    'Times New Roman/Times New Roman, Times, serif;' + 
-                    'Verdana/Verdana, Geneva, sans-serif;', // Define available font styles
-    });
+            extraPlugins: 'font', // Enable the font plugin
+            toolbar: [{
+                    name: 'basicstyles',
+                    items: ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-',
+                        'RemoveFormat'
+                    ]
+                },
+                {
+                    name: 'paragraph',
+                    items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote']
+                },
+                {
+                    name: 'links',
+                    items: ['Link', 'Unlink']
+                },
+                {
+                    name: 'insert',
+                    items: ['Image', 'Table', 'HorizontalRule']
+                },
+                {
+                    name: 'styles',
+                    items: ['Styles', 'Format', 'Font', 'FontSize']
+                }, // Add Font and FontSize
+                {
+                    name: 'colors',
+                    items: ['TextColor', 'BGColor']
+                }, // Optionally, you can add color pickers
+                {
+                    name: 'tools',
+                    items: ['Maximize']
+                }
+            ],
+            fontSize_sizes: '8/8px;9/9px;10/10px;12/12px;14/14px;16/16px;18/18px;24/24px;36/36px;48/48px;', // Define available font sizes
+            font_names: 'Arial/Arial, Helvetica, sans-serif;' +
+                'Comic Sans MS/Comic Sans MS, cursive;' +
+                'Courier New/Courier New, Courier, monospace;' +
+                'Georgia/Georgia, serif;' +
+                'Tahoma/Tahoma, Geneva, sans-serif;' +
+                'Times New Roman/Times New Roman, Times, serif;' +
+                'Verdana/Verdana, Geneva, sans-serif;', // Define available font styles
+        });
 
         var ids = @json($post->tags->pluck('id')->toArray());
         $(document).ready(function() {
-            console.log('::::::::::::', ids);
             $('#tag').select2();
             $('.tagtest').val(ids).trigger('change');
         });
@@ -157,6 +194,37 @@
                     text: input,
                 };
             }
+        });
+
+
+       
+
+        $('.slug_check').on('keyup', function() {
+            $('#slug').val(createSlug($('#title').val()));
+            let isSlugValid = false; 
+            var slug = $('#slug').val();
+            var title = $('#title').val();
+
+            $.ajax({
+                url: "{{ route('admin.post.slug.check') }}",
+                type: "POST",
+                data: {
+                    slug: slug,
+                    title: title,
+                    _token: '{{ csrf_token() }}',
+                },
+                success: function(data) {
+                    console.log(data);
+
+                    if (data.status == true) {
+                        $('#slug-error').text('');
+
+                    } else {
+                        $('#slug-error').text('Slug already exist');
+                    }
+
+                }
+            });
         });
     </script>
 @endsection

@@ -17,12 +17,12 @@
                         <ol class="breadcrumb m-0">
                             {{-- <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Dashboard</a></li> --}}
                             <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Dashboard</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('app-links.index') }}">App Menu Link Settings</a>
+                            <li class="breadcrumb-item"><a href="{{ route('app-links.index') }}">Post</a>
                             </li>
-                            <li class="breadcrumb-item"><a href="#">Edit App Menu Link Setting</a></li>
+                            <li class="breadcrumb-item"><a href="#">Create</a></li>
                         </ol>
                     </div>
-                    <h4 class="page-title">Edit App Menu Link Setting</h4>
+                    <h4 class="page-title">Post Create</h4>
                 </div>
             </div>
         </div>

@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\Categorie\SubCategorieController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\Explorer\ExplorerController;
 use App\Http\Controllers\Admin\ExportController;
+use App\Http\Controllers\Admin\Image\ImageController;
 use App\Http\Controllers\Admin\Post\PostController;
 use App\Http\Controllers\Admin\Settings\AppLinkSettingsController;
 use App\Http\Controllers\Admin\Settings\AppSettingController;
@@ -25,6 +26,7 @@ use App\Http\Controllers\WebViewController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+
 
 
 /*
@@ -61,6 +63,9 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
         Route::get('{id}/delete', [PostController::class, 'delete'])->name('post.delete');
         Route::post('deleteAll', [PostController::class, 'deleteAll'])->name('post.deleteAll');
         Route::get('{id}/toggle', [PostController::class, 'toggleStatus'])->name('post.status.toggle');
+
+        // admin.post.slug.check
+        Route::post('slug/check', [PostController::class, 'slugCheck'])->name('admin.post.slug.check');
     });
 
     Route::prefix('explorer')->group(function () {
@@ -145,8 +150,17 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
         Route::get('{id}/toggle', [TagController::class, 'toggleStatus'])->name('tag.status.toggle');
     });
 
-    Route::prefix('template')->group(function () {
-        Route::get('', [TagController::class, 'index'])->name('template.index');
+    Route::prefix('images')->group(function () {
+        Route::get('', [ImageController::class, 'index'])->name('image.index');
+        Route::get('dataTable', [ImageController::class, 'dataTable'])->name('image.dataTable');
+        Route::get('create', [ImageController::class, 'create'])->name('image.create');
+        Route::post('store', [ImageController::class, 'store'])->name('image.store');
+        Route::get('{id}/show', [ImageController::class, 'show'])->name('image.show');
+        Route::get('{id}/edit', [ImageController::class, 'edit'])->name('image.edit');
+        Route::post('{id}/update', [ImageController::class, 'update'])->name('image.update');
+        Route::get('{id}/delete', [ImageController::class, 'delete'])->name('image.delete');
+        Route::post('deleteAll', [ImageController::class, 'deleteAll'])->name('image.deleteAll');
+        Route::get('{id}/toggle', [ImageController::class, 'toggleStatus'])->name('image.status.toggle');
     });
 
     Route::prefix('export')->group(function () {

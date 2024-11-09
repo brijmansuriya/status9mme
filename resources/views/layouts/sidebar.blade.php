@@ -43,10 +43,10 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('template.index') }}"
-                        class="{{ request()->is('admin/template/*') ? 'active' : '' }}">
+                    <a href="{{ route('image.index') }}"
+                        class="{{ request()->is('admin/image/*') ? 'active' : '' }}">
                         <i class="fa fa-user"></i>
-                        <span> Template </span>
+                        <span> Images </span>
                     </a>
                 </li>
                 <li>

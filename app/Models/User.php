@@ -26,7 +26,6 @@ use App\Notifications\User\AccountStatusUpdated;
 use App\Notifications\User\toggleStatusLoggedOut;
 use App\Notifications\User\MultipleLoginLoggedOut;
 use App\Notifications\User\UserPermanentlyDeleted;
-use App\Notifications\customPasswordResetNotification;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -102,13 +101,6 @@ class User extends Authenticatable implements HasMedia
         $this->tokens()->delete();
     }
 
-
-
-
-
-
-
-
     /**
      *  over ride the default password notification
      */
@@ -116,7 +108,7 @@ class User extends Authenticatable implements HasMedia
     {
         $userType = 'users';
         $email =  request()->get('email');
-        $this->notify(new customPasswordResetNotification($token, $userType, $email));
+        // $this->notify(new customPasswordResetNotification($token, $userType, $email));
     }
 
     public function deleteProfilePicture()
@@ -145,27 +137,10 @@ class User extends Authenticatable implements HasMedia
         } else {
             $this->status = (string) 1;
         }
-        $this->notify(new AccountStatusUpdated());
+        // $this->notify(new AccountStatusUpdated());
         $this->update();
     }
 
-    /**
-     * permanently deletes the user
-     */
-    public function permanentlyDeleted()
-    {
-        $email = $this->email;
-        $this->email = null;
-        $this->username = null;
-        $this->phone = null;
-        $this->update();
-
-        $this->deletedAccount();
-        $this->expireAllTokens();
-        $this->delete();
-
-        Notification::route('mail', $email)->notify(new UserPermanentlyDeleted());
-    }
 
     /**
      *  returns the active users
@@ -191,5 +166,4 @@ class User extends Authenticatable implements HasMedia
         // EAT timezone is UTC+3
         return Carbon::parse($value)->timezone(config('app.default_timezone'))->format(config('app.default_date_format'));
     }
-
 }

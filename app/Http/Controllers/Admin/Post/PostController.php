@@ -205,4 +205,16 @@ class PostController extends Controller
         $post->toggleStatus();
         return redirect()->back();
     }
+
+    // /slugCheck
+    public function slugCheck(Request $request)
+    {
+        $slug = $request->slug;
+        $post = Post::where('slug', $slug)->first();
+        if ($post) {
+            return response()->json(['status' => false]);
+        } else {
+            return response()->json(['status' => true]);
+        }
+    }
 }
