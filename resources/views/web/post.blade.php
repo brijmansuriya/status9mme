@@ -3,6 +3,7 @@
     {!! seo()->for($post) !!}
     <meta property="article:published_time" content="{{ $post->created_at->toIso8601String() }}" />
     <meta property="article:modified_time" content="{{ $post->updated_at->toIso8601String() }}" />
+   <link rel="stylesheet" href="{{ asset('web/css/social-media-share-buttons.css') }}">
 @endsection
 @section('content')
     <!-- Breadcrumb Start -->
@@ -11,11 +12,12 @@
             <nav class="breadcrumb bg-transparent m-0 p-0">
                 <a class="breadcrumb-item" href="{{ route('web.home') }}">Home</a>
 
-                @if($post?->categorie?->slug && $post?->categorie?->name)
-                <a class="breadcrumb-item" href="{{ route('web.categories', ['slug' => $post->categorie->slug]) }}">{{ $post?->categorie?->name  }}</a>
+                @if ($post?->categorie?->slug && $post?->categorie?->name)
+                    <a class="breadcrumb-item"
+                        href="{{ route('web.categories', ['slug' => $post->categorie->slug]) }}">{{ $post?->categorie?->name }}</a>
                 @endif
-               
-                <span class="breadcrumb-item active">{{  Str::limit($post->title, 50, '...') }}</span>
+
+                <span class="breadcrumb-item active">{{ Str::limit($post->title, 50, '...') }}</span>
             </nav>
         </div>
     </div>
@@ -30,6 +32,9 @@
                     <div class="position-relative mb-3">
                         <img class="img-fluid w-100 h-50" src="{{ $post->image ?? '' }}"
                             style="object-fit: cover;height: 350px;" alt="{{ $post->title }}">
+
+                      
+
                         <div class="overlay position-relative bg-light">
                             <h1>{{ $post->title }}</h1>
                             <div>{{ $post->categorie->name ?? '' }}</div>
@@ -42,11 +47,18 @@
                                 <span>{{ $post->created_at ?? '' }}</span>
                             </div>
 
-                            <a href="{{ $post->url }}?view_as=subscriber" class="my-3 text-center"><<< GO TO YOUTUBE>>></a>
-                           {{-- ifrem using pakeg --}}
-                           <div class="embed-responsive embed-responsive-16by9">
-                            @youtube($post->url)
-                          </div>
+                            {!! Share::page(url()->current(), 'Check out this amazing post!')->facebook()->twitter()->linkedin()->whatsapp() !!}
+
+                            
+                            <a href="{{ $post->url }}?view_as=subscriber" class="my-3 text-center">
+                                <<< GO TO YOUTUBE>>>
+                            </a>
+
+                            
+                            {{-- ifrem using pakeg --}}
+                            <div class="embed-responsive embed-responsive-16by9">
+                                @youtube($post->url)
+                            </div>
                         </div>
                     </div>
                     <!-- News Detail End -->
@@ -92,7 +104,7 @@
                                         </div>
                                         <span>{{ $tranding->created_at }}</span>
 
-                     
+
                                     </div>
                                 </div>
                             </a>
@@ -121,36 +133,35 @@
 @endsection
 
 @section('script')
+    {{-- JSON-LD for Breadcrumb Schema --}}
+    @php
+        $breadcrumbs = [
+            [
+                '@type' => 'ListItem',
+                'position' => 1,
+                'name' => 'Home',
+                'item' => route('web.home'),
+            ],
+        ];
 
-{{-- JSON-LD for Breadcrumb Schema --}}
-@php
-    $breadcrumbs = [
-        [
-            '@type' => 'ListItem',
-            'position' => 1,
-            'name' => 'Home',
-            'item' => route('web.home')
-        ]
-    ];
+        if ($post?->categorie?->slug && $post?->categorie?->name) {
+            $breadcrumbs[] = [
+                '@type' => 'ListItem',
+                'position' => 2,
+                'name' => $post->categorie->name,
+                'item' => route('web.categories', ['slug' => $post->categorie->slug]),
+            ];
+        }
 
-    if ($post?->categorie?->slug && $post?->categorie?->name) {
         $breadcrumbs[] = [
             '@type' => 'ListItem',
-            'position' => 2,
-            'name' => $post->categorie->name,
-            'item' => route('web.categories', ['slug' => $post->categorie->slug])
+            'position' => count($breadcrumbs) + 1,
+            'name' => Str::limit($post->title, 50, '...'),
         ];
-    }
 
-    $breadcrumbs[] = [
-        '@type' => 'ListItem',
-        'position' => count($breadcrumbs) + 1,
-        'name' => Str::limit($post->title, 50, '...')
-    ];
+    @endphp
 
-@endphp
-
-<script type="application/ld+json">
+    <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
@@ -158,5 +169,3 @@
     }
 </script>
 @endsection
-
-

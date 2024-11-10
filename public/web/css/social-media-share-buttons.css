@@ -1,0 +1,64 @@
+  /* Social Links Container */
+  #social-links {
+    text-align: center;
+    padding: 20px 0;
+}
+
+/* Social Button List */
+#social-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+/* Social Button Styling */
+#social-links .social-button {
+    display: inline-block;
+    width: 45px;
+    height: 45px;
+    line-height: 45px;
+    border-radius: 50%;
+    font-size: 20px;
+    color: #fff;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+/* Facebook */
+#social-links .social-button .fa-facebook-square {
+    background-color: #3b5998;
+    padding: 10px;
+}
+#social-links .social-button .fa-facebook-square:hover {
+    background-color: #334d84;
+}
+
+/* Twitter */
+#social-links .social-button .fa-twitter {
+    background-color: #1da1f2;
+    padding: 10px;
+}
+#social-links .social-button .fa-twitter:hover {
+    background-color: #1784d0;
+}
+
+/* LinkedIn */
+#social-links .social-button .fa-linkedin {
+    background-color: #0077b5;
+    padding: 10px;
+}
+#social-links .social-button .fa-linkedin:hover {
+    background-color: #005d91;
+}
+
+/* WhatsApp */
+#social-links .social-button .fa-whatsapp {
+    background-color: #25d366;
+    padding: 10px;
+}
+#social-links .social-button .fa-whatsapp:hover {
+    background-color: #1ebc5a;
+}
