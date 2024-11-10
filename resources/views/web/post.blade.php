@@ -3,7 +3,6 @@
     {!! seo()->for($post) !!}
     <meta property="article:published_time" content="{{ $post->created_at->toIso8601String() }}" />
     <meta property="article:modified_time" content="{{ $post->updated_at->toIso8601String() }}" />
-   <link rel="stylesheet" href="{{ asset('web/css/social-media-share-buttons.css') }}">
 @endsection
 @section('content')
     <!-- Breadcrumb Start -->
@@ -33,7 +32,7 @@
                         <img class="img-fluid w-100 h-50" src="{{ $post->image ?? '' }}"
                             style="object-fit: cover;height: 350px;" alt="{{ $post->title }}">
 
-                      
+
 
                         <div class="overlay position-relative bg-light">
                             <h1>{{ $post->title }}</h1>
@@ -47,14 +46,14 @@
                                 <span>{{ $post->created_at ?? '' }}</span>
                             </div>
 
-                            {!! Share::page(url()->current(), 'Check out this amazing post!')->facebook()->twitter()->linkedin()->whatsapp() !!}
 
-                            
+                            <x-web.tools.share-buttons url="url()->current()" text="Check out this amazing post!" />
+
                             <a href="{{ $post->url }}?view_as=subscriber" class="my-3 text-center">
                                 <<< GO TO YOUTUBE>>>
                             </a>
 
-                            
+
                             {{-- ifrem using pakeg --}}
                             <div class="embed-responsive embed-responsive-16by9">
                                 @youtube($post->url)

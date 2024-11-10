@@ -62,3 +62,21 @@
 #social-links .social-button .fa-whatsapp:hover {
     background-color: #1ebc5a;
 }
+
+/* Email */
+#social-links .social-button .fa-telegram {
+    background-color: #0088cc;
+    padding: 10px;
+}
+#social-links .social-button .fa-telegram:hover {
+    background-color: #006db3;
+}
+
+/* fab fa-reddit */
+#social-links .social-button .fa-reddit {
+    background-color: #ff4500;
+    padding: 10px;
+}
+#social-links .social-button .fa-reddit:hover {
+    background-color: #e63e00;
+}

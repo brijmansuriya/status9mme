@@ -12,6 +12,7 @@
             font-size: 50px;
         }
     </style>
+    <link rel="stylesheet" href="{{ asset('web/css/social-media-share-buttons.css') }}">
 @endsection
 
 @section('content')
@@ -45,6 +46,11 @@
         <div class="text-center mt-4">
             <a id="downloadBtn" class="btn btn-success" style="display:none;">Download Image</a>
         </div>
+
+       
+
+        <x-web.tools.share-buttons url="url()->current()" text="Check out this amazing post!" />
+
 
         <div class="row">
             <h2>How to Use the Video Frame Capture Tool: Step-by-Step Guide</h2>
