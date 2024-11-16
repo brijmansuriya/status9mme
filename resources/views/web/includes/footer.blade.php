@@ -19,12 +19,21 @@
                     href="https://www.youtube.com/channel/UCWqgqZyrxjBjFk08mu5KihQ"><i class="fab fa-youtube"></i></a>
             </div>
         </div>
-        <div class="col-lg-6 col-md-6 mb-5">
+        <div class="col-lg-3 col-md-6 mb-5">
             <h4 class="font-weight-bold mb-4">Categories</h4>
             <div class="d-flex flex-wrap m-n1">
                 @foreach ($categorys as $categorie)
                     <a href="{{ route('web.categories', [$categorie->slug]) }}"
                         class="btn btn-sm btn-outline-secondary m-1">{{ $categorie->name }}</a>
+                @endforeach
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-5">
+            <h4 class="font-weight-bold mb-4">Tools</h4>
+            <div class="d-flex flex-wrap m-n1">
+                @foreach (config('app.tools') as $tool)
+                    <a href="{{ $tool['route'] }}" 
+                        class="btn btn-sm btn-outline-secondary m-1">{{ $tool['name'] }}</a>
                 @endforeach
             </div>
         </div>

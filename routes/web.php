@@ -7,13 +7,13 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SitemapController;
 use App\Http\Controllers\Web\ExplorerController;
 use App\Http\Controllers\Web\PopularPost;
+use App\Http\Controllers\Web\Tools\M3u8PlayerController;
 use App\Http\Controllers\Web\Tools\VideoToImageController;
 use App\Http\Controllers\Web\WebCategories;
 use App\Http\Controllers\Web\WebController;
 use App\Http\Controllers\WebViewController;
 use Illuminate\Support\Facades\Route;
-
-
+use Spatie\SchemaOrg\Play;
 
 
 /*
@@ -57,6 +57,8 @@ Route::get('/dmca', [WebController::class, 'dmca'])->name('web.dmca');
 Route::get('/exploer/{slug}', [ExplorerController::class, 'show'])->name('web.exploer.show');
 
 Route::get('/tools/video-to-image', [VideoToImageController::class, 'index'])->name('web.tools.video_to_image');
+
+Route::get('/tools/m3u8-player-online-test-free', [M3u8PlayerController::class, 'index'])->name('web.tools.m3u8-player');
 
 
 /**

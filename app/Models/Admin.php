@@ -77,4 +77,9 @@ class Admin extends Authenticatable implements HasMedia
         // EAT timezone is UTC+3
         return Carbon::parse($value)->timezone(config('app.timezone'))->format(config('app.default_date_format'));
     }
+
+    public function createToken(string $tokenName = null, array $abilities = ['*'])
+{
+    return $this->createToken($tokenName, $abilities);
+}
 }

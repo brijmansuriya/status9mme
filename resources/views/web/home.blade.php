@@ -1,14 +1,6 @@
 @extends('web.layouts.app')
 @section('css')
     {!! seo($SEOData) !!}
-    <style>
-        .gradient-text {
-            background: linear-gradient(90deg, #4b2478, #f955ff);
-            /* Customize colors */
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-    </style>
 @endsection
 @section('meta')
     <meta
@@ -24,72 +16,91 @@
             <div class="container text-center">
                 <h1 class="display-4 font-weight-bold gradient-text">Discover Amazing Status Videos</h1>
                 <p class="lead">Explore, download, and share high-quality status videos for every mood and occasion.</p>
-                <a href="{{ route('web.categorieslist') }}" class="btn btn-primary btn-lg mt-3">Browse Categories</a>
+                <x-web.tools.share-buttons url="url()->current()" text="Check out this amazing post!" />
+                <a href="{{ route('web.categorieslist') }}" class="btn btn-primary btn-lg mt-3 rounded-lg">Explore Categories</a>
+
             </div>
         </div>
         {{-- hero section --}}
 
 
-        <div class="container">
-            {{-- <div class="row">
-                <div class="col-lg-12">
-                    <div class="owl-carousel owl-carousel-2 carousel-item-1 position-relative mb-3 mb-lg-0 p-1">
-                        <div class="position-relative overflow-hidden" >
-                            <img class="img-fluid h-100" src="{{ asset('web/img/status9mme-banner-1.webp') }}" style="object-fit: cover;">
-                        </div>
-                        <div class="position-relative overflow-hidden" >
-                            <img class="img-fluid h-100" src="{{ asset('web/img/status9mme-banner-2.webp')}}" style="object-fit: cover;">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="d-flex align-items-center justify-content-between bg-light py-2 px-4 mb-3">
-                        <h3 class="m-0">Categories</h3>
-                        <a class="text-secondary font-weight-medium text-decoration-none"
-                            href="{{ route('web.categorieslist') }}">View All</a>
-                    </div>
-                    @foreach ($categorys as $categorie)
-                        <div class="position-relative overflow-hidden mb-3" style="height: 80px;">
-
-                            <a href="{{ route('web.categories', [$categorie->slug]) }}"
-                                class="overlay align-items-center justify-content-center h4 m-0 text-white text-decoration-none">{{ $categorie->name }}</a>
-                        </div>
-                    @endforeach
-                </div>
-            </div> --}}
-
-
-
-
-        </div>
     </div>
     <!-- Main News Slider End -->
 
 
-
-    <div class="container">
+    {{-- <div class="container">
         <div class="row">
-            {{-- Tools start --}}
+            
             <div class="col-12">
-                    <div class="d-flex align-items-center justify-content-between bg-light py-2 px-4 mb-3">
-                        <h3 class="m-0">Tools</h3>
-                        {{-- <a class="text-secondary font-weight-medium text-decoration-none"
-                            href="{{ route('web.categorieslist') }}">View All</a> --}}
-                    </div>
-                   
+                <div class="d-flex align-items-center justify-content-between bg-light py-2 px-4 mb-3">
+                    <h3 class="m-0">Tools</h3>
+                </div>
             </div>
-            {{-- Tools end --}}
+         
         </div>
+    
         <div class="row">
-            <div class="col-lg-4">
-                <div class="position-relative overflow-hidden mb-3" style="height: 80px;">
-                    <a href="{{ route('web.tools.video_to_image') }}"
-                        class="overlay align-items-center justify-content-center h4 m-0 text-white text-decoration-none">Video
-                        to Image</a>
+            <div class="col-lg-4 col-md-6 mb-3">
+                <div class="card shadow-sm">
+                    <div class="position-relative overflow-hidden" style="height: 180px;">
+                        <a href="{{ route('web.tools.video_to_image') }}"
+                           class="overlay d-flex align-items-center justify-content-center h-100 text-white text-decoration-none">
+                            <h4 class="m-0">Video to Image</h4>
+                        </a>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="col-lg-4 col-md-6 mb-3">
+                <div class="card shadow-sm">
+                    <div class="position-relative overflow-hidden" style="height: 180px;">
+                        <a href="{{ route('web.tools.m3u8-player') }}"
+                           class="overlay d-flex align-items-center justify-content-center h-100 text-white text-decoration-none">
+                            <h4 class="m-0">M3U8 Player</h4>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+     --}}
+
+     <div class="container">
+        <div class="row">
+            {{-- Tools start --}}
+            <div class="col-12">
+                <div class="d-flex align-items-center justify-content-between bg-light py-2 px-4 mb-3">
+                    <h3 class="m-0">Tools</h3>
+                </div>
+            </div>
+            {{-- Tools end --}}
+        </div>
+    
+        <div class="row">
+            <div class="col-lg-4 col-md-6 mb-3">
+                <div class="card shadow-sm border-0 bg-light rounded-lg">
+                    <div class="position-relative overflow-hidden rounded-lg bg-gradient-backed title" style="height: 60px; ">
+                        <a href="{{ route('web.tools.video_to_image') }}"
+                           class="overlay d-flex align-items-center justify-content-center h-100 text-dark text-decoration-none p-4">
+                            <h4 class="m-0 text-white">Video to Image</h4>
+                        </a>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="col-lg-4 col-md-6 mb-3">
+                <div class="card shadow-sm border-0 bg-light rounded-lg">
+                    <div class="position-relative overflow-hidden rounded-lg bg-gradient-backed title" style="height: 60px; ">
+                        <a href="{{ route('web.tools.m3u8-player') }}"
+                           class="overlay d-flex align-items-center justify-content-center h-100 text-dark text-decoration-none p-4">
+                            <h4 class="m-0 text-white">M3U8 Player</h4>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <div class="container">
         <div class="row">
@@ -104,10 +115,14 @@
         </div>
         <div class="row">
             @foreach ($categorys as $categorie)
-                <div class="col-lg-4">
-                    <div class="position-relative overflow-hidden mb-3" style="height: 80px;">
-                        <a href="{{ route('web.categories', [$categorie->slug]) }}"
-                            class="overlay align-items-center justify-content-center h4 m-0 text-white text-decoration-none">{{ $categorie->name }}</a>
+                <div class="col-lg-4 col-md-6 mb-3">
+                    <div class="card shadow-sm border-0 bg-light rounded-lg">
+                        <div class="position-relative overflow-hidden rounded-lg bg-gradient-backed title" style="height: 60px;">
+                            <a href="{{ route('web.categories', [$categorie->slug]) }}"
+                               class="overlay d-flex align-items-center justify-content-center h-100 text-dark text-decoration-none p-4">
+                                <h4 class="m-0 text-white">{{ $categorie->name }}</h4>
+                            </a>
+                        </div>
                     </div>
                 </div>
             @endforeach

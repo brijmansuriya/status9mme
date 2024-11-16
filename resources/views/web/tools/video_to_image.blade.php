@@ -2,17 +2,6 @@
 
 @section('css')
     {!! seo($SEOData) !!}
-    <style>
-        .gradient-text {
-            background: linear-gradient(90deg, #4b2478, #f955ff);
-            /* Customize colors */
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-family: 'Arial', sans-serif;
-            font-size: 50px;
-        }
-    </style>
-    <link rel="stylesheet" href="{{ asset('web/css/social-media-share-buttons.css') }}">
 @endsection
 
 @section('content')
@@ -26,8 +15,8 @@
         </div>
 
         <!-- Video Element for Uploaded Video -->
-        <div class="mb-3">
-            <video id="videoPreview" class="w-100 h-auto" controls></video>
+        <div class="mb-3 w-100">
+            <video id="videoPreview" class="" controls></video>
         </div>
 
         <!-- Capture Frame Button -->
@@ -52,7 +41,7 @@
         <x-web.tools.share-buttons url="url()->current()" text="Check out this amazing post!" />
 
 
-        <div class="row">
+        <div class="row mx-3">
             <h2>How to Use the Video Frame Capture Tool: Step-by-Step Guide</h2>
             <p>Welcome to our <strong>Video Frame Capture Tool</strong>! This easy-to-use tool allows you to upload a video,
                 capture a frame, and download it as an image. Follow this step-by-step guide to get started quickly.</p>

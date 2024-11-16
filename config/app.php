@@ -27,9 +27,20 @@ return [
 
     //home page benner(crogal) post list show home-post
     'home-post' => 6,
-    
+
     //home page benner(crogal) explorer list home-explorer
     'home-explorer' => 6,
+
+    'tools' => [
+        [
+            'route' => 'web.tools.video_to_image',
+            'name' => 'Video To Image',
+        ],
+        [
+            'route' => 'web.tools.m3u8-player',
+            'name' => 'M3U8 Player',
+        ],
+    ],
 
     /*
     |--------------------------------------------------------------------------

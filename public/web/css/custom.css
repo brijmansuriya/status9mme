@@ -1,0 +1,42 @@
+/* home page hero section text gradient color */
+
+.gradient-text {
+    background: linear-gradient(100deg, #4b2478, #55ff63);
+    /* Customize colors */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-family: 'Arial', sans-serif;
+    font-size: 50px;
+}
+
+.bg-gradient-backed{
+    background: linear-gradient(100deg, #4b2478, #55ff63);
+}
+
+.title {
+    text-transform: capitalize;
+  }
+
+/* end home page hero section text gradient color */
+
+/*start web heder logo and logout section */
+.h-200 {
+    height: 200px;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+a:hover {
+    /* color: white; */
+    text-decoration: none !important;
+    cursor: pointer;
+}
+
+.logo {
+    font-size: 34px;
+    font-weight: 800;
+}
+
+/*end web heder logo and logout section */
