@@ -162,7 +162,7 @@ class AdminController extends Controller
         if ($request->has('token')) {
             $admin = auth()->user();
             $admin->device_token = $request->token;
-            $admin->update();
+            $admin?->update();
         }
         return response()->json([
             'status' => true

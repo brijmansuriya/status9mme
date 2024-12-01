@@ -70,7 +70,7 @@
                                 <p class="help-block text-danger"></p>
                             </div>
                             <div>
-                                <button class="btn btn-primary font-weight-semi-bold px-4" style="height: 50px;" type="submit" id="sendMessageButton">Send Message</button>
+                                <button class="btn btn-primary font-weight-semi-bold px-4 w-100" style="height: 50px;" type="submit" id="sendMessageButton">Send Message</button>
                             </div>
                         </form>
                     </div>

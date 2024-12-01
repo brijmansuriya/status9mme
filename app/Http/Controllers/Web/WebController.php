@@ -183,7 +183,7 @@ class WebController extends Controller
             'message' => $request->message,
         );
 
-        Mail::to('news9mme+@gmail.com')->send(new ContactUsMail($data));
+        // Mail::to('news9mme+@gmail.com')->send(new ContactUsMail($data));
         return redirect()->back()->with('success', 'Thank you for contacting us!');
     }
     //contactus Submit

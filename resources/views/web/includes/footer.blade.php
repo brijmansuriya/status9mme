@@ -32,7 +32,7 @@
             <h4 class="font-weight-bold mb-4">Tools</h4>
             <div class="d-flex flex-wrap m-n1">
                 @foreach (config('app.tools') as $tool)
-                    <a href="{{ $tool['route'] }}" 
+                    <a href="{{ route($tool['route']) }}" 
                         class="btn btn-sm btn-outline-secondary m-1">{{ $tool['name'] }}</a>
                 @endforeach
             </div>
@@ -70,8 +70,8 @@
 </div>
 <div class="container-fluid py-4 px-sm-3 px-md-5">
     <p class="m-0 text-center">
-        &copy; <a class="font-weight-bold" href="#">STATUS9MME</a>. All Rights Reserved.
-        Designed by <a class="font-weight-bold" href="https://htmlcodex.com">STATUS9MME</a>
+        &copy; <a class="font-weight-bold" href="https://www.web-beast.com">web-beast.com</a>. All Rights Reserved.
+        Designed by <a class="font-weight-bold" href="https://www.web-beast.com">M.B.Patel</a>
     </p>
 </div>
 <!-- Footer End -->

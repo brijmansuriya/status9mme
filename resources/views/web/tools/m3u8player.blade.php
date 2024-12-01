@@ -44,6 +44,8 @@
                 </div>
             </div>
 
+            <img src="https://status9mme.com/storage/41/conversions/Test-M3u8-conversion.webp" class="img-fluid my-4 w-100 " alt="">
+
             <!-- Step-by-Step Guide Section -->
             <div class="row my-4">
                 <div class="col-12">
@@ -152,6 +154,7 @@
                     <p>The player automatically adjusts the video quality based on your internet connection. However, if the
                         player offers quality controls, you can manually select your preferred video resolution.</p>
                 </div>
+                <img src="https://status9mme.com/storage/40/conversions/DALL%C2%B7E-2024-11-16-18.34.52---A-modern-and-sleek-thumbnail-for-an-online-tool-titled-'Free-M3U8-Player---Test-HLS-Streams-Online'.-The-design-features-a-computer-screen-playing-a-v-conversion.webp" class="img-fluid my-4 w-50 h-50 img-responsive center-block" alt="">
             </div>
 
         </div>
