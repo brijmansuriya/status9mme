@@ -20,7 +20,11 @@ class WebController extends Controller
     {
         $categorys = Categorie::active()->available()->latest()->take(config('app.home-categorie'))->get(['id', 'slug', 'name']);
 
-        $featureds = $latests = $trandings = $populars = Post::with('categorie')->latest()->active()->available()->paginate(config('app.home-post'));
+        $featureds = $latests = $populars = Post::with('categorie')->latest()->active()->available()->paginate(config('app.home-post'));
+
+        $trandings = Post::with('categorie')->latest()->active()->available()->paginate(config('app.trandings'));
+
+        $trandings_latest = Post::with('categorie')->active()->available()->orderBy('id', 'asc')->paginate(config('app.trandings'));
 
         $latests =  Post::with('categorie')->latest()->active()->available()->orderBy('id', 'desc')->paginate(config('app.home-post'));
 
@@ -51,6 +55,7 @@ class WebController extends Controller
             'explorers' => $explorers,
             'categorys' => $categorys,
             'trandings' => $trandings,
+            'trandings_latest' => $trandings_latest,
             'latests' => $latests,
             'populars' => $populars,
             'featureds' => $featureds,

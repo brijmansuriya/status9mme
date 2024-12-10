@@ -282,7 +282,29 @@
                 </div>
 
                 <div class="col-lg-4 pt-3 pt-lg-0">
-                   
+                    <div class="bg-light py-2 px-4 mb-3">
+                        <h3 class="m-0">Old Posts</h3>
+                    </div>
+                    @foreach ($trandings_latest as $tranding_new)
+                        <a href="{{ route('web.popularpost', ['slug' => $tranding_new->slug]) }}">
+                            <div class="d-flex mb-3">
+
+                                <img src="{{ $tranding_new->image }}"
+                                    style="width: 100px; height: 100px; object-fit: cover;">
+                                <div class="w-100 d-flex flex-column justify-content-center bg-light px-3"
+                                    style="height: 100px;">
+                                    <div class="mb-1" style="font-size: 13px;">
+                                        <div>
+                                            {{ $tranding_new->categorie->name ?? '' }}
+                                        </div>
+                                    </div>
+                                    <div class="h6 m-0">{{ Str::limit($tranding_new->title, 50, '...') }}</div>
+                                    <span>{{ $tranding_new->created_at }}</span>
+                                </div>
+                            </div>
+                        </a>
+                    @endforeach
+
                 </div>
             </div>
         </div>

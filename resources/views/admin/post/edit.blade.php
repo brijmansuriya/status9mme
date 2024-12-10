@@ -73,7 +73,7 @@
                             </div>
                             <div class="form-group" id="slug-group">
                                 <label for="product-summary">Slug</label>
-                                <input type="text" class="form-control slug_check" id="slug" name="slug"
+                                <input type="text" class="form-control" id="slug" name="slug"
                                     value="{{ $post->slug }}" placeholder="Please enter slug" required
                                     data-parsley-trigger="keyup" data-parsley-required-message="The slug field is required"
                                     data-parsley-class-handler="#slug-group" data-parsley-minlength="2"

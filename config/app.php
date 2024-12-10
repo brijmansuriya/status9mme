@@ -28,6 +28,9 @@ return [
     //home page benner(crogal) post list show home-post
     'home-post' => 6,
 
+    //home trandings 
+    'trandings' => 10,
+
     //home page benner(crogal) explorer list home-explorer
     'home-explorer' => 6,
 
