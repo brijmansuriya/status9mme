@@ -14,7 +14,7 @@
         {{-- hero section --}}
         <div class="hero-section" style="padding: 60px 0;">
             <div class="container text-center">
-                <h1 class="display-4 font-weight-bold gradient-text">Discover Amazing Status Videos</h1>
+                <h1 class="display-4 font-weight-bold">Discover Amazing Status Videos</h1>
                 <p class="lead">Explore, download, and share high-quality status videos for every mood and occasion.</p>
                 <x-web.tools.share-buttons url="url()->current()" text="Check out this amazing post!" />
                 <a href="{{ route('web.categorieslist') }}" class="btn btn-primary btn-lg mt-3 rounded-lg">Explore Categories</a>

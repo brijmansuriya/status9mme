@@ -3,6 +3,9 @@
     {!! seo()->for($post) !!}
     <meta property="article:published_time" content="{{ $post->created_at->toIso8601String() }}" />
     <meta property="article:modified_time" content="{{ $post->updated_at->toIso8601String() }}" />
+    <meta property="og:image" content="{{ $post->image }}" />
+    <meta property="og:image:secure_url" content="{{ $post->image }}" />
+    <meta name="keywords" content="{{ $post->keyword }}">
 @endsection
 @section('content')
     <!-- Breadcrumb Start -->
